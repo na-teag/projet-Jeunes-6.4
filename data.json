@@ -1,0 +1,36 @@
+{
+	"jeune": [
+		{
+			"username": "test@test.test",
+			"password": "TEST",
+			"role": "jeune",
+			"email": "test@test",
+			"skills": [
+				{
+					"description": "CompétenceTest",
+					"referent": [
+						{
+							"name": "TEST",
+							"firstname": "Test",
+							"contact": "test.TEST@referent.test",
+							"company": "entreprise de tests sanitaires"
+						}
+					]
+				}
+			],
+			"skillsToConfirm":[
+				{
+					"description": "CompétenceTest_a_confirmer",
+					"referent": [
+						{
+							"name": "TEST (à confirmer)",
+							"firstname": "Test (à confirmer)",
+							"contact": "test.TEST@referent.test (à confirmer)",
+							"company": "entreprise de tests sanitaires (à confirmer)"
+						}
+					]
+				}
+			]
+		}
+	]
+}

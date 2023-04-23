@@ -1,0 +1,104 @@
+<?php
+	session_destroy();
+
+if(isset($_POST["username"]) && isset($_POST["password"])){
+	session_start();
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+
+    $file = file_get_contents('data.json');
+    $data = json_decode($file, true); // Convertir data.json en tableau
+
+    $user_found = 0;
+    foreach($data["jeune"] as $user){
+        if($user["username"] == $username && $user["password"] == $password){
+            $user_found = 1;
+        }
+    }
+
+    if($user_found == 1){
+        $_SESSION["username"] = $username;
+        $_SESSION["role"] = "jeune";
+
+        // Rediriger l'utilisateur vers la page d'accueil
+        header("Location: jeune/home.php");
+        exit;
+    } else{
+        // Sinon, afficher un message d'erreur
+        $message = "Identifiant ou mot de passe incorrect.";
+    }
+}
+?>
+<html>
+<head>
+<head>
+	<title>Jeunes 6.4</title>
+	<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+	<link rel="stylesheet" href="login.css">
+</head>
+<body>
+	<table class="bandeau">
+			<tr>
+				<td rowspan="2"><a href="jeunes6.4.php"><img src="../images/logo.png"><img></a></td>
+				<td><h1 id="taille1">.</h1></td>
+			</tr>
+			<tr>
+				<td><p id="taille2">Pour faire de l'engagement une valeur</p></td>
+			</tr>
+	</table>
+	<div class="bandeau">
+		<ul>
+			<li><a class="jeune" href="jeune/home.php">JEUNE </a></li>
+			<li><a class="referent" href="referent_info.php" >RÉFÉRENT </a></li>
+			<li><a class="consultant" href="consultant_info.php">CONSULTANT </a></li>
+			<li><a class="partenaires" href="partenaires.php" >PARTENAIRES</a></li>
+		</ul>
+	</div>
+	<br>
+	<table>
+		<form method="POST">
+			<tr><td>identifiant :</td><td><input type="text" name="username" required></td></tr>
+			<tr><td>mot de passe :</td><td><input type="password" name="password" required></td></tr>
+			<tr><td colspan="2"><button type="submit">Se Connecter</button><td></tr>
+	</form>
+	</table>
+	<br>
+	<div id="message"><?php
+		if(isset($message)){
+			echo $message;
+		}
+	?></div>
+	<script>
+	function checkID(username, password){
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function(){
+			if(this.readyState == 4 && this.status == 200){
+				var reponse = JSON.parse(xhttp.responseText);
+				var IDfound = false;
+				for(var i in reponse.jeune){
+					if(reponse.jeune[i].username == username && reponse.jeune[i].password == password){
+						IDfound = true;
+						window.location.href = 'home.php';
+						break;
+					}
+				}
+				if(!IDfound){
+					var message = document.getElementById("message");
+					message.innerHTML = "Identifiant ou mot de passe incorrect.";
+				}
+			}
+		};
+		xhttp.open("GET", "data.json", true);
+		xhttp.send();
+	}
+	</script>
+</body>
+
+<!-- 
+  function checkEmail(email){
+  var structure = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]+$/;
+  return structure.test(email);
+  }
+ -->
+
+</html>
