@@ -11,7 +11,7 @@ if(!isset($_SESSION["role"])){
 if(isset($_POST['deconnexion'])){
     $_SESSION = array();
     session_destroy();
-    header("Location: ../jeunes6.4.php");
+    header("Location: ../home.php");
     exit;
 }
 ?>
@@ -24,12 +24,12 @@ if(isset($_POST['deconnexion'])){
 <head>
 	<title>Jeunes 6.4</title>
 	<link rel="icon" type="image/x-icon" href="../images/favicon.ico">
-	<link rel="stylesheet" href="home.css">
+	<link rel="stylesheet" href="skills.css">
 </head>
 <body>
 	<table class="bandeau">
 		<tr>
-			<td rowspan="2"><a href="../jeunes6.4.php"><img src="../images/logo.png"><img></a></td>
+			<td rowspan="2"><a href="../home.php"><img src="../images/logo.svg"><img></a></td>
 			<td><h1 id="taille1">JEUNE</h1></td>
 		</tr>
 		<tr>

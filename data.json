@@ -4,6 +4,8 @@
 			"username": "test@test.test",
 			"password": "TEST",
 			"role": "jeune",
+			"name": "TEST",
+			"firstname": "Test",
 			"email": "test@test",
 			"skills": [
 				{
