@@ -19,6 +19,7 @@
 	<title>Jeunes 6.4</title>
 	<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
 	<link rel="stylesheet" href="home.css">
+	<meta charset="UTF-8">
 </head>
 
 

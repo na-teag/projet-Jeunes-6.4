@@ -25,6 +25,7 @@ if(isset($_POST['deconnexion'])){
 	<title>Jeunes 6.4</title>
 	<link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	<link rel="stylesheet" href="skills.css">
+	<meta charset="UTF-8">
 </head>
 <body>
 	<table class="bandeau">
