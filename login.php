@@ -1,11 +1,13 @@
 <?php
+	session_start();
+	$_SESSION = array();
 	session_destroy();
+	session_start();
 
 	$users = [];
 	require_once 'data.php';
 
 	if(isset($_POST["username"]) && isset($_POST["password"])){
-		session_start();
 		$username = $_POST["username"];
 		$password = $_POST["password"];
 	
@@ -21,8 +23,14 @@
 			$_SESSION["role"] = "jeune";
 			header("Location: jeune/skills.php");
 			exit;
-		} else{
-			$message = "Identifiant ou mot de passe incorrect.";
+		}else{
+			if($username == $password && $password == 'admin'){
+				$_SESSION["username"] = "admin";
+				header("Location: admin/login_admin.php");
+				exit;
+			}else{
+				$message = "Identifiant ou mot de passe incorrect.";
+			}
 		}
 	}
 ?>	
@@ -69,29 +77,5 @@
 			echo $message;
 		}
 	?></div>
-	<script>
-	function checkID(username, password){
-		var xhttp = new XMLHttpRequest();
-		xhttp.onreadystatechange = function(){
-			if(this.readyState == 4 && this.status == 200){
-				var reponse = JSON.parse(xhttp.responseText);
-				var IDfound = false;
-				for(var i in reponse.jeune){
-					if(reponse.jeune[i].username == username && reponse.jeune[i].password == password){
-						IDfound = true;
-						window.location.href = 'home.php';
-						break;
-					}
-				}
-				if(!IDfound){
-					var message = document.getElementById("message");
-					message.innerHTML = "Identifiant ou mot de passe incorrect.";
-				}
-			}
-		};
-		xhttp.open("GET", "data.json", true);
-		xhttp.send();
-	}
-	</script>
 </body>
 </html>

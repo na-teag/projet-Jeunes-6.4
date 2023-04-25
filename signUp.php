@@ -12,32 +12,32 @@
 		$password = $_POST['password'];
 	
 		
-		if(isset($users[$username])){ // Vérifier si l'identifiant est déjà pris
+		if(isset($users[$username]) || $username == 'admin'){ // Vérifier si l'identifiant est déjà pris
 			$message = "Cet identifiant est déjà utilisé, veuillez en choisir un autre.";
+		}else{
+	
+		
+			$users[$username] = array(   // Ajouter nouvel utilisateur
+				'name' => $name,
+				'firstname' => $firstname,
+				'birth' => $birth,
+				'email' => $email,
+				'username' => $username,
+				'password' => password_hash($password, PASSWORD_DEFAULT),
+				'role' => 'jeune',
+				'skills' => array(),
+			);
+
+		
+
+			$file = fopen('data.php', 'w');// Écrire les données
+			fwrite($file, '<?php $users = ' . var_export($users, true) . '; ?>');
+			fclose($file);
+			$_SESSION["username"] = $username;
+			$_SESSION["role"] = "jeune";
+			header("Location: jeune/skills.php");
+			exit();
 		}
-	
-		
-		$users[$username] = array(   // Ajouter nouvel utilisateur
-			'name' => $name,
-			'firstname' => $firstname,
-			'birth' => $birth,
-			'email' => $email,
-			'username' => $username,
-			'password' => password_hash($password, PASSWORD_DEFAULT),
-			'role' => 'jeune',
-			'skills' => array(),
-			'skillsToConfirme' => array(),
-		);
-		
-	
-		
-		$file = fopen('data.php', 'w');// Écrire les données
-		fwrite($file, '<?php $users = ' . var_export($users, true) . '; ?>');
-		fclose($file);
-		$_SESSION["username"] = $username;
-		$_SESSION["role"] = "jeune";
-		header("Location: jeune/skills.php");
-		exit();
 	}
 	
 ?>

@@ -21,10 +21,9 @@ $users = array (
 				'description' => 'fabrication de tacos', #description de la tâche réalisé
 				'socialSkills' => array('skill1', 'skill2', 'skill3'), # 4 skills maximum
 				'savoir-faire' => array('skill1', 'skill2', 'skill3'), # 4 skills maximum
+                'status' => 'confirmed' # pourrait être toConfirm ou bien archived
 			),
-		),
-		'skillsToConfirme' => array( # même chose que les skills confirmés
-		),		
+		)	
 	),
 );
 ?>
