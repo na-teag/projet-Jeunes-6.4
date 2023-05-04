@@ -16,6 +16,7 @@ $users = array (
 					'email' => 'referent@otacos.com',
 					'situation' => 'OTacos worker', # retraité salarié femme au foyer etc.
 				),
+				'beginning' => '2000-01-01',
 				'duration' => '1 mois',
 				'environement' => 'Otacos company', # association, club, entreprise
 				'description' => 'fabrication de tacos', #description de la tâche réalisé
@@ -27,3 +28,4 @@ $users = array (
 	),
 );
 ?> 
+

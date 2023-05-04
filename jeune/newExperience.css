@@ -1,27 +1,10 @@
+table:not(.bandeau){
+    padding: 15px;
+}
 table[class="bandeau"]{
 	width: 100%;
 	background-color: lightgray;
 	color: white;
-}
-table{
-	border-collapse: collapse;
-}
-td[class="marge"]{
-	padding: 50px;
-	border-top-style: solid;
-	border-bottom-style: solid;
-}
-td.marge:nth-child(3n){
-	border-left-style: solid;
-}
-td.marge:first-child{
-	border-left-style: solid;
-}
-td.marge:nth-child(4n){
-	border-right-style: solid;
-}
-td.marge:nth-child(2n){
-	border-right-style: solid;
 }
 
 .deconnexion{

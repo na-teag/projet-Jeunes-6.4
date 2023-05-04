@@ -3,9 +3,10 @@
 	require_once 'data.php';
 	
 	
-	if(isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) && isset($_POST['username']) && isset($_POST['password']) && isset($_POST['birth'])){
+	if(isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) && isset($_POST['username']) && isset($_POST['password']) && isset($_POST['birth']) && isset($_POST['gender'])){
 		$name = $_POST['nom'];
 		$firstname = $_POST['prenom'];
+		$gender = $_POST['gender'];
 		$birth = $_POST["birth"];
 		$email = $_POST['email'];
 		$username = $_POST['username'];
@@ -20,6 +21,7 @@
 			$users[$username] = array(   // Ajouter nouvel utilisateur
 				'name' => $name,
 				'firstname' => $firstname,
+				'gender' => $gender,
 				'birth' => $birth,
 				'email' => $email,
 				'username' => $username,
@@ -70,18 +72,25 @@
 	<br>
 	<h1>Inscription</h1>
 	<form method="POST">
+		<label>Genre:</label>
+		<input type="radio" id="homme" name="gender" value="man" required>
+  		<label for="homme">Homme</label>
+  		<input type="radio" id="femme" name="gender" value="woman" required>
+  		<label for="femme">Femme</label>
+  		<input type="radio" id="autre" name="gender" value="other" required>
+  		<label for="autre">Autre</label><br><br>
 		<label>Nom:</label><br>
-		<input type="text" name="nom" required><br>
+		<input type="text" name="nom" required><br><br>
 		<label>Prénom:</label><br>
-		<input type="text" name="prenom" required><br>
+		<input type="text" name="prenom" required><br><br>
 		<label>Date de Naissance :</label><br>
-		<input type="date" name="birth" required><br>
+		<input type="date" name="birth" required><br><br>
 		<label>Email:</label><br>
-		<input type="email" name="email" required><br>
+		<input type="email" name="email" required><br><br>
 		<label>identifiant:</label><br>
-		<input type="text" name="username" required><br>
+		<input type="text" name="username" required><br><br>
 		<label>Mot de passe:</label><br>
-		<input type="password" name="password" required><br>
+		<input type="password" name="password" required><br><br>
 		<input type="submit" value="S'inscrire">
 	</form>
 </body>
