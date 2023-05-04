@@ -6,7 +6,7 @@
     'birth' => '2000-01-01',
     'email' => 'test@test.test',
     'username' => 'test_test',
-    'password' => '$2y$10$5WJOh70Vg.eIPpLOzyGVG.xvx9ii5WmZbGARQ/5fmh6.U89N8Lrvy',
+    'password' => '$2y$10$5WJOh70Vg.eIPpLOzyGVG.xvx9ii5WmZbGARQ/5fmh6.U89N8Lrvy', // TEST
     'role' => 'jeune',
     'skills' => 
     array (
@@ -94,20 +94,6 @@
         ),
         'status' => 'toConfirm',
       ),
-    ),
-  ),
-  'nateag' => 
-  array (
-    'name' => 'Retel',
-    'firstname' => 'Gaétan',
-    'gender' => 'man',
-    'birth' => '2003-08-01',
-    'email' => 'gaetan.retel@gmail.com',
-    'username' => 'nateag',
-    'password' => '$2y$10$60G7VathNG57jQo1.b/tqOTq.UvGqHLW8K6Ax38k/C23UOhKb9zNy',
-    'role' => 'jeune',
-    'skills' => 
-    array (
     ),
   ),
 ); ?>
