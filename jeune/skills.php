@@ -8,7 +8,7 @@ if(!isset($_SESSION["role"]) || $_SESSION["role"] != "jeune"){
     exit;
 }
 
-if(isset($_POST['deconnexion'])){
+if(isset($_POST['deconnexion'])){// partie pour déconnecter l'utilisateur
     $_SESSION = array();
     session_destroy();
     header("Location: ../home.php");

@@ -8,15 +8,30 @@ if(!isset($_SESSION["role"]) || $_SESSION["role"] != "jeune"){
 	exit;
 }
 
-if(isset($_POST['deconnexion'])){
+
+if(isset($_POST['deconnexion'])){ // partie pour déconnecter l'utilisateur
 	$_SESSION = array();
 	session_destroy();
 	header("Location: ../home.php");
 	exit;
 }
+
+
+ // vérification et enregistrement des données
+if(isset($_POST['description'])){
+	$error = 0;
+	if($_POST["durationDay"] == "" && $_POST["durationMonth"] == "" && $_POST["durationWeek"] == "" && $_POST["durationYear"] == ""){
+		$message = "Vous devez remplir un des champ de durée";
+		$error = 1;
+	}else if(!(($_POST["durationDay"] == "" && $_POST["durationMonth"] == "" && $_POST["durationYear"] == "" ) || ( $_POST["durationDay"] == "" && $_POST["durationWeek"] == "" && $_POST["durationYear"] == "" ) || ( $_POST["durationWeek"] == "" && $_POST["durationMonth"] == "" && $_POST["durationYear"] == "" ) || ( $_POST["durationWeek"] == "" && $_POST["durationMonth"] == "" && $_POST["durationDay"] == "" ))){
+		$message = "Vous ne devez remplir qu'un seul champ de durée";
+	}else{
+		$message = "";
+		//enregistrement des données dans data.php
+	}
+}
 ?>
 
-<!-- partie classique de la page-->
 
 
 
@@ -29,7 +44,7 @@ if(isset($_POST['deconnexion'])){
 </head>
 <body>
 	<script>
-		function checkLimite(checkbox){
+		function checkLimite(checkbox){ // vérifier que seulement 4 cases max ont été cochées
 		  var checkboxes = document.getElementsByName("socialSkills[]");
 		  var nbrChecked = 0;
 		  for(var i=0; i<checkboxes.length; i++){
@@ -76,9 +91,10 @@ if(isset($_POST['deconnexion'])){
 			<tr><td>début :</td><td><input type="date" name="beginning" required></td></tr>
 		</table>
 		<table>
-			<tr><td>durée :</td><td><input type="number" name=durationDay min="0"> jours</td><td> *remplissez un des trois champs</td></tr>
+			<tr><td>durée :</td><td><input type="number" name=durationDay min="0"> jours</td><td><div <?php if (isset($message)) { echo 'class="red"'; } ?>><?php if(isset($message)){ echo $message; }else{ echo "*remplissez uniquement un des champs";} ?></div></td></tr>
 			<tr><td></td><td><input type="number" name=durationWeek min="0"> semaines</td></tr>
 			<tr><td></td><td><input type="number" name=durationMonth min="0"> mois</td></tr>
+			<tr><td></td><td><input type="number" name=durationYear min="0"> ans</td></tr>
 		</table>
 		<table>
 			<tr>
@@ -125,7 +141,7 @@ if(isset($_POST['deconnexion'])){
 			<tr><td colspan="3"><button type="submit">Enregistrer</button><td></tr>
 		</table>
 	</form>
-		
+			
 	
 	
 </body>
