@@ -18,17 +18,18 @@ if(isset($_POST['deconnexion'])){ // partie pour déconnecter l'utilisateur
 
 
  // vérification et enregistrement des données
-if(isset($_POST['description'])){
-	$error = 0;
-	if($_POST["durationDay"] == "" && $_POST["durationMonth"] == "" && $_POST["durationWeek"] == "" && $_POST["durationYear"] == ""){
-		$message = "Vous devez remplir un des champ de durée";
-		$error = 1;
-	}else if(!(($_POST["durationDay"] == "" && $_POST["durationMonth"] == "" && $_POST["durationYear"] == "" ) || ( $_POST["durationDay"] == "" && $_POST["durationWeek"] == "" && $_POST["durationYear"] == "" ) || ( $_POST["durationWeek"] == "" && $_POST["durationMonth"] == "" && $_POST["durationYear"] == "" ) || ( $_POST["durationWeek"] == "" && $_POST["durationMonth"] == "" && $_POST["durationDay"] == "" ))){
-		$message = "Vous ne devez remplir qu'un seul champ de durée";
-	}else{
-		$message = "";
-		//enregistrement des données dans data.php
-	}
+if(isset($_POST['description'])){ 
+	$beginning = $_POST['beginning'];
+	$duration = $_POST['duration'];
+	$durationType = $_POST['durationType'];
+	$socialSkills = $_POST['socialSkills'];
+	$savoir_faire = $_POST['myTable'];
+	$savoir_faire = array_filter($savoir_faire); // supprimer les cases vides
+	$name = $_POST['name'];
+	$firstname = $_POST['firstname'];
+	$email = $_POST['email'];
+	$situation = $_POST['situation'];
+	// ajouter les données au tableau
 }
 ?>
 
@@ -89,12 +90,12 @@ if(isset($_POST['description'])){
 			<tr><td>description :</td><td><input type="text" name="description" required> ex: agent d'accueil, assistant à domicile pour personne agée</td></tr>
 			<tr><td>cadre :</td><td><input type="text" name="environement" required> ex: nom de l'entrprise, - </td></tr>
 			<tr><td>début :</td><td><input type="date" name="beginning" required></td></tr>
-		</table>
-		<table>
-			<tr><td>durée :</td><td><input type="number" name=durationDay min="0"> jours</td><td><div <?php if (isset($message)) { echo 'class="red"'; } ?>><?php if(isset($message)){ echo $message; }else{ echo "*remplissez uniquement un des champs";} ?></div></td></tr>
-			<tr><td></td><td><input type="number" name=durationWeek min="0"> semaines</td></tr>
-			<tr><td></td><td><input type="number" name=durationMonth min="0"> mois</td></tr>
-			<tr><td></td><td><input type="number" name=durationYear min="0"> ans</td></tr>
+			<tr><td>durée :</td><td><input type="number" name="duration" required> <select name="durationType">
+				<option>jours</option>
+				<option>semaines</option>
+				<option>mois</option>
+				<option>années</option>
+			</td></tr>
 		</table>
 		<table>
 			<tr>
@@ -133,16 +134,40 @@ if(isset($_POST['description'])){
 				<td><input type="checkbox" name="socialSkills[]" value="Empathique" onclick="checkLimite(this)">Empathique</td>
 			</tr>
 		</table>
-		<table> <!-- partie pour écriture dynamique de savoir faire -->
-			<tr><td></td></tr>
+
+
+		<br><p class="marge">Mes savoir-faire</p>
+		<table id="myTable">
 		</table>
-		<table><!-- partie pour informations référent -->
-			<tr><td></td></tr>
-			<tr><td colspan="3"><button type="submit">Enregistrer</button><td></tr>
+		<input type="button" onclick="addRow()" value="Ajouter un savoir-faire"> 
+		<input type="button" onclick="deleteRow()" value="Effacer un savoir-faire">
+		
+		
+		<br><br><br><br>Information sur le référent
+		<table>
+			<tr>
+				<td>Nom :</td>
+				<td><input type="text" name="name"></td>
+			</tr>
+			<tr>
+				<td>Prénom :</td>
+				<td><input type="text" name="firstname"></td>
+			</tr>
+			<tr>
+				<td>Email :</td>
+				<td><input type="text" name="email"></td>
+			</tr>
+			<tr>
+				<td>Poste/situation :</td>
+				<td><input type="text" name="situation"></td>
+			</tr>
 		</table>
+		<button type="submit">Enregistrer</button>
 	</form>
 			
 	
+	
+	<script src="newExperience.js"></script>
 	
 </body>
 </html>

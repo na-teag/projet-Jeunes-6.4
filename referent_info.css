@@ -1,0 +1,84 @@
+table[class="bandeau"]{
+	width: 100%;
+	background-color: lightgray;
+	color: white;
+}
+table{
+	border-collapse: collapse;
+}
+td[class="marge"]{
+	padding: 50px;
+	border-top-style: solid;
+	border-bottom-style: solid;
+}
+td.marge:nth-child(3n){
+	border-left-style: solid;
+}
+td.marge:first-child{
+	border-left-style: solid;
+}
+td.marge:nth-child(4n){
+	border-right-style: solid;
+}
+td.marge:nth-child(2n){
+	border-right-style: solid;
+}
+
+.deconnexion{
+	position:relative;
+	float: right;
+}
+
+li{
+	padding: 10px;
+	background-color: lightgray;
+	display: inline;
+}
+ul{
+	margin-left: 400px;
+}
+
+a{ 
+ text-decoration:none; 
+}
+
+li[class="referent"]{
+	background-color: green;
+}
+
+#taille1{
+	color: green;
+	font-size: 500%;
+	position:relative;
+	float: right;
+	padding-right: 50px;
+}
+#taille2{
+	font-size: 250%;
+	float: right;
+	padding-bottom: 10px;
+}
+
+.jeune{
+	color: rgb(240, 93, 106);
+}
+.referent{
+	background-color: green;
+	color: white;
+}
+.consultant{
+	color: rgb(71, 141, 255);
+}
+.partenaires{
+	color: rgb(90, 93, 95);
+}
+.center{
+	text-align: center;
+}
+.liste{
+	margin-left: 50px;
+	text-align: center;
+}
+.bouton{
+	padding: 5px;
+}

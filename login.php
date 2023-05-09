@@ -66,7 +66,7 @@
 			<tr><td>identifiant :</td><td><input type="text" name="username" required></td></tr>
 			<tr><td>mot de passe :</td><td><input type="password" name="password" required></td></tr>
 			<tr><td colspan="2"><button type="submit">Se Connecter</button><td></tr>
-	</form>
+		</form>
 	</table>
 		<br>
 	<a href="signUp.php">Créer un compte<a>

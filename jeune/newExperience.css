@@ -29,6 +29,10 @@ li[class="jeune"]{
 	background-color: rgb(240, 93, 106);
 }
 
+#myTable{
+    padding-left: 125px;
+}
+
 #taille1{
 	color: rgb(240, 93, 106);
 	font-size: 500%;
@@ -66,4 +70,10 @@ li[class="jeune"]{
 }
 .red{
     color: red;
+}
+.long{
+    padding-right: 300px;
+}
+.marge{
+    margin-left: 10px;
 }
