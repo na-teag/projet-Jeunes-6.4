@@ -3,6 +3,9 @@ table[class="bandeau"]{
 	background-color: lightgray;
 	color: white;
 }
+div[class="navbar"]{
+	text-align: center;
+}
 table{
 	border-collapse: collapse;
 }
@@ -29,13 +32,22 @@ td.marge:nth-child(2n){
 	float: right;
 }
 
-li{
+li[class="navbar"]{
 	padding: 10px;
 	background-color: lightgray;
 	display: inline;
 }
-ul{
-	margin-left: 400px;
+li:not([class]){
+	padding: 10px;
+	display: inline;
+}
+li[class="nomarginright"]{
+	margin-right: 0px;
+	display: inline;
+}
+li[class="nomarginleft"]{
+	margin-left: 0px;
+	display: inline;
 }
 
 a{ 
@@ -81,4 +93,13 @@ li[class="partenaires"]{
 }
 .bouton{
 	padding: 5px;
+}
+img{
+	height: 222px;
+	margin-left: 100px;
+}
+p{
+	text-align: center;
+	font-size: 150%;
+	color: grey;
 }

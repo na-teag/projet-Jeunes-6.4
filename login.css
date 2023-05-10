@@ -14,16 +14,22 @@ li{
 	background-color: lightgray;
 	display: inline;
 }
+a[class="jeune"]{
+	background-color: rgb(240, 93, 106);
+	text-decoration:none; 
+}
 div[class="navbar"]{
 	text-align: center;
 }
-
 a{ 
  text-decoration:none; 
 }
+td[class="desc"]{
+	text-align: center;
+}
 
 #taille1{
-	color: lightgray;
+	color:rgb(240, 93, 106);
 	font-size: 500%;
 	position:relative;
 	float: right;
@@ -31,11 +37,13 @@ a{
 }
 #taille2{
 	font-size: 250%;
+	float: right;
 	padding-bottom: 10px;
+	margin-right:50px;
 }
 
 .jeune{
-	color: rgb(240, 93, 106);
+	color: white;
 }
 .referent{
 	color: green;

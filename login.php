@@ -45,8 +45,8 @@
 <body>
 	<table class="bandeau">
 			<tr>
-				<td rowspan="2"><a href="home.php"><img src="../images/logo.svg"><img></a></td>
-				<td><h1 id="taille1">.</h1></td>
+				<td rowspan="2"><a href="home.php"><img src="images/logo.svg"><img></a></td>
+				<td><h1 id="taille1">JEUNE</h1></td>
 			</tr>
 			<tr>
 				<td><p id="taille2">Pour faire de l'engagement une valeur</p></td>
@@ -63,14 +63,18 @@
 	<br>
 	<table>
 		<form method="POST">
-			<tr><td>identifiant :</td><td><input type="text" name="username" required></td></tr>
+			<tr><td>identifiant :</td><td><input type="text" name="username" required></td>
+			<td width="50%"></td>
+			<td rowspan=30 class="desc"> Le projet <b>Jeunes 6.4</b> a pour vocation<br> de valoriser l'engagement des jeunes de <b>16 à 30 ans</b>,<br> issu de la région <b>Pyrénées-Atlantiques</b>.<br>
+			Ce dispositif vous permet de valoriser votre <br><b>savoir-faire</b> et votre <b>savoir-être</b><br> auprès de <b>recruteur potentiel</b>, 
+			en<br> faisant valider vos expériences par des <b>référents</b></td></tr>
 			<tr><td>mot de passe :</td><td><input type="password" name="password" required></td></tr>
 			<tr><td colspan="2"><button type="submit">Se Connecter</button><td></tr>
 		</form>
+		
 	</table>
 		<br>
 	<a href="signUp.php">Créer un compte<a>
-	</table>
 	<br>
 	<div id="message"><?php
 		if(isset($message)){

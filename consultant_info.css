@@ -3,6 +3,9 @@ table[class="bandeau"]{
 	background-color: lightgray;
 	color: white;
 }
+div[class="navbar"]{
+	text-align: center;
+}
 table{
 	border-collapse: collapse;
 }
@@ -34,9 +37,6 @@ li{
 	background-color: lightgray;
 	display: inline;
 }
-ul{
-	margin-left: 400px;
-}
 
 a{ 
  text-decoration:none; 
@@ -57,6 +57,7 @@ li[class="consultant"]{
 	font-size: 250%;
 	float: right;
 	padding-bottom: 10px;
+	margin-right: 50px;
 }
 
 .jeune{

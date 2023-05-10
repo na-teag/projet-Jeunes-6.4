@@ -37,7 +37,7 @@ if(isset($_POST['deconnexion'])){
 		?>
 	</div>
 	
-	<div class="bandeau">
+	<div class="navbar">
 		<ul>
 			<li><a class="jeune" href="jeune/skills.php">JEUNE </a></li>
 			<li><a class="referent" href="referent_info.php" >RÉFÉRENT </a></li>
@@ -45,5 +45,10 @@ if(isset($_POST['deconnexion'])){
 			<li><a class="partenaires" href="partenaires.php" >PARTENAIRES</a></li>
 		</ul>
 	</div>
+	<p>Etape 1: Le Jeune dans sa demande de validation d'expérience met l'adresse mail d'un référent, qui a été un responsable,<br>que ce soit pour un club de sport, une association ou bien 
+		même une entreprise.</p>
+	<p>Etape 2: Le Référent reçoit un mail avec un lien sur lequel il peut cliquer l'emmènera sur une page pour confirmé les champs<br> du Jeune qu'il considère justes et il pourra ajouter 
+		des savoir-être et/ou des savoir-faire, ainsi qu'un champ des aspects à valoriser si besoin.</p>
+	<p>Etape 3: Ensuite il recevra une page de confirmation et de remerciements.</p>
 </body>
 </html> 

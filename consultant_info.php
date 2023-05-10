@@ -37,7 +37,7 @@ if(isset($_POST['deconnexion'])){
 		?>
 	</div>
 	
-	<div class="bandeau">
+	<div class="navbar">
 		<ul>
 			<li><a class="jeune" href="jeune/skills.php">JEUNE </a></li>
 			<li><a class="referent" href="referent_info.php" >RÉFÉRENT </a></li>
