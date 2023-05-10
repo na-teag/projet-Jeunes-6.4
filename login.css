@@ -14,8 +14,8 @@ li{
 	background-color: lightgray;
 	display: inline;
 }
-ul{
-	margin-left: 400px;
+div[class="navbar"]{
+	text-align: center;
 }
 
 a{ 

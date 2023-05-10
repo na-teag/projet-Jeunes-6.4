@@ -47,8 +47,8 @@ if(isset($_POST['newExperience'])){
 			</form>
 	</div>
 	
-	<div class="bandeau">
-		<ul id="bandeau">
+	<div class="navbar">
+		<ul>
 			<li id="bandeau"><a class="jeune" href="skills.php">JEUNE </a></li>
 			<li id="bandeau"><a class="referent" href="../referent_info.php" >RÉFÉRENT </a></li>
 			<li id="bandeau"><a class="consultant" href="../consultant_info.php">CONSULTANT </a></li>
@@ -67,31 +67,31 @@ if(isset($_POST['newExperience'])){
 	<div class="liste">
 		<?php
 			$username = $_SESSION["username"];
-			require_once '../data.php';
+			require '../data.php';
 			if(!empty($users[$username]['skills'])){
 				$nbrConfirmedSkill = 0;
 				echo '<br><h2>Mes expériences confirmées</h2><table><tr>';
 				foreach($users[$username]["skills"] as $skill){ # boucle pour les expériences confirmées
 					if($skill['status'] == "confirmed"){
 						$nbrConfirmedSkill++;
-						echo '<td class="marge"><h3>' . $skill["environement"] . "</h3><ul><li>description: " . $skill["description"] . "</li><li>début: " . $skill["beginning"] . "</li><li> durée: " . $skill["duration"] . "</li></ul>";
+						echo '<td class="marge"><h3>' . $skill["environement"] . "</h3><ul><li>description: " . $skill["description"] . "</li><li>début: " . $skill["beginning"] . "</li><li> durée: " . $skill["duration"] . " " . $skill["durationType"] . "</li></ul>";
 						if(!empty($skill['socialSkills'])){
-							echo "<h5>Compétences de savoir-être</h5><ol>";
+							echo "<h5>Compétences : savoir-être</h5><ol>";
 							foreach($skill["socialSkills"] as $socialSkill){
 								echo "<li>" . $socialSkill . "</li>";
 							}
 							echo "</ol>";
 						}else{
-							echo "aucun savoir-être mentionné";
+							echo "<h5>Compétences : savoir-être</h5><br>aucun savoir-être mentionné";
 						}
 						if(!empty($skill['savoir-faire'])){
-							echo "<h5>Compétences de savoir-être</h5><ol>";
+							echo "<h5>Compétences : savoir faire</h5><ol>";
 							foreach($skill["savoir-faire"] as $savoir_faire){
 								echo "<li>" . $savoir_faire . "</li>";
 							}
 							echo "</ol>";
 						}else{
-							echo "aucun savoir-faire mentionné";
+							echo "<h5>Compétences : savoir faire</h5><br>aucun savoir-faire mentionné";
 						}
 						echo '</td><td class="marge">';
 						echo "<h4>Référent</h4>";
@@ -115,24 +115,24 @@ if(isset($_POST['newExperience'])){
 				foreach($users[$username]["skills"] as $skill){ # boucle pour les expériences non confirmées
 					if($skill['status'] == "toConfirm"){
 						$nbrToConfirmSkill++;
-						echo '<td class="marge"><h3>' . $skill["environement"] . "</h3><ul><li>description: " . $skill["description"] . "</li><li>début: " . $skill["beginning"] . "</li><li>durée: " . $skill["duration"] . "</li></ul>";
+						echo '<td class="marge"><h3>' . $skill["environement"] . "</h3><ul><li>description: " . $skill["description"] . "</li><li>début: " . $skill["beginning"] . "</li><li>durée: " . $skill["duration"] . " " .  $skill["durationType"] . "</li></ul>";
 						if(!empty($skill['socialSkills'])){
-							echo "<h5>Compétences de savoir-être</h5><ol>";
+							echo "<h5>Compétences : savoir-être</h5><ol>";
 							foreach($skill["socialSkills"] as $socialSkill){
 								echo "<li>" . $socialSkill . "</li>";
 							}
 							echo "</ol>";
 						}else{
-							echo "aucun savoir-être mentionné";
+							echo "<h5>Compétences : savoir-être</h5><br>aucun savoir-être mentionné";
 						}
 						if(!empty($skill['savoir-faire'])){
-							echo "<h5>Compétences de savoir-être</h5><ol>";
+							echo "<h5>Compétences : savoir faire</h5><ol>";
 							foreach($skill["savoir-faire"] as $savoir_faire){
 								echo "<li>" . $savoir_faire . "</li>";
 							}
 							echo "</ol>";
 						}else{
-							echo "aucun savoir-faire mentionné";
+							echo "<h5>Compétences : savoir faire</h5><br>aucun savoir-faire mentionné";
 						}
 						echo '</td><td class="marge">';
 						echo "<h4>Référent</h4>";
@@ -153,9 +153,9 @@ if(isset($_POST['newExperience'])){
 			}else{
 				echo '<br><br><br><br><br><br><br><br><p>aucune expérience enregistrée</p>';
 			}
+			$oldusers = $users;
 		?>
 	</div>
-		
 	
 	
 </body>

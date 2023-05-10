@@ -34,8 +34,8 @@ li[id="bandeau"]{
 	background-color: lightgray;
 	display: inline;
 }
-ul[id="bandeau"]{
-	margin-left: 400px;
+div[class="navbar"]{
+	text-align: center;
 }
 
 a{ 

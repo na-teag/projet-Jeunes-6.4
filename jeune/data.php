@@ -20,8 +20,7 @@
           'situation' => 'OTacos_worker',
         ),
         'beginning' => '2000-01-01',
-        'duration' => '1',
-        'durationType' => 'mois',
+        'duration' => '1 mois',
         'environement' => 'Otacos company',
         'description' => 'fabrication de tacos',
         'socialSkills' => 
@@ -38,6 +37,30 @@
           2 => 'skill3',
         ),
         'status' => 'confirmed',
+      ),
+      1 => 
+      array (
+        'referent' => 
+        array (
+          'name' => 'Letourneur',
+          'firstname' => 'Aymeric',
+          'email' => 'letourneur@cy-tech.fr',
+          'situation' => 'élève',
+        ),
+        'beginning' => '2000-01-01',
+        'duration' => '10',
+        'durationType' => 'jours',
+        'environement' => 'cytech',
+        'description' => 'agent d\'accueil',
+        'socialSkills' => 
+        array (
+          0 => 'Fiable',
+        ),
+        'savoir-faire' => 
+        array (
+          0 => 'je veux un gateau',
+        ),
+        'status' => 'toConfirm',
       ),
     ),
   ),

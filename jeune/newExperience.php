@@ -18,9 +18,12 @@ if(isset($_POST['deconnexion'])){ // partie pour déconnecter l'utilisateur
 
 
  // vérification et enregistrement des données
-if(isset($_POST['description'])){ 
+if(isset($_POST['description'])){
+	require_once '../data.php';
 	$beginning = $_POST['beginning'];
 	$duration = $_POST['duration'];
+	$description = $_POST['description'];
+	$environement = $_POST['environement'];
 	$durationType = $_POST['durationType'];
 	$socialSkills = $_POST['socialSkills'];
 	$savoir_faire = $_POST['myTable'];
@@ -30,6 +33,32 @@ if(isset($_POST['description'])){
 	$email = $_POST['email'];
 	$situation = $_POST['situation'];
 	// ajouter les données au tableau
+	$tab = array (
+        'referent' => 
+        array (
+          'name' => $name,
+          'firstname' => $firstname,
+          'email' => $email,
+          'situation' => $situation,
+        ),
+        'beginning' => $beginning,
+        'duration' => $duration,
+		'durationType' => $durationType,
+        'environement' => $environement,
+        'description' => $description,
+        'socialSkills' => $socialSkills,
+        'savoir-faire' => $savoir_faire,
+        'status' => 'toConfirm',
+    );
+	$user = $users[$_SESSION["username"]];
+	array_push($user['skills'], $tab);
+	$users[$_SESSION["username"]] = $user;
+	//echo '<script>alert("' . print_r($users) . '")</script>';
+	$file = fopen('../data.php', 'w');
+	fwrite($file, '<?php $users = ' . var_export($users, true) . '; ?>');
+	fclose($file);
+	header("Location: skills.php");
+	exit();
 }
 ?>
 
@@ -162,9 +191,11 @@ if(isset($_POST['description'])){
 				<td><input type="text" name="situation"></td>
 			</tr>
 		</table>
+		<br>
+		<p class="note">note : lorsque vous arriverez sur la page d'accueil,<br>il vous faudra actualiser la page pour charger les données saisies.</p>
 		<button type="submit">Enregistrer</button>
 	</form>
-			
+	<br><br><br><br><br>	
 	
 	
 	<script src="newExperience.js"></script>

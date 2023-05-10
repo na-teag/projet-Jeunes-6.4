@@ -13,12 +13,12 @@
 		$password = $_POST['password'];
 	
 		
-		if(isset($users[$username]) || $username == 'admin'){ // Vérifier si l'identifiant est déjà pris
+		if(isset($users[$username]) || $username == 'admin'){ // verifier si l'identifiant est deja pris
 			$message = "Cet identifiant est déjà utilisé, veuillez en choisir un autre.";
 		}else{
 	
 		
-			$users[$username] = array(   // Ajouter nouvel utilisateur
+			$users[$username] = array( // ajouter nouvel utilisateur
 				'name' => $name,
 				'firstname' => $firstname,
 				'gender' => $gender,
@@ -32,7 +32,7 @@
 
 		
 
-			$file = fopen('data.php', 'w');// Écrire les données
+			$file = fopen('data.php', 'w');
 			fwrite($file, '<?php $users = ' . var_export($users, true) . '; ?>');
 			fclose($file);
 			$_SESSION["username"] = $username;

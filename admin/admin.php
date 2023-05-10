@@ -24,7 +24,7 @@
 <body>
 	<table class="bandeau">
 		<tr>
-			<td rowspan="2"><img src="../images/logo.svg"><img></td>
+			<td rowspan="2"><a href="../home.php"><img src="../images/logo.svg"><img></a></td>
 			<td><h1 id="taille1">Administrateur</h1></td>
 		</tr>
 		<tr>
