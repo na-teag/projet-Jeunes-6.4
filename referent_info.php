@@ -51,4 +51,4 @@ if(isset($_POST['deconnexion'])){
 		des savoir-être et/ou des savoir-faire, ainsi qu'un champ des aspects à valoriser si besoin.</p>
 	<p>Etape 3: Ensuite il recevra une page de confirmation et de remerciements.</p>
 </body>
-</html> 
+</html>  

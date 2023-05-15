@@ -13,3 +13,4 @@ function deleteRow() {
     table.deleteRow(compteur - 1);
   }
 }
+ 
