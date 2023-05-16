@@ -24,7 +24,7 @@ if(isset($_POST['deconnexion'])){
 			<td><h1 id="taille1">PARTENAIRES</h1></td>
 		</tr>
 		<tr>
-			<td><p id="taille2"></p></td>
+			<td><p id="taille2">Je donne de l'argent pour ton engagement</p></td>
 		</tr>
 	</table>
 	<div id="bouton">

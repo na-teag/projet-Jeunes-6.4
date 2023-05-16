@@ -1,4 +1,4 @@
-<!-- partie à mettre dans chaques pages pour interdire l'accès sans identification-->
+	<!-- partie à mettre dans chaques pages pour interdire l'accès sans identification-->
 
 <?php
 session_start();
@@ -16,9 +16,16 @@ if(isset($_POST['deconnexion'])){ // partie pour déconnecter l'utilisateur
 	exit;
 }
 
+$username = $_SESSION["username"];
 
  // vérification et enregistrement des données
-if(isset($_POST['description'])){
+if(isset($_POST['description']) && isset($_POST['name']) && isset($_POST['firstname']) && isset($_POST['email']) && isset($_POST['situation']) && isset($_POST['beginning']) && isset($_POST['duration'])){
+	
+	if(!(is_numeric($_POST['duration']) && intval($_POST['duration']) > 0)){
+        $message = "veuillez entrez une valeur numérique positive";
+    }else{
+	
+	
 	require_once '../data.php';
 	$beginning = $_POST['beginning'];
 	$duration = $_POST['duration'];
@@ -32,6 +39,8 @@ if(isset($_POST['description'])){
 	$firstname = $_POST['firstname'];
 	$email = $_POST['email'];
 	$situation = $_POST['situation'];
+	$date = date('YmdHis') . $username; // en prévision d'un numéro d'identification (id) de la compétence, qui doit être unique (parmis les id des compétences d'un utilisateur X et ceux des autres utilisateurs)
+	$id = password_hash($date, PASSWORD_DEFAULT); // hashage pour éviter que le username soit identifiable
 	// ajouter les données au tableau
 	$tab = array (
         'referent' => 
@@ -49,19 +58,36 @@ if(isset($_POST['description'])){
         'socialSkills' => $socialSkills,
         'savoir-faire' => $savoir_faire,
         'status' => 'toConfirm',
+		'id' => $id,
     );
-	$user = $users[$_SESSION["username"]];
+	$user = $users[$username];
 	array_push($user['skills'], $tab);
-	$users[$_SESSION["username"]] = $user;
+	$users[$username] = $user;
 	//echo '<script>alert("' . print_r($users) . '")</script>';
-	$file = fopen('../data.php', 'w');
-	fwrite($file, '<?php $users = ' . var_export($users, true) . '; ?>');
-	fclose($file);
-	header("Location: skills.php");
-	exit();
-}
-?>
 
+	$other[$id] = array(
+		'user' => $username,
+	);
+	$file = fopen('email.html', 'w'); //on écrit le contenu du mail
+	$body = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Demande de validation d\'expérience</title></head><body><script>window.open("skills.php", "_blank");</script>
+	Bonjour ' . $firstname . " " . $name . ".
+	<br>" . $users[$username]['firstname'] . " " . $users[$username]['name'] . " requiert votre approbation après son travail auprès de vous.
+	<br>Le service Jeune 6.4 est un projet destiné à aider les jeunes à valoriser leurs expériences. Afin de permettre à " . $users[$username]['firstname'] . " " . $users[$username]['name'] . " de valider son expérience, merci de cliquer sur le lien ci-dessous et de valider ou infirmer les données entrées.
+	<br><i><a href='http://localhost:8080/referent/confirm.php?id=" . $id . "'>confirmer une experience</a></i>
+	<br>
+	<br>Bien cordialement,
+	<br><b>SERVICE JEUNE 6.4</b></body></html>";
+	fwrite($file, $body);// on écrit le mail dans la page avant d'aller dessus, de là bas on ouvrira un nouvel onglet pour faire revenir le jeune à skills.php
+	fclose($file);	
+
+
+	$file = fopen('../data.php', 'w');
+	fwrite($file, '<?php $users = ' . var_export($users, true) . '; $other = ' . var_export($other, true) . '; ?>');
+	fclose($file);
+	header("Location: email.html");
+	exit();
+}}
+?>
 
 
 
@@ -116,10 +142,10 @@ if(isset($_POST['description'])){
 	<br>
 	<form method="POST">
 		<table>
-			<tr><td>description :</td><td><input type="text" name="description" required> ex: agent d'accueil, assistant à domicile pour personne agée</td></tr>
-			<tr><td>cadre :</td><td><input type="text" name="environement" required> ex: nom de l'entrprise, - </td></tr>
+			<tr><td>description :</td><td><input type="text" name="description" class="long" required> ex: agent d'accueil, assistant à domicile pour personne agée</td></tr>
+			<tr><td>cadre :</td><td><input type="text" name="environement" class="long" required> ex: nom de l'entrprise, - </td></tr>
 			<tr><td>début :</td><td><input type="date" name="beginning" required></td></tr>
-			<tr><td>durée :</td><td><input type="number" name="duration" required> <select name="durationType">
+			<tr><td>durée :</td><td><input type="number" name="duration" required> <select name="durationType"><?php if(isset($message)){echo $message;}?>
 				<option>jours</option>
 				<option>semaines</option>
 				<option>mois</option>
@@ -176,19 +202,19 @@ if(isset($_POST['description'])){
 		<table>
 			<tr>
 				<td>Nom :</td>
-				<td><input type="text" name="name"></td>
+				<td><input type="text" name="name" required></td>
 			</tr>
 			<tr>
 				<td>Prénom :</td>
-				<td><input type="text" name="firstname"></td>
+				<td><input type="text" name="firstname" required></td>
 			</tr>
 			<tr>
 				<td>Email :</td>
-				<td><input type="text" name="email"></td>
+				<td><input type="text" name="email" required></td>
 			</tr>
 			<tr>
 				<td>Poste/situation :</td>
-				<td><input type="text" name="situation"></td>
+				<td><input type="text" name="situation" required></td>
 			</tr>
 		</table>
 		<br>

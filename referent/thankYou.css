@@ -7,11 +7,6 @@ div[class="navbar"]{
 	text-align: center;
 }
 
-.deconnexion{
-	position:relative;
-	float: right;
-}
-
 li{
 	padding: 10px;
 	background-color: lightgray;

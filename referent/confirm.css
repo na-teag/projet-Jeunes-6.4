@@ -46,11 +46,11 @@ li[class="jeune"]{
 }
 
 .jeune{
-	background-color: rgb(240, 93, 106);
-	color: white;
+	color: rgb(240, 93, 106);
 }
 .referent{
-	color: green;
+	background-color: green;
+	color: white;
 }
 .consultant{
 	color: rgb(71, 141, 255);

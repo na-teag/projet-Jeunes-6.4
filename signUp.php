@@ -33,7 +33,7 @@
 		
 
 			$file = fopen('data.php', 'w');
-			fwrite($file, '<?php $users = ' . var_export($users, true) . '; ?>');
+			fwrite($file, '<?php $users = ' . var_export($users, true) . ' $other = ' . var_export($other, true) . '; ?>');
 			fclose($file);
 			$_SESSION["username"] = $username;
 			$_SESSION["role"] = "jeune";

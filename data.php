@@ -23,14 +23,8 @@
         'duration' => '1',
         'durationType' => 'mois',
         'environement' => 'Otacos company',
-        'description' => 'fabrication de tacos',
-        'socialSkills' => 
-        array (
-          0 => 'skill1',
-          1 => 'skill2',
-          2 => 'skill3',
-          3 => 'skill4',
-        ),
+        'description' => 'fabrication de beaucoup de tacos',
+        'socialSkills' => NULL,
         'savoir-faire' => 
         array (
           0 => 'skill1',
@@ -38,7 +32,9 @@
           2 => 'skill3',
         ),
         'status' => 'confirmed',
+        'id' => '$2y$10$QyA3gOxAg7KZb55IusJ.6O7TxsZLwLGbihsKPe7eLAqKwk6fYAqVO',
       ),
     ),
   ),
-); ?> 
+); $other = array (
+); ?>

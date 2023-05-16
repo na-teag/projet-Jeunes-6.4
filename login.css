@@ -4,9 +4,17 @@ table[class="bandeau"]{
 	color: white;
 }
 
+table[class="tableau"]{
+	width: 40%;
+}
+
 .deconnexion{
 	position:relative;
 	float: right;
+}
+
+#message{
+	color: red;
 }
 
 li{
@@ -15,14 +23,14 @@ li{
 	display: inline;
 }
 a[class="jeune"]{
-	background-color: rgb(240, 93, 106);
+	background-color:rgb(240, 93, 106);
 	text-decoration:none; 
 }
 div[class="navbar"]{
 	text-align: center;
 }
 a{ 
- text-decoration:none; 
+ text-decoration:none;
 }
 td[class="desc"]{
 	text-align: center;
@@ -53,5 +61,25 @@ td[class="desc"]{
 }
 .partenaires{
 	color: rgb(90, 93, 95);
+}
+.bloc{
+	width: 40%;
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	margin-left: 55%;
+}
+.case{
+	width: 55%;
+	border: 1px solid black;
+	box-shadow: 8px 8px 5px black;
+	padding: 8px 12px;
+	background-image: linear-gradient(180deg,rgb(240, 93, 106),pink);
+
+}
+.case:hover{
+	padding: 3%;
+	border-radius: 5%;
+	font-size: large;
 }
   

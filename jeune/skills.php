@@ -18,6 +18,10 @@ if(isset($_POST['newExperience'])){
     header("Location: newExperience.php");
     exit;
 }
+if(isset($_POST['generateCV'])){
+    header("Location: generateCV.php");
+    exit;
+}
 ?>
 
 <!-- partie classique de la page-->
@@ -62,6 +66,11 @@ if(isset($_POST['newExperience'])){
 				<button class="newExperience" type="submit" name="newExperience">Ajouter une expérience</button>
 			</form>
 	</div>
+	<div id="bouton">
+			<form method="POST">
+				<button class="generateCV" type="submit" name="generateCV">Générer un CV</button>
+			</form>
+	</div>
 	
 	
 	<div class="liste">
@@ -99,7 +108,7 @@ if(isset($_POST['newExperience'])){
 						echo $skill["referent"]["email"] . "<br>";
 						echo $skill["referent"]["situation"];
 						echo "</td>";
-						if($nbrConfirmedSkill%2==0){
+						if($nbrConfirmedSkill%2==0){ // nombre de cases max dans une seule ligne
 							echo "</tr><tr>";
 						}
 					}
@@ -147,7 +156,7 @@ if(isset($_POST['newExperience'])){
 				}
 						echo "</tr></table>";
 				if($nbrToConfirmSkill == 0){
-					echo '<p><br><br>aucune expérience non confimée</p>';
+					echo '<p><br><br>aucune expérience non confirmée</p>';
 				}
 
 			}else{

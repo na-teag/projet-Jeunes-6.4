@@ -1,5 +1,8 @@
 <?php
 	session_start();
+	if(isset($_SESSION["role"])){
+		$message_deco = "Vous avez été déconnecté de votre <br>session " . $_SESSION["role"];
+	}
 	$_SESSION = array();
 	session_destroy();
 	session_start();
@@ -61,25 +64,34 @@
 		</ul>
 	</div>
 	<br>
-	<table>
-		<form method="POST">
-			<tr><td>identifiant :</td><td><input type="text" name="username" required></td>
-			<td width="50%"></td>
-			<td rowspan=30 class="desc"> Le projet <b>Jeunes 6.4</b> a pour vocation<br> de valoriser l'engagement des jeunes de <b>16 à 30 ans</b>,<br> issu de la région <b>Pyrénées-Atlantiques</b>.<br>
-			Ce dispositif vous permet de valoriser votre <br><b>savoir-faire</b> et votre <b>savoir-être</b><br> auprès de <b>recruteur potentiel</b>, 
-			en<br> faisant valider vos expériences par des <b>référents</b></td></tr>
-			<tr><td>mot de passe :</td><td><input type="password" name="password" required></td></tr>
-			<tr><td colspan="2"><button type="submit">Se Connecter</button><td></tr>
-		</form>
-		
-	</table>
-		<br>
-	<a href="signUp.php">Créer un compte<a>
-	<br>
-	<div id="message"><?php
+	<div id="message"><b><i><marquee width="400" scrollamount="400" scrolldelay="600" loop="10">
+		<?php
 		if(isset($message)){
 			echo $message;
 		}
-	?></div>
+		if(isset($message_deco)){
+			echo $message_deco;
+		}
+		?></marquee></i></b>
+	</div>
+	<table class="tableau">
+		<form method="POST">
+			<tr><td>identifiant :</td><td><input type="text" name="username" required></td>
+			<td width="50%"></td></tr>
+			<tr><td>mot de passe :</td><td><input type="password" name="password" required></td></tr>
+			<tr><td colspan="2"><button type="submit">Se Connecter</button><td></tr>
+		</form>		
+	</table>
+	<a href="signUp.php">Créer un compte<a>
+	<div class="bloc">
+		<div class="case">
+			Le projet <b>Jeunes 6.4</b> a pour vocation<br> de valoriser l'engagement des jeunes de <b>16 à 30 ans</b>,<br> issu de la région <b>Pyrénées-Atlantiques</b>.<br>
+			Ce dispositif vous permet de valoriser votre <br><b>savoir-faire</b> et votre <b>savoir-être</b><br> auprès de <b>recruteur potentiel</b>, 
+			en<br> faisant valider vos expériences par des <b>référents</b>
+		</div>
+	</div>
+	<br>
+	<br>
+	
 </body>
 </html>  

@@ -1,10 +1,27 @@
-table:not(.bandeau){
-    padding: 15px;
-}
 table[class="bandeau"]{
 	width: 100%;
 	background-color: lightgray;
 	color: white;
+}
+table{
+	border-collapse: collapse;
+}
+td[class="marge"]{
+	padding: 50px;
+	border-top-style: solid;
+	border-bottom-style: solid;
+}
+td.marge:nth-child(3n){
+	border-left-style: solid;
+}
+td.marge:first-child{
+	border-left-style: solid;
+}
+td.marge:nth-child(4n){
+	border-right-style: solid;
+}
+td.marge:nth-child(2n){
+	border-right-style: solid;
 }
 
 .deconnexion{
@@ -17,8 +34,8 @@ li[id="bandeau"]{
 	background-color: lightgray;
 	display: inline;
 }
-ul[id="bandeau"]{
-	margin-left: 400px;
+div[class="navbar"]{
+	text-align: center;
 }
 
 a{ 
@@ -27,10 +44,6 @@ a{
 
 li[class="jeune"]{
 	background-color: rgb(240, 93, 106);
-}
-
-#myTable{
-    padding-left: 125px;
 }
 
 #taille1{
@@ -67,13 +80,4 @@ li[class="jeune"]{
 }
 .bouton{
 	padding: 5px;
-}
-.red{
-    color: red;
-}
-.long{
-    width: 600px;
-}
-.marge{
-    margin-left: 10px;
 } 

@@ -26,7 +26,7 @@
 <body>
 	<table class="bandeau">
 		<tr>
-			<td rowspan="2"><img src="images/logo.svg"><img></td>
+		<td rowspan="2"><a href="home.php"><img src="images/logo.svg"><img></a></td>
 			<td><h1 id="taille1">.</h1></td>
 		</tr>
 		<tr>
@@ -40,7 +40,7 @@
 			}
 		?>
 	</div>
-	<div class="bandeau">
+	<div class="navbar">
 		<ul>
 			<li><a class="jeune" href="jeune/skills.php">JEUNE </a></li>
 			<li><a class="referent" href="referent_info.php" >RÉFÉRENT </a></li>

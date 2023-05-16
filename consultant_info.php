@@ -45,5 +45,13 @@ if(isset($_POST['deconnexion'])){
 			<li><a class="partenaires" href="partenaires.php" >PARTENAIRES</a></li>
 		</ul>
 	</div>
+	<div class="bloc">
+		<div class="case1"><p>Etape 1:</p>
+			<p>Le Jeune dans sa demande de validation d'expérience met l'adresse mail d'un consultant, qui est un recruteur.</p>
+		</div>
+		<div class="case2"><p>Etape 2:</p>
+			<p>Le Consultant reçoit un mail avec un lien sur lequel il peut cliquer et qui l'emmènera sur une page avec les données personnelles de l'utilisateur Jeune et la liste des références qui lui ont été validées, avec les données de chaque Référent.</p>
+		</div>
+	</div>
 </body>
 </html>  
