@@ -17,9 +17,6 @@ td.marge:nth-child(3n){
 td.marge:first-child{
 	border-left-style: solid;
 }
-td.marge:nth-child(4n){
-	border-right-style: solid;
-}
 td.marge:nth-child(2n){
 	border-right-style: solid;
 }
@@ -59,14 +56,14 @@ li[class="jeune"]{
 }
 
 .jeune{
-	background-color: rgb(240, 93, 106);
-	color: white;
+	color: rgb(240, 93, 106);
 }
 .referent{
 	color: green;
 }
 .consultant{
-	color: rgb(71, 141, 255);
+	background-color: rgb(71, 141, 255);
+	color: white;
 }
 .partenaires{
 	color: rgb(90, 93, 95);

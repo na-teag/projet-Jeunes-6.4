@@ -11,13 +11,13 @@ td[class="marge"]{
 	border-top-style: solid;
 	border-bottom-style: solid;
 }
-td.marge:nth-child(3n){
+td.marge:nth-child(4n){
 	border-left-style: solid;
 }
 td.marge:first-child{
 	border-left-style: solid;
 }
-td.marge:nth-child(2n){
+td.marge:nth-child(3n){
 	border-right-style: solid;
 }
 
@@ -77,4 +77,8 @@ li[class="jeune"]{
 }
 .bouton{
 	padding: 5px;
-} 
+}
+
+.email {
+	display: none;
+}

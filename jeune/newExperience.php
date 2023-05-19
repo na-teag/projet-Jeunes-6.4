@@ -27,22 +27,24 @@ if(isset($_POST['description']) && isset($_POST['name']) && isset($_POST['firstn
 	
 	
 	require_once '../data.php';
-	$beginning = $_POST['beginning'];
-	$duration = $_POST['duration'];
-	$description = $_POST['description'];
-	$environement = $_POST['environement'];
-	$durationType = $_POST['durationType'];
+	$beginning = htmlspecialchars($_POST['beginning'], ENT_QUOTES, 'UTF-8');// échapper les caractères spéciaux
+	$duration = htmlspecialchars($_POST['duration'], ENT_QUOTES, 'UTF-8');
+	$description = htmlspecialchars($_POST['description'], ENT_QUOTES, 'UTF-8');
+	$environement = htmlspecialchars($_POST['environement'], ENT_QUOTES, 'UTF-8');
+	$durationType = $_POST['durationType'];//pas besoin de vérifier les données natives
 	$socialSkills = $_POST['socialSkills'];
-	$savoir_faire = $_POST['myTable'];
-	$savoir_faire = array_filter($savoir_faire); // supprimer les cases vides
-	$name = $_POST['name'];
-	$firstname = $_POST['firstname'];
-	$email = $_POST['email'];
-	$situation = $_POST['situation'];
+	$savoir_faire = array_filter($_POST['myTable']); // supprimer les cases vides
+	foreach ($savoir_faire as $key => $value) {
+		$savoir_faire[$key] = htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+	}
+	$name = htmlspecialchars($_POST['name'], ENT_QUOTES, 'UTF-8');
+	$firstname = htmlspecialchars($_POST['firstname'], ENT_QUOTES, 'UTF-8');
+	$email = htmlspecialchars($_POST['email'], ENT_QUOTES, 'UTF-8');
+	$situation = htmlspecialchars($_POST['situation'], ENT_QUOTES, 'UTF-8');
 	$date = date('YmdHis') . $username; // en prévision d'un numéro d'identification (id) de la compétence, qui doit être unique (parmis les id des compétences d'un utilisateur X et ceux des autres utilisateurs)
-	$id = password_hash($date, PASSWORD_DEFAULT); // hashage pour éviter que le username soit identifiable
-	// ajouter les données au tableau
-	$tab = array (
+	$id = password_hash($date, PASSWORD_DEFAULT); // hashage pour éviter que le username soit identifiable, tout en conservant l'unicité de l'id
+	
+	$tab = array (// ajouter les données au tableau
         'referent' => 
         array (
           'name' => $name,
@@ -142,8 +144,8 @@ if(isset($_POST['description']) && isset($_POST['name']) && isset($_POST['firstn
 	<br>
 	<form method="POST">
 		<table>
-			<tr><td>description :</td><td><input type="text" name="description" class="long" required> ex: agent d'accueil, assistant à domicile pour personne agée</td></tr>
-			<tr><td>cadre :</td><td><input type="text" name="environement" class="long" required> ex: nom de l'entrprise, - </td></tr>
+			<tr><td>description :</td><td><input type="text" name="description" class="long" maxlength="100" required> ex: agent d'accueil, assistant à domicile pour personne agée</td></tr>
+			<tr><td>structure :</td><td><input type="text" name="environement" class="long" maxlength="50" required> ex: nom de l'entrprise, - </td></tr>
 			<tr><td>début :</td><td><input type="date" name="beginning" required></td></tr>
 			<tr><td>durée :</td><td><input type="number" name="duration" required> <select name="durationType"><?php if(isset($message)){echo $message;}?>
 				<option>jours</option>
@@ -202,19 +204,19 @@ if(isset($_POST['description']) && isset($_POST['name']) && isset($_POST['firstn
 		<table>
 			<tr>
 				<td>Nom :</td>
-				<td><input type="text" name="name" required></td>
+				<td><input type="text" name="name" maxlength="50" required></td>
 			</tr>
 			<tr>
 				<td>Prénom :</td>
-				<td><input type="text" name="firstname" required></td>
+				<td><input type="text" name="firstname" maxlength="50" required></td>
 			</tr>
 			<tr>
 				<td>Email :</td>
-				<td><input type="text" name="email" required></td>
+				<td><input type="text" name="email" maxlength="50" required></td>
 			</tr>
 			<tr>
 				<td>Poste/situation :</td>
-				<td><input type="text" name="situation" required></td>
+				<td><input type="text" name="situation" maxlength="50" required></td>
 			</tr>
 		</table>
 		<br>

@@ -18,8 +18,12 @@ if(isset($_POST['newExperience'])){
     header("Location: newExperience.php");
     exit;
 }
-if(isset($_POST['generateCV'])){
-    header("Location: generateCV.php");
+if(isset($_POST['select'])){
+    header("Location: select.php");
+    exit;
+}
+if(isset($_POST['account'])){
+    header("Location: myaccount.php");
     exit;
 }
 ?>
@@ -65,10 +69,11 @@ if(isset($_POST['generateCV'])){
 			<form method="POST">
 				<button class="newExperience" type="submit" name="newExperience">Ajouter une expérience</button>
 			</form>
-	</div>
-	<div id="bouton">
 			<form method="POST">
-				<button class="generateCV" type="submit" name="generateCV">Générer un CV</button>
+				<button class="select" type="submit" name="select">partager mes expériences</button>
+			</form>
+			<form method="POST">
+				<button class="account" type="submit" name="account">mon profil</button>
 			</form>
 	</div>
 	
@@ -106,9 +111,12 @@ if(isset($_POST['generateCV'])){
 						echo "<h4>Référent</h4>";
 						echo $skill["referent"]["firstname"] . " " . $skill["referent"]["name"] . "<br>";
 						echo $skill["referent"]["email"] . "<br>";
-						echo $skill["referent"]["situation"];
+						echo $skill["referent"]["situation"] . "<br>";
+						if($skill["comment"] != ""){
+							echo "<br><h5>Commentaire du référent</h5><br>" . $skill["comment"] . "<br>";
+						}
 						echo "</td>";
-						if($nbrConfirmedSkill%2==0){ // nombre de cases max dans une seule ligne
+						if($nbrConfirmedSkill%1==0){ // nombre de cases max dans une seule ligne
 							echo "</tr><tr>";
 						}
 					}
@@ -149,7 +157,7 @@ if(isset($_POST['generateCV'])){
 						echo $skill["referent"]["email"] . "<br>";
 						echo $skill["referent"]["situation"];
 						echo "</td>";
-						if($nbrToConfirmSkill%2==0){
+						if($nbrToConfirmSkill%1==0){ // nombre de cases max dans une seule ligne
 							echo "</tr><tr>";
 						}
 					}

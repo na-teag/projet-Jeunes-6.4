@@ -1,6 +1,11 @@
 <?php
 session_start();
 
+if($_SESSION['role'] == 'consultant'){
+    header("Location: consultant/consultation.php?id=" . $_SESSION['username']);
+    exit;
+}
+
 if(isset($_POST['deconnexion'])){
     $_SESSION = array();
     session_destroy();

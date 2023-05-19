@@ -7,11 +7,10 @@
 	session_destroy();
 	session_start();
 
-	$users = [];
 	require_once 'data.php';
 
 	if(isset($_POST["username"]) && isset($_POST["password"])){
-		$username = $_POST["username"];
+		$username = htmlspecialchars($_POST["username"], ENT_QUOTES, 'UTF-8');// échapper les caractères spéciaux
 		$password = $_POST["password"];
 	
 		$user_found = 0;

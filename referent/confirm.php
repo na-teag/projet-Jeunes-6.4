@@ -40,18 +40,21 @@
         }else{
             
             
-            $beginning = $_POST['beginning'];
-            $duration = $_POST['duration'];
-            $description = $_POST['description'];
-            $environement = $_POST['environement'];
-            $durationType = $_POST['durationType'];
+            $beginning = htmlspecialchars($_POST['beginning'], ENT_QUOTES, 'UTF-8');
+            $duration = htmlspecialchars($_POST['duration'], ENT_QUOTES, 'UTF-8');
+            $description = htmlspecialchars($_POST['description'], ENT_QUOTES, 'UTF-8');
+            $environement = htmlspecialchars($_POST['environement'], ENT_QUOTES, 'UTF-8');
+            $durationType = $_POST['durationType'];//pas besoin de vérifier les données natives
             $socialSkills = $_POST['socialSkills'];
-            $savoir_faire = $_POST['myTable'];
-            $savoir_faire = array_filter($savoir_faire); // supprimer les cases vides
-            $name = $_POST['name'];
-            $firstname = $_POST['firstname'];
-            $email = $_POST['email'];
-            $situation = $_POST['situation'];
+        	$savoir_faire = array_filter($_POST['myTable']); // supprimer les cases vides
+			foreach ($savoir_faire as $key => $value) {
+				$savoir_faire[$key] = htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+			}
+            $name = htmlspecialchars($_POST['name'], ENT_QUOTES, 'UTF-8');
+            $firstname = htmlspecialchars($_POST['firstname'], ENT_QUOTES, 'UTF-8');
+            $email = htmlspecialchars($_POST['email'], ENT_QUOTES, 'UTF-8');
+            $situation = htmlspecialchars($_POST['situation'], ENT_QUOTES, 'UTF-8');
+            $comment = htmlspecialchars($_POST['comment'], ENT_QUOTES, 'UTF-8');
             // ajouter les données au tableau
             $tabl = array (
                 'referent' => 
@@ -68,6 +71,7 @@
                 'description' => $description,
                 'socialSkills' => $socialSkills,
                 'savoir-faire' => $savoir_faire,
+                'comment' => $comment,
                 'status' => 'confirmed',
                 'id' => $id,
             );
@@ -80,15 +84,33 @@
             }
             $users[$username] = $user;
             unset($other[$id]);
-            $file = fopen('../data.php', 'w');
+            $file = fopen('../data.php', 'w'); // on met à jour le fichier data.php
             fwrite($file, '<?php $users = ' . var_export($users, true) . '; $other = ' . var_export($other, true) . '; ?>');
             fclose($file);
 
 	        $_SESSION = array();
 	        session_destroy();
 	        session_start();
-            header("Location: thankYou.html");
-            exit();
+
+
+			$file = fopen('email.html', 'w'); //on écrit le contenu du mail
+			$body = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Votre expérience à été validé !</title></head><body><script>window.open("thankYou.html", "_blank");</script>
+			Bonjour ' . $users[$username]['firstname'] . " " . $users[$username]['name'] . ".
+			<br>Votre référent, " . $firstname . " " . $name . ",vient de valider votre expérience.
+			<br>Aller donc voir si des éléments ont été modifiés ou ajoutés.
+			<br><i><a href='http://localhost:8080/login.php'>Me connecter</a></i>
+			<br>
+			<br>Bien cordialement,
+			<br><b>SERVICE JEUNE 6.4</b></body></html>";
+			fwrite($file, $body);// on écrit le mail dans la page avant d'aller dessus, de là bas on ouvrira un nouvel onglet pour diriger le referent sur thankYou.html
+			fclose($file);	
+
+
+			$file = fopen('../data.php', 'w');
+			fwrite($file, '<?php $users = ' . var_export($users, true) . '; $other = ' . var_export($other, true) . '; ?>');
+			fclose($file);
+			header("Location: email.html");
+			exit();
         }
     }
 ?>
@@ -137,8 +159,8 @@
 	<br>
 	<form method="POST">
 		<table>
-			<tr><td>description :</td><td><input type="text" name="description" class="long" value="<?php echo $tab['description'];?>" required> ex: agent d'accueil, assistant à domicile pour personne agée</td></tr>
-			<tr><td>cadre :</td><td><input type="text" name="environement" class="long" value="<?php echo $tab['environement'];?>" required> ex: nom de l'entrprise, - </td></tr>
+			<tr><td>description :</td><td><input type="text" name="description" class="long" value="<?php echo $tab['description'];?>" maxlength="100" required> ex: agent d'accueil, assistant à domicile pour personne agée</td></tr>
+			<tr><td>structure :</td><td><input type="text" name="environement" class="long" value="<?php echo $tab['environement'];?>" maxlength="50" required> ex: nom de l'entrprise, - </td></tr>
 			<tr><td>début :</td><td><input type="date" name="beginning" value="<?php echo $tab['beginning'];?>" required></td></tr>
 			<tr><td>durée :</td><td><input type="number" name="duration" value="<?php echo $tab['duration'];?>" required> <select name="durationType"><?php if(isset($message)){echo $message;}?>
 				<option <?php if($tab['durationType'] == 'jours'){ echo 'selected'; } ?>>jours</option>
@@ -191,7 +213,7 @@
             <?php
             if(isset($tab['savoir-faire'])){
                 foreach($tab['savoir-faire'] as $savoir_faire){
-                    echo '<tr><td><input type="text" name="myTable[]" class="long" value="' . $savoir_faire . '"></td></tr>';
+                    echo '<tr><td><input type="text" name="myTable[]" class="long" value="' . $savoir_faire . '" maxlength="100"></td></tr>';
                 }
             }?>
 		</table>
@@ -203,28 +225,29 @@
 		<table>
 			<tr>
 				<td>Nom :</td>
-				<td><input type="text" name="name" value="<?php echo $tab['referent']['name'];?>" required></td>
+				<td><input type="text" name="name" value="<?php echo $tab['referent']['name'];?>" maxlength="50" required></td>
 			</tr>
 			<tr>
 				<td>Prénom :</td>
-				<td><input type="text" name="firstname" value="<?php echo $tab['referent']['firstname'];?>" required></td>
+				<td><input type="text" name="firstname" value="<?php echo $tab['referent']['firstname'];?>" maxlength="50" required></td>
 			</tr>
 			<tr>
 				<td>Email :</td>
-				<td><input type="text" name="email" value="<?php echo $tab['referent']['email'];?>" required></td>
+				<td><input type="text" name="email" value="<?php echo $tab['referent']['email'];?>" maxlength="50" required></td>
 			</tr>
 			<tr>
 				<td>Poste/situation :</td>
-				<td><input type="text" name="situation" value="<?php echo $tab['referent']['situation'];?>" required></td>
+				<td><input type="text" name="situation" value="<?php echo $tab['referent']['situation'];?>" maxlength="50" required></td>
 			</tr>
 		</table>
+		<br><textarea id="texte" name="comment" cols="100" rows="6" placeholder="Vous pouvez également ajouter un commentaire ici" onchange="checkArea()"></textarea><span id="compteur">0</span>/500 caractères
 		<br>
 		<button type="submit">Enregistrer</button>
 	</form>
 	<br><br><br><br><br>	
 	
 	
-	<script src="../jeune/newExperience.js"></script>
+	<script src="confirm.js"></script>
 	
 </body>
 </html> 

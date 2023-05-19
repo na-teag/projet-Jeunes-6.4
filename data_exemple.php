@@ -1,6 +1,7 @@
 <?php $users = array (
   'test_test' => 
   array (
+    'gender' => 'other',
     'name' => 'TEST',
     'firstname' => 'Test',
     'birth' => '2000-01-01',
@@ -43,8 +44,12 @@
     ),
   ),
 ); $other = array (
-  '$2y$10$QyA3gOxAg7KZb55IusJ.6O7TxsZLwLGbihsKPe7eLAqKwk6fYAqVO' => 
+  '$2y$10$d/grXoVRSS80.yq1JWI/FugDJ5GV/x.U3Fn7LQlchgNmqjuG5CBD6' => 
   array (
     'user' => 'test_test',
+    'skills' => 
+    array (
+      0 => '$2y$10$QyA3gOxAg7KZb55IusJ.6O7TxsZLwLGbihsKPe7eLAqKwk6fYAqVO',
+    ),
   ),
 ); ?>

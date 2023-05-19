@@ -1,24 +1,10 @@
+table:not(.bandeau){
+    padding: 15px;
+}
 table[class="bandeau"]{
 	width: 100%;
 	background-color: lightgray;
 	color: white;
-}
-table{
-	border-collapse: collapse;
-}
-td[class="marge"]{
-	padding: 50px;
-	border-top-style: solid;
-	border-bottom-style: solid;
-}
-td.marge:nth-child(3n){
-	border-left-style: solid;
-}
-td.marge:first-child{
-	border-left-style: solid;
-}
-td.marge:nth-child(2n){
-	border-right-style: solid;
 }
 
 .deconnexion{
@@ -31,8 +17,8 @@ li[id="bandeau"]{
 	background-color: lightgray;
 	display: inline;
 }
-div[class="navbar"]{
-	text-align: center;
+ul[id="bandeau"]{
+	margin-left: 400px;
 }
 
 a{ 
@@ -53,6 +39,10 @@ li[class="jeune"]{
 #taille2{
 	font-size: 250%;
 	padding-bottom: 10px;
+}
+
+#message{
+	color: red;
 }
 
 .jeune{
@@ -77,4 +67,7 @@ li[class="jeune"]{
 }
 .bouton{
 	padding: 5px;
-} 
+}
+.marge{
+	margin-left: 300px;
+}

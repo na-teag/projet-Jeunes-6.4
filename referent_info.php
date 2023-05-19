@@ -52,8 +52,8 @@ if(isset($_POST['deconnexion'])){
 	</div>
 	<div class="bloc">
 		<div class="case1"><p>Etape 1:</p>
-			<p>Le Jeune dans sa demande de validation d'expérience met l'adresse mail d'un référent, qui a été l'un de ses responsables, que ce soit pour un club de sport, une association 
-			ou bien même une entreprise.</p>
+			<p>Le Jeune dans sa demande de validation d'expérience met l'adresse mail d'un référent, qui a été l'un de ses responsables, que ce soit pour un club de sport, une entreprise 
+			ou bien même une association.</p>
 		</div>
 		<div class="case2"><p>Etape 2:</p>
 			<p>Le Référent reçoit un mail avec un lien sur lequel il peut cliquer et qui l'emmènera sur une page pour confirmer les champs du Jeune qu'il considère justes et il pourra,
