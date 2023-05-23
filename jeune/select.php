@@ -17,7 +17,9 @@ if(isset($_POST['deconnexion'])){// partie pour déconnecter l'utilisateur
 	exit;
 }
 
-if(isset($_POST['option']) && isset($_POST['skills'])){
+
+
+if(isset($_POST['select']) && isset($_POST['skills']) && isset($_POST['option'])){
 	$option = $_POST['option'];
 	$nbrskill = 0;
 	if($option == "consultant"){
@@ -53,7 +55,21 @@ if(isset($_POST['option']) && isset($_POST['skills'])){
 		fclose($file);
 		header("Location: mail.html");
 		exit;
+	}else if($option == "archive"){
+		foreach($_POST['skills'] as $checkbox){
+            $id_skill = $_POST[$checkbox];
+			foreach($users[$username]["skills"] as $num => $skill){
+				//echo  $users[$username]["skills"][$num]["id"];
+				if($skill["id"] == $id_skill){
+					$users[$username]["skills"][$num]["status"] = "archived";
+				}
+			}
+        }
+		$file = fopen('../data.php', 'w');
+		fwrite($file, '<?php $users = ' . var_export($users, true) . '; $other = ' . var_export($other, true) . '; ?>');
+		fclose($file);
 	}else{
+
 	}
 
 }
@@ -96,6 +112,10 @@ if(isset($_POST['option']) && isset($_POST['skills'])){
 	</div>
 
 	<br><br>
+	<button type="button" onclick="goToArchive()">gérer les expériences archivées</button>
+	<br>
+	<h3>Mes expériences confirmées</h3>
+	<br>
 	<button type="button" onclick="check()">tout cocher</button>
 	<button type="button" onclick="uncheck()">tout décocher</button>
 	<form method="POST">
@@ -122,9 +142,11 @@ if(isset($_POST['option']) && isset($_POST['skills'])){
 		if($nbrConfirmedSkill == 0){
 			echo '<p><br><br>aucune expérience confimée par un référent</p>';
 		}else{
-			echo '<br><br><input type="radio" id="cv" name="option" value="cv" onclick="hide()" required><label for="cv">Générer un CV</label><br><input type="radio" id="consultant" name="option" value="consultant" onclick="show()" required><label for="consultant">Envoyer à un consultant</label>';
+			echo '<br><br><input type="radio" id="cv" name="option" value="cv" onclick="hide()" required><label for="cv">Générer un CV</label><br>';
+			echo '<input type="radio" id="archive" name="option" value="archive" onclick="hide()" required><label for="archive">Archiver ces expériences</label><br>';
+			echo '<input type="radio" id="consultant" name="option" value="consultant" onclick="show()" required><label for="consultant">Envoyer à un consultant</label>';
 			echo '<div id="email"></div>';// plutôt que de cacher, on enlève ou on place l'input mail selon le choix de l'utilisateur, pour éviter des problème avec le "required"
-			echo '<br><br><button type="submit" name="select">Valider</button><br><br><br><br><br><br>';
+			echo '<br><br><input type="submit" name="select" value="Valider"><br><br><br><br><br><br>';
 		}
 	?>
 	</form>

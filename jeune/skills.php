@@ -26,6 +26,10 @@ if(isset($_POST['account'])){
     header("Location: myaccount.php");
     exit;
 }
+if(isset($_POST['consult'])){
+    header("Location: myConsultations.php");
+    exit;
+}
 ?>
 
 <!-- partie classique de la page-->
@@ -70,7 +74,10 @@ if(isset($_POST['account'])){
 				<button class="newExperience" type="submit" name="newExperience">Ajouter une expérience</button>
 			</form>
 			<form method="POST">
-				<button class="select" type="submit" name="select">partager mes expériences</button>
+				<button class="select" type="submit" name="select">gérer mes expériences</button>
+			</form>
+			<form method="POST">
+				<button class="select" type="submit" name="consult">gérer les consultation de mes expériences</button>
 			</form>
 			<form method="POST">
 				<button class="account" type="submit" name="account">mon profil</button>

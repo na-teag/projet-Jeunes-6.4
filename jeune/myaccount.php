@@ -16,7 +16,7 @@ if(isset($_POST['name']) && isset($_POST['firstname']) && isset($_POST['email'])
 	$firstname = htmlspecialchars($_POST['firstname'], ENT_QUOTES, 'UTF-8');
 	$gender = $_POST['gender'];//pas besoin de vérifier les données natives
 	$birth = htmlspecialchars($_POST["birth"], ENT_QUOTES, 'UTF-8');
-	$email = htmlspecialchars($_POST['email'], ENT_QUOTES, 'UTF-8');
+	$email = htmlspecialchars($_POST['email'], ENT_QUOTES, 'UTF-8');  
 
 	$password = $tab['password'];
 	$skills = $tab['skills'];

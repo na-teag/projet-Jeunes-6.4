@@ -14,10 +14,18 @@ function uncheck(){
 
 function show() {
     var mail = document.getElementById('email');
-    mail.innerHTML = '<label for="email">Adresse e-mail du référent :</label>' + '<input type="email" id="email" name="email" required>';
+    mail.innerHTML = '<label for="email">Adresse e-mail du référent :</label><input type="email" id="email" name="email" required>';
 }
 
 function hide() {
     var mail = document.getElementById('email');
     mail.innerHTML = '';
+}
+
+function goToArchive() {
+    window.location.href = "archive.php";
+}
+
+function goToSelect() {
+    window.location.href = "select.php";
 }

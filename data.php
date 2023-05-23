@@ -41,6 +41,36 @@
         'status' => 'confirmed',
         'id' => '$2y$10$QyA3gOxAg7KZb55IusJ.6O7TxsZLwLGbihsKPe7eLAqKwk6fYAqVO',
       ),
+      1 => 
+      array (
+        'referent' => 
+        array (
+          'name' => 'referent_name',
+          'firstname' => 'referent_firstname',
+          'email' => 'referent@otacos.com',
+          'situation' => 'OTacos_worker',
+        ),
+        'beginning' => '2000-01-01',
+        'duration' => '1',
+        'durationType' => 'mois',
+        'environement' => 'Otacos company',
+        'description' => 'fabrication de tacos',
+        'socialSkills' => 
+        array (
+          0 => 'skill1',
+          1 => 'skill2',
+          2 => 'skill3',
+          3 => 'skill4',
+        ),
+        'savoir-faire' => 
+        array (
+          0 => 'skill1',
+          1 => 'skill2',
+          2 => 'skill3',
+        ),
+        'status' => 'archived',
+        'id' => '$2y$10$QyA3gOxAg7KZb55IusJ.617TxsZLwLGbihsKPe7eLAqKwk6fYAqV7',
+      ),
     ),
   ),
 ); $other = array (
@@ -50,6 +80,7 @@
     'skills' => 
     array (
       0 => '$2y$10$QyA3gOxAg7KZb55IusJ.6O7TxsZLwLGbihsKPe7eLAqKwk6fYAqVO',
+      1 => '$2y$10$QyA3gOxAg7KZb55IusJ.617TxsZLwLGbihsKPe7eLAqKwk6fYAqV7',
     ),
   ),
 ); ?>
