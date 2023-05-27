@@ -7,6 +7,73 @@ div[class="navbar"]{
 	text-align: center;
 }
 
+.bloc{
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	padding: 3%;
+}
+
+.case1{
+	width: 31.2%;
+	padding: 0% 1%;
+    overflow-wrap: break-word;
+}
+  
+.case2{
+	width: 31.2%;
+	padding: 0% 1%;
+	overflow-wrap: break-word;
+}
+
+.case3{
+	width: 31.2%;
+	padding: 0% 1%;
+	overflow-wrap: break-word;
+}
+
+.bloc2{
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+}
+
+.case4{
+	width: 15%;
+	border: 5px solid rgb(240, 93, 106);
+    overflow-wrap: break-word;
+	margin-left: 15%;
+}
+  
+.case5{
+	width: 15%;
+	border: 5px solid green;
+	overflow-wrap: break-word;
+}
+
+.case6{
+	width: 15%;
+	border: 5px solid rgb(71, 141, 255);
+	overflow-wrap: break-word;
+	margin-right: 15%;
+}
+
+.titre1{
+	background-image: linear-gradient(30deg,pink,rgb(240, 93, 106));
+}
+
+.titre2{
+	background-image: linear-gradient(30deg,lightgreen,green);
+}
+
+.titre3{
+	background-image: linear-gradient(30deg,white, rgb(71, 141, 255));
+}
+
+h3{
+	color:white;
+}
+
 .deconnexion{
 	position:relative;
 	float: right;

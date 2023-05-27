@@ -94,12 +94,13 @@ li[class="partenaires"]{
 .bouton{
 	padding: 5px;
 }
-img{
-	height: 20%;
+img:not([src*="logo"][src$=".svg"]){
+	height: 15%;
 	margin-left: 100px;
 }
 p{
 	text-align: center;
 	font-size: 150%;
 	color: grey;
+	padding-right: 20px;
 } 

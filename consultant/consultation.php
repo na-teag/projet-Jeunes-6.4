@@ -15,7 +15,6 @@
     	$_SESSION["username"] = $id;
     	$username = $other[$_SESSION["username"]]['user'];
 	}
-
     
     
     
@@ -52,7 +51,7 @@
 	
 	<div class="navbar">
 		<ul>
-			<li id="bandeau"><a class="jeune" href="../skills.php">JEUNE </a></li>
+			<li id="bandeau"><a class="jeune" href="../home.php">JEUNE </a></li>
 			<li id="bandeau"><a class="referent" href="../referent_info.php" >RÉFÉRENT </a></li>
 			<li id="bandeau"><a class="consultant" href="../consultant_info.php">CONSULTANT </a></li>
 			<li id="bandeau"><a class="partenaires" href="../partenaires.php" >PARTENAIRES</a></li>
@@ -79,15 +78,87 @@
     <div id="liste">
 		<?php
 			$nbrConfirmedSkill = 0;
-			echo '<br><table><tr>';
-			foreach($other[$id]["skills"] as $number => $id_skill){
-				if($users[$username]["skills"][$number]['id'] == $id_skill){ # vérifier que les expériences enregistrées sont toujours disponibles
-                    $skill = $users[$username]["skills"][$number];
-					if($users[$username]["skills"][$number]['status'] == "confirmed"){
+			echo '<br><table><tr class="back">';
+
+			if($other[$id]["skills"] != "all"){
+						//si le jeune à choisi de ne montrer que certaines compétences
+				foreach($other[$id]["skills"] as $number => $id_skill){
+					if($users[$username]["skills"][$number]['id'] == $id_skill){ # vérifier que les expériences enregistrées sont toujours disponibles
+            	        $skill = $users[$username]["skills"][$number];
+						if($users[$username]["skills"][$number]['status'] == "confirmed"){
+							$nbrConfirmedSkill++;
+							echo '<td class="marge"><h2>' . $skill["environement"] . "</h2><ul><li>description: " . $skill["description"] . "</li><li>début: " . $skill["beginning"] . "</li><li> durée: " . $skill["duration"] . " " . $skill["durationType"] . "</li></ul>";
+							echo "<h3>Compétences selon moi</h3>";
+							if(!empty($skill['socialSkills'])){
+								echo "<h5>Savoir-être</h5><ol>";
+								foreach($skill["socialSkills"] as $socialSkill){
+									echo "<li>" . $socialSkill . "</li>";
+								}
+								echo "</ol>";
+							}else{
+								echo "<h5>Compétences : savoir-être</h5><br>aucun savoir-être mentionné";
+							}
+							if(!empty($skill['savoir-faire'])){
+								echo "<h5>Savoir faire</h5><ol>";
+								foreach($skill["savoir-faire"] as $savoir_faire){
+									echo "<li>" . $savoir_faire . "</li>";
+								}
+								echo "</ol>";
+							}else{
+								echo "<h5>Compétences : savoir faire</h5><br>aucun savoir-faire mentionné";
+							}
+							echo '</td><td class="marge">';
+							echo "<h4>Référent</h4>";
+							echo $skill["referent"]["firstname"] . " " . $skill["referent"]["name"] . "<br><br>";
+							echo $skill["referent"]["email"] . "<br><br>";
+							echo $skill["referent"]["situation"] . "<br>";
+							echo "<h3>Compétences selon le référent</h3>";
+							if(!empty($skill['socialSkills'])){
+								echo "<h5>Savoir-être</h5><ol>";
+								foreach($skill["socialSkills"] as $socialSkill){
+									echo "<li>" . $socialSkill . "</li>";
+								}
+								echo "</ol>";
+							}else{
+								echo "<h5>Compétences : savoir-être</h5><br>aucun savoir-être mentionné";
+							}
+							if(!empty($skill['savoir-faire'])){
+								echo "<h5>Savoir faire</h5><ol>";
+								foreach($skill["savoir-faire"] as $savoir_faire){
+									echo "<li>" . $savoir_faire . "</li>";
+								}
+								echo "</ol>";
+							}else{
+								echo "<h5>Compétences : savoir faire</h5><br>aucun savoir-faire mentionné";
+							}
+							echo '</td><td class="marge">';
+							if($skill["comment"] != ""){
+								echo "<br><h5>Commentaire du référent</h5><br><p class='comment'>" . $skill["comment"] . "</p><br>";
+							}
+							echo "</td>";
+							if($nbrConfirmedSkill%1==0){ // nombre de cases max dans une seule ligne
+								echo "</tr><tr class='back'>";
+							}
+						}else if($users[$username]["skills"][$number]['status'] == "confirmed"){
+							$nbrArchivedSkill++;
+						}
+
+					}
+				}
+
+
+			}else{
+
+						// si le jeune a choisi de montrer toutes les compétences y compris celle futures
+				foreach($users[$username]["skills"] as $skill){
+						//print_r($skill);
+						//echo "<br><br><br>";
+					if($skill['status'] == "confirmed"){
 						$nbrConfirmedSkill++;
-						echo '<td class="marge"><h3>' . $skill["environement"] . "</h3><ul><li>description: " . $skill["description"] . "</li><li>début: " . $skill["beginning"] . "</li><li> durée: " . $skill["duration"] . " " . $skill["durationType"] . "</li></ul>";
+						echo '<td class="marge"><h2>' . $skill["environement"] . "</h2><ul><li>description: " . $skill["description"] . "</li><li>début: " . $skill["beginning"] . "</li><li> durée: " . $skill["duration"] . " " . $skill["durationType"] . "</li></ul>";
+						echo "<h3>Compétences selon moi</h3>";
 						if(!empty($skill['socialSkills'])){
-							echo "<h5>Compétences : savoir-être</h5><ol>";
+							echo "<h5>Savoir-être</h5><ol>";
 							foreach($skill["socialSkills"] as $socialSkill){
 								echo "<li>" . $socialSkill . "</li>";
 							}
@@ -96,7 +167,7 @@
 							echo "<h5>Compétences : savoir-être</h5><br>aucun savoir-être mentionné";
 						}
 						if(!empty($skill['savoir-faire'])){
-							echo "<h5>Compétences : savoir faire</h5><ol>";
+							echo "<h5>Savoir faire</h5><ol>";
 							foreach($skill["savoir-faire"] as $savoir_faire){
 								echo "<li>" . $savoir_faire . "</li>";
 							}
@@ -106,22 +177,43 @@
 						}
 						echo '</td><td class="marge">';
 						echo "<h4>Référent</h4>";
-						echo $skill["referent"]["firstname"] . " " . $skill["referent"]["name"] . "<br>";
-						echo $skill["referent"]["email"] . "<br>";
+						echo $skill["referent"]["firstname"] . " " . $skill["referent"]["name"] . "<br><br>";
+						echo $skill["referent"]["email"] . "<br><br>";
 						echo $skill["referent"]["situation"] . "<br>";
+						echo "<h3>Compétences selon le référent</h3>";
+						if(!empty($skill['socialSkills'])){
+							echo "<h5>Savoir-être</h5><ol>";
+							foreach($skill["socialSkills"] as $socialSkill){
+								echo "<li>" . $socialSkill . "</li>";
+							}
+							echo "</ol>";
+						}else{
+							echo "<h5>Compétences : savoir-être</h5><br>aucun savoir-être mentionné";
+						}
+						if(!empty($skill['savoir-faire'])){
+							echo "<h5>Savoir faire</h5><ol>";
+							foreach($skill["savoir-faire"] as $savoir_faire){
+								echo "<li>" . $savoir_faire . "</li>";
+							}
+							echo "</ol>";
+						}else{
+							echo "<h5>Compétences : savoir faire</h5><br>aucun savoir-faire mentionné";
+						}
+						echo '</td><td class="marge">';
 						if($skill["comment"] != ""){
-							echo "<br><h5>Commentaire du référent</h5><br>" . $skill["comment"] . "<br>";
+							echo "<br><h5>Commentaire du référent</h5><br><p class='comment'>" . $skill["comment"] . "</p><br>";
 						}
 						echo "</td>";
 						if($nbrConfirmedSkill%1==0){ // nombre de cases max dans une seule ligne
-							echo "</tr><tr>";
+							echo "</tr><tr class='back'>";
 						}
-					}else if($users[$username]["skills"][$number]['status'] == "confirmed"){
-						$nbrArchivedSkill++;
 					}
-					
 				}
 			}
+
+
+
+
 			if($nbrConfirmedSkill == 0){
 				if($nbrArchivedSkill == 0){
                 	echo '<br><p>il semblerait que ces expériences ne soient plus consultables</p><br><br>';

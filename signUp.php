@@ -12,9 +12,14 @@
 		$username = htmlspecialchars($_POST['username'], ENT_QUOTES, 'UTF-8');
 		$password = $_POST['password'];
 	
+		$birthDate = new DateTime($birth); // on vérifi que l'utilisateur à mois de 30 ans
+		$currentDate = new DateTime();
+		$age = $currentDate->diff($birthDate)->y;
 		
 		if(isset($users[$username]) || $username == 'admin'){ // verifier si l'identifiant est deja pris
 			$message = "Cet identifiant est déjà utilisé, veuillez en choisir un autre.";
+		}else if(!(16 <= $age && $age <= 30)){
+			$message = "Ce site est exclusivement réservé aux utilisateurs entre 16 et 30 ans, merci d'utiliser un autre service que le projet Jeunes 6.4.";
 		}else{
 	
 		
@@ -70,6 +75,12 @@
 		</ul>
 	</div>
 	<br>
+	<div id="message"><?php
+		if(isset($message)){
+			echo $message;
+		}
+	?></div>
+	<br><br><br>
 	<h1>Inscription</h1>
 	<form method="POST">
 		<label>Genre:</label>
@@ -96,11 +107,6 @@
 </body>
 </html>
 
-	<div id="message"><?php
-		if(isset($message)){
-			echo $message;
-		}
-	?></div>
 	<br><br><br><br>
 </body>
 

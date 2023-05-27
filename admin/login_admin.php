@@ -13,7 +13,7 @@
 	
 		if($username == "cytech" && $password == "shellshocker.io"){
 			$_SESSION["role"] = "admin";
-			header("Location: admin.php");
+			header("Location: search.php");
 			exit;
 		}else{
 			$message = "Identifiant ou mot de passe incorrect.";

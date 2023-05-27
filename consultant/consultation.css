@@ -11,13 +11,10 @@ td[class="marge"]{
 	border-top-style: solid;
 	border-bottom-style: solid;
 }
-td.marge:nth-child(3n){
-	border-left-style: solid;
-}
 td.marge:first-child{
 	border-left-style: solid;
 }
-td.marge:nth-child(2n){
+td.marge:nth-child(3n){
 	border-right-style: solid;
 }
 
@@ -35,13 +32,14 @@ div[class="navbar"]{
 	text-align: center;
 }
 
-a[class]{ 
+a{ 
  text-decoration:none; 
 }
 
 li[class="jeune"]{
 	background-color: rgb(240, 93, 106);
 }
+
 
 #taille1{
 	color: rgb(240, 93, 106);
@@ -71,10 +69,19 @@ li[class="jeune"]{
 .center{
 	text-align: center;
 }
-#liste{
+.back{
+	background-image:linear-gradient(90deg,rgb(71, 141, 255)2%,white);
+}
+.liste{
 	margin-left: 50px;
 	text-align: center;
+	
 }
 .bouton{
 	padding: 5px;
-} 
+}
+.comment{
+	overflow-wrap: break-word;
+	overflow-inline: auto;
+	max-width: 425px;
+}

@@ -39,7 +39,8 @@
           2 => 'skill3',
         ),
         'status' => 'confirmed',
-        'id' => '$2y$10$QyA3gOxAg7KZb55IusJ.6O7TxsZLwLGbihsKPe7eLAqKwk6fYAqVO',
+        'comment' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc congue dapibus varius. Quisque lacinia a turpis quis condimentum. Morbi a ligula et ante feugiat faucibus vel eget diam. Nulla eu nisi tortor. Duis fringilla euismod odio ut molestie. Pellentesque tristique nisi eu nisi ultrices, non eleifend justo rutrum. Mauris non mi non felis tincidunt imperdiet ac in justo. Morbi eu placerat purus. Ut id orci luctus, varius arcu et, pretium augue. Sed porta, mauris id dignissim malesuada, ex leo.',
+        'id' => '4ff9cf4134692819130b6388a1212e7ede83a11370756b9d28e5228b57b66bb0',
       ),
       1 => 
       array (
@@ -68,19 +69,10 @@
           1 => 'skill2',
           2 => 'skill3',
         ),
-        'status' => 'archived',
-        'id' => '$2y$10$QyA3gOxAg7KZb55IusJ.617TxsZLwLGbihsKPe7eLAqKwk6fYAqV7',
+        'status' => 'toConfirm',
+        'id' => 'er78cf4134692819130b6388a1212e7ede83a11370756b9d28e5228b57b6bnb7',
       ),
     ),
   ),
 ); $other = array (
-  '$2y$10$d/grXoVRSS80.yq1JWI/FugDJ5GV/x.U3Fn7LQlchgNmqjuG5CBD6' => 
-  array (
-    'user' => 'test_test',
-    'skills' => 
-    array (
-      0 => '$2y$10$QyA3gOxAg7KZb55IusJ.6O7TxsZLwLGbihsKPe7eLAqKwk6fYAqVO',
-      1 => '$2y$10$QyA3gOxAg7KZb55IusJ.617TxsZLwLGbihsKPe7eLAqKwk6fYAqV7',
-    ),
-  ),
 ); ?>

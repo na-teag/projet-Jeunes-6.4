@@ -3,7 +3,7 @@
 <?php
 session_start();
 
-if(!isset($_SESSION["role"]) || $_SESSION["role"] != "jeune"){
+if(!isset($_SESSION["role"]) || ($_SESSION["role"] != "jeune" && $_SESSION["role"] != "admin")){
 	header("Location: ../login.php");
 	exit;
 }

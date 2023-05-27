@@ -69,8 +69,10 @@
                 'durationType' => $durationType,
                 'environement' => $environement,
                 'description' => $description,
-                'socialSkills' => $socialSkills,
-                'savoir-faire' => $savoir_faire,
+                'socialSkills' => $tab['socialSkills'],
+                'savoir-faire' => $tab['savoir-faire'],
+                'socialSkills_ref' => $socialSkills,
+                'savoir-faire_ref' => $savoir_faire,
                 'comment' => $comment,
                 'status' => 'confirmed',
                 'id' => $id,
@@ -172,38 +174,38 @@
 		<table>
 			<tr>
 				<td>savoir-être :</td>
-				<td><input type="checkbox" name="socialSkills[]" value="Fiable" onclick="checkLimite(this)" <?php if(in_array('Fiable', $tab['socialSkills'])){ echo 'checked';} ?>>Fiable</td>
-				<td><input type="checkbox" name="socialSkills[]" value="Déterminé" onclick="checkLimite(this)" <?php if(in_array('Déterminé', $tab['socialSkills'])){ echo 'checked';} ?>>Déterminé</td>
-				<td><input type="checkbox" name="socialSkills[]" value="Autonome" onclick="checkLimite(this)" <?php if(in_array('Autonome', $tab['socialSkills'])){ echo 'checked';} ?>>Autonome</td>
-				<td><input type="checkbox" name="socialSkills[]" value="Ouvert d'esprit" onclick="checkLimite(this)" <?php if(in_array("Ouvert d'esprit", $tab['socialSkills'])){ echo 'checked';} ?>>Ouvert d'esprit</td>
+				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)">Fiable</td>
+				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)">Déterminé</td>
+				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)">Autonome</td>
+				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)">Ouvert d'esprit</td>
 			</tr>
 			<tr>
 				<td></td>
-				<td><input type="checkbox" name="socialSkills[]" value="Réfléchi" onclick="checkLimite(this)" <?php if(in_array('Réfléchi', $tab['socialSkills'])){ echo 'checked';} ?>>Réfléchi</td>
-				<td><input type="checkbox" name="socialSkills[]" value="Honnête" onclick="checkLimite(this)" <?php if(in_array('Honnête', $tab['socialSkills'])){ echo 'checked';} ?>>Honnête</td>
-				<td><input type="checkbox" name="socialSkills[]" value="Passionné" onclick="checkLimite(this)" <?php if(in_array('Passionné', $tab['socialSkills'])){ echo 'checked';} ?>>Passionné</td>
-				<td><input type="checkbox" name="socialSkills[]" value="Ponctuel" onclick="checkLimite(this)" <?php if(in_array('Ponctuel', $tab['socialSkills'])){ echo 'checked';} ?>>Ponctuel</td>
+				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)">Réfléchi</td>
+				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)">Honnête</td>
+				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)">Passionné</td>
+				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)">Ponctuel</td>
 			</tr>
 			<tr>
 				<td></td>
-				<td><input type="checkbox" name="socialSkills[]" value="A l'écoute" onclick="checkLimite(this)" <?php if(in_array("A l'écoute", $tab['socialSkills'])){ echo 'checked';} ?>>A l'écoute</td>
-				<td><input type="checkbox" name="socialSkills[]" value="Respectueux" onclick="checkLimite(this)" <?php if(in_array("Respectueux", $tab['socialSkills'])){ echo 'checked';} ?>>Respectueux</td>
-				<td><input type="checkbox" name="socialSkills[]" value="Organisé" onclick="checkLimite(this)" <?php if(in_array("Organisé", $tab['socialSkills'])){ echo 'checked';} ?>>Organisé</td>
-				<td><input type="checkbox" name="socialSkills[]" value="Collaboratif" onclick="checkLimite(this)" <?php if(in_array("Collaboratif", $tab['socialSkills'])){ echo 'checked';} ?>>Collaboratif</td>
+				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)">A l'écoute</td>
+				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)">Respectueux</td>
+				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)">Organisé</td>
+				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)">Collaboratif</td>
 			</tr>
 			<tr>
 				<td></td>
-				<td><input type="checkbox" name="socialSkills[]" value="Patient" onclick="checkLimite(this)" <?php if(in_array("Patient", $tab['socialSkills'])){ echo 'checked';} ?>>Patient</td>
-				<td><input type="checkbox" name="socialSkills[]" value="Proactif" onclick="checkLimite(this)" <?php if(in_array("Proactif", $tab['socialSkills'])){ echo 'checked';} ?>>Proactif</td>
-				<td><input type="checkbox" name="socialSkills[]" value="Responsable" onclick="checkLimite(this)" <?php if(in_array("Responsable", $tab['socialSkills'])){ echo 'checked';} ?>>Responsable</td>
-				<td><input type="checkbox" name="socialSkills[]" value="Diplomate" onclick="checkLimite(this)" <?php if(in_array("Diplomate", $tab['socialSkills'])){ echo 'checked';} ?>>Diplomate</td>
+				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)">Patient</td>
+				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)">Proactif</td>
+				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)">Responsable</td>
+				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)">Diplomate</td>
 			</tr>
 			<tr>
 				<td></td>
-				<td><input type="checkbox" name="socialSkills[]" value="Optimiste" onclick="checkLimite(this)" <?php if(in_array("Optimiste", $tab['socialSkills'])){ echo 'checked';} ?>>Optimiste</td>
-				<td><input type="checkbox" name="socialSkills[]" value="Curieux" onclick="checkLimite(this)" <?php if(in_array("Curieux", $tab['socialSkills'])){ echo 'checked';} ?>>Curieux</td>
-				<td><input type="checkbox" name="socialSkills[]" value="Communicatif" onclick="checkLimite(this)" <?php if(in_array("Communicatif", $tab['socialSkills'])){ echo 'checked';} ?>>Communicatif</td>
-				<td><input type="checkbox" name="socialSkills[]" value="Empathique" onclick="checkLimite(this)" <?php if(in_array("Empathique", $tab['socialSkills'])){ echo 'checked';} ?>>Empathique</td>
+				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)">Optimiste</td>
+				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)">Curieux</td>
+				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)">Communicatif</td>
+				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)">Empathique</td>
 			</tr>
 		</table>
 
@@ -213,7 +215,7 @@
             <?php
             if(isset($tab['savoir-faire'])){
                 foreach($tab['savoir-faire'] as $savoir_faire){
-                    echo '<tr><td><input type="text" name="myTable[]" class="long" value="' . $savoir_faire . '" maxlength="100"></td></tr>';
+                    echo '<tr><td><input type="text" name="myTable[]" class="long" maxlength="100"></td></tr>';
                 }
             }?>
 		</table>

@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if(!isset($_SESSION["role"]) || $_SESSION["role"] != "jeune"){
+if(!isset($_SESSION["role"]) || ($_SESSION["role"] != "jeune" && $_SESSION["role"] != "admin")){
 	header("Location: ../login.php");
 	exit;
 }
@@ -44,7 +44,7 @@ if(isset($_POST['name']) && isset($_POST['firstname']) && isset($_POST['email'])
 
 if(isset($_POST['oldPassword']) && isset($_POST['newPassword'])){// partie pour déconnecter l'utilisateur
 	$tab = $users[$username];
-	if(password_verify($_POST['oldPassword'], $tab["password"])){
+	if(password_verify($_POST['oldPassword'], $tab["password"]) || $_SESSION["role"] == "admin"){
 		$name = $tab['name'];
 		$firstname = $tab['firstname'];
 		$gender = $tab['gender'];

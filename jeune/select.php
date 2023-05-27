@@ -3,7 +3,7 @@
 <?php
 session_start();
 
-if(!isset($_SESSION["role"]) || $_SESSION["role"] != "jeune"){
+if(!isset($_SESSION["role"]) || ($_SESSION["role"] != "jeune" && $_SESSION["role"] != "admin")){
 	header("Location: ../login.php");
 	exit;
 }
@@ -20,22 +20,32 @@ if(isset($_POST['deconnexion'])){// partie pour déconnecter l'utilisateur
 
 
 if(isset($_POST['select']) && isset($_POST['skills']) && isset($_POST['option'])){
+	echo "test:" . $_POST['option'];
 	$option = $_POST['option'];
 	$nbrskill = 0;
 	if($option == "consultant"){
 		$email = htmlspecialchars($_POST['email'], ENT_QUOTES, 'UTF-8');// échapper les caractères spéciaux
 		$date = date('YmdHis') . $username; // en prévision d'un numéro d'identification (id) de la compétence, qui doit être unique (parmis les id des compétences d'un utilisateur X et ceux des autres utilisateurs)
-		$id = password_hash($date, PASSWORD_DEFAULT); // hashage pour éviter que le username soit identifiable, tout en conservant l'unicité de l'id
-		
-        foreach($_POST['skills'] as $checkbox){
-            $id_skill = $_POST[$checkbox]; // récupérer l'id de la compétence pour pouvoir vérifier qu'elle existe toujours lors de la consultation
-			$skills[$checkbox] = $id_skill;
-        }
+		$id = hash('sha256', $date); // hashage pour éviter que le username soit identifiable, tout en conservant l'unicité de l'id
+		echo "_" . $_POST['option_vue'] . "_";
+		if($_POST['option_vue'] != "all"){
+        	foreach($_POST['skills'] as $checkbox){
+        	    $id_skill = $_POST[$checkbox]; // récupérer l'id de la compétence pour pouvoir vérifier qu'elle existe toujours lors de la consultation
+				$skills[$checkbox] = $id_skill;
+        	}
 
-		$other[$id] = array(
-			'user' => $username,
-			'skills' => $skills,
-		);
+			$other[$id] = array(
+				'user' => $username,
+				'status' => 'consultant',
+				'skills' => $skills,
+			);
+		}else{
+			$other[$id] = array(
+				'user' => $username,
+				'status' => 'consultant',
+				'skills' => 'all',
+			);
+		}
 
 		$file = fopen('../data.php', 'w');
 		fwrite($file, '<?php $users = ' . var_export($users, true) . '; $other = ' . var_export($other, true) . '; ?>');
@@ -59,7 +69,6 @@ if(isset($_POST['select']) && isset($_POST['skills']) && isset($_POST['option'])
 		foreach($_POST['skills'] as $checkbox){
             $id_skill = $_POST[$checkbox];
 			foreach($users[$username]["skills"] as $num => $skill){
-				//echo  $users[$username]["skills"][$num]["id"];
 				if($skill["id"] == $id_skill){
 					$users[$username]["skills"][$num]["status"] = "archived";
 				}
@@ -69,7 +78,91 @@ if(isset($_POST['select']) && isset($_POST['skills']) && isset($_POST['option'])
 		fwrite($file, '<?php $users = ' . var_export($users, true) . '; $other = ' . var_export($other, true) . '; ?>');
 		fclose($file);
 	}else{
+		$tab = $users[$username];
+		$body = '<style>
+		table{
+			table-layout: fixed;
+			width: 100%;
+			border-collapse: collapse;
+		}
+		th, td{
+			width: 25%;
+			padding-top: 150px;
+		}
+		tr{
+			*/border-style: solid;/*
+		}
+		</style><body>
+		<h2>CV - ' . $tab['firstname'] . ' '  . $tab['name'] . '</h2><br>
+		<br>
+		<h3>Mes compétences :</h3><table>';
+		foreach($tab['skills'] as $skill){
+			if($skill['status'] == 'confirmed'){
+				$ref = $skill['referent'];
+				$date_obj = DateTime::createFromFormat('Y-m-d', $skill['beginning']); // Formater la date au format dd/mm/yyyy
+				$date = $date_obj->format('d/m/Y');
 
+				$competence = '<tr><td><h4>' . $skill['environement'] . "</h4>
+				description de l'engagement : " . $skill["description"] . "<br>
+				début de l'engagement : " . $date . "<br>
+				durée de l'engagement : " . $skill["duration"] . " " . $skill["durationType"] . "<br>";
+				$competence .= "<h5>Compétences selon moi</h5>";
+				if(!empty($skill['socialSkills'])){
+					$competence .= "<h5>Savoir-être</h5><ol>";
+					foreach($skill["socialSkills"] as $socialSkill){
+						$competence .= "<li>" . $socialSkill . "</li>";
+					}
+					$competence .= "</ol>";
+				}else{
+					$competence .= "<h5>Compétences : savoir-être</h5><br>aucun savoir-être mentionné";
+				}
+				if(!empty($skill['savoir-faire'])){
+					$competence .= "<h5>Savoir faire</h5><ol>";
+					foreach($skill["savoir-faire"] as $savoir_faire){
+						$competence .= "<li>" . $savoir_faire . "</li>";
+					}
+					$competence .= "</ol>";
+				}else{
+					$competence .= "<h5>Compétences : savoir faire</h5><br>aucun savoir-faire mentionné";
+				}
+				$competence .= "</td><td><h5>Référent</h5>";
+				$competence .= $ref["firstname"] . " " . $ref["name"] . "<br><br>";
+				$competence .= $ref["email"] . "<br><br>";
+				$competence .= $ref["situation"] . "<br>";
+				$competence .= "<h5>Compétences selon le référent</h5>";
+				if(!empty($skill['socialSkills'])){
+					$competence .= "<h5>Savoir-être</h5><ol>";
+					foreach($skill["socialSkills"] as $socialSkill){
+						$competence .= "<li>" . $socialSkill . "</li>";
+					}
+					$competence .= "</ol>";
+				}else{
+					$competence .= "<h5>Compétences : savoir-être</h5><br>aucun savoir-être mentionné";
+				}
+				if(!empty($skill['savoir-faire'])){
+					$competence .= "<h5>Savoir faire</h5><ol>";
+					foreach($skill["savoir-faire"] as $savoir_faire){
+						$competence .= "<li>" . $savoir_faire . "</li>";
+					}
+					$competence .= "</ol>";
+				}else{
+					$competence .= "<h5>Compétences : savoir faire</h5><br>aucun savoir-faire mentionné";
+				}
+				$competence .= '</td>';
+				if($skill["comment"] != ""){
+					$competence .= "<td><br><h5>Commentaire du référent</h5><br><p class='comment'>" . $skill["comment"] . "</p><br></td>";
+				}
+				
+				$competence .=  "</tr>";
+				$body .= $competence;
+			}
+		}	
+		$body .= '</table><br><br><br>CV généré par via le <a href="http://localhost:8080/jeune6.4.html">le site du projet Jeunes 6.4</a><br></body>';
+		$file = fopen('cv.html', 'w');
+		fwrite($file, $body);// on écrit le mail dans la page avant d'aller dessus, de là bas on ouvrira un nouvel onglet pour faire revenir le jeune à skills.php
+		fclose($file);
+		header("Location: cv.html");
+		exit;
 	}
 
 }
@@ -122,11 +215,11 @@ if(isset($_POST['select']) && isset($_POST['skills']) && isset($_POST['option'])
 	<?php // cette partie est tirée de skills.php
 		$username = $_SESSION["username"];
 		$nbrConfirmedSkill = 0;
-		echo '<br><table><tr>';
+		echo '<br><table><tr class="back">';
 		foreach($users[$username]["skills"] as $key => $skill){ # boucle pour les expériences confirmées
 			if($skill['status'] == "confirmed"){
 				$nbrConfirmedSkill++;
-				echo '<td class="marge"><input type="checkbox" name="skills[]" value="' . $key . '"><input type="hidden" name="' . $key . '" value="' . $skill["id"] . '"></td><td class="marge"><h4>' . $skill["environement"] . "</h4>description: " . $skill["description"];
+				echo '<td class="marge"><input type="checkbox" name="skills[]" value="' . $key . '" required><input type="hidden" name="' . $key . '" value="' . $skill["id"] . '"></td><td class="marge"><h4>' . $skill["environement"] . "</h4>description: " . $skill["description"];
 				echo '</td><td class="marge">';
 				echo "<h4>Référent</h4>";
 				echo $skill["referent"]["firstname"] . " " . $skill["referent"]["name"] . "<br>";
@@ -134,7 +227,7 @@ if(isset($_POST['select']) && isset($_POST['skills']) && isset($_POST['option'])
 				echo $skill["referent"]["situation"] . "<br>";
 				echo "</td>";
 				if($nbrConfirmedSkill%1==0){ // nombre de cases max dans une seule ligne
-					echo "</tr><tr>";
+					echo "</tr><tr class='back'>";
 				}
 			}
 		}
@@ -145,8 +238,8 @@ if(isset($_POST['select']) && isset($_POST['skills']) && isset($_POST['option'])
 			echo '<br><br><input type="radio" id="cv" name="option" value="cv" onclick="hide()" required><label for="cv">Générer un CV</label><br>';
 			echo '<input type="radio" id="archive" name="option" value="archive" onclick="hide()" required><label for="archive">Archiver ces expériences</label><br>';
 			echo '<input type="radio" id="consultant" name="option" value="consultant" onclick="show()" required><label for="consultant">Envoyer à un consultant</label>';
-			echo '<div id="email"></div>';// plutôt que de cacher, on enlève ou on place l'input mail selon le choix de l'utilisateur, pour éviter des problème avec le "required"
-			echo '<br><br><input type="submit" name="select" value="Valider"><br><br><br><br><br><br>';
+			echo '<div id="email"></div>';// plutôt que de cacher, on enlève completement ou on place l'input mail selon le choix de l'utilisateur, pour éviter des problème avec le "required"
+			echo '<br><input type="submit" name="select" value="Valider"><br><br><br><br><br><br><br>';
 		}
 	?>
 	</form>

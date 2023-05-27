@@ -82,3 +82,8 @@ li[class="jeune"]{
 .email {
 	display: none;
 }
+
+
+.back{
+	background-image:linear-gradient(90deg,rgb(252, 126, 185)2%,white);
+}

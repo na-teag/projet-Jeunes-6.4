@@ -1,40 +1,18 @@
-function compareArrays(a, b){
-  if(Object.keys(a).length !== Object.keys(b).length){
-    return false;
-  }
-  for(const key in a){
-    if(Array.isArray(a[key])){
-      if(!Array.isArray(b[key]) || a[key].length !== b[key].length){
-        return false;
-      }
-      for(let i = 0; i < a[key].length; i++){
-        if(JSON.stringify(a[key][i]) !== JSON.stringify(b[key][i])){
-          return false;
-        }
-      }
-    } else {
-      if(a[key] !== b[key]){
-        return false;
-      }
-    }
-  }
-  return true;
-}
+let openBtn = document.getElementById("nav-open");
+let closeBtn = document.getElementById("nav-close");
+let navWrapper = document.getElementById("nav-wrapper");
+let navLatteral = document.getElementById("nav-latteral");
 
-function loadUsers(){
-  const xhr = new XMLHttpRequest();
-  xhr.onreadystatechange = function(){
-    if(this.readyState === 4 && this.status === 200){
-      const newusers = JSON.parse(this.responseText);
-      if(!compareArrays(newusers, <?php echo json_encode($oldusers); ?>)){
-        location.reload();
-      }
-    }
-  };
-  xhr.open("GET", "../data.php", true);
-  xhr.send();
-}
+const openNav = () => {
+    navWrapper.classList.add("active");
+    navLatteral.style.left = "0";
+};
 
-function test(){
-    alert("ok");
-} 
+const closeNav = () => {
+    navWrapper.classList.remove("active");
+    navLatteral.style.left = "-100%";
+};
+
+openBtn.addEventListener("click", openNav);
+closeBtn.addEventListener("click", closeNav);
+navWrapper.addEventListener("click", closeNav);

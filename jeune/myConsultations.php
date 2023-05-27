@@ -3,7 +3,7 @@
 <?php
 session_start();
 
-if(!isset($_SESSION["role"]) || $_SESSION["role"] != "jeune"){
+if(!isset($_SESSION["role"]) || ($_SESSION["role"] != "jeune" && $_SESSION["role"] != "admin")){
     header("Location: ../login.php");
     exit;
 }
@@ -113,7 +113,10 @@ if(isset($_POST['delete'])){
 				}
 			}
 		}
-		echo "</tr></table><br>Pour chaque partage d'expérience différent, seul les trois premières expériences sont visible.<br>Si des expériences apparaissent grisés, c'est qu'elle sont archivées, les consultants ne les voient donc pas.";
+		
+		if($nbrConsultation != 0){
+			echo "</tr></table><br>Pour chaque partage d'expérience différent, seul les trois premières expériences sont visible.<br>Si des expériences apparaissent grisés, c'est qu'elle sont archivées, les consultants ne les voient donc pas.";
+		}
 		if($nbrConsultation == 0){
 			echo '<p><br><br>aucune expérience confirmée n\'a encore été partagée avec un consultant</p>';
 		}else{
