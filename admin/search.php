@@ -80,6 +80,5 @@
 
     <script src="search.js"></script>
 </body>
+<?php include_once "../footer.html"; ?>
 </html>
-</body>
-</html> 

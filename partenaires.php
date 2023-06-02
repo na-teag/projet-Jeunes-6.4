@@ -63,4 +63,5 @@ if(isset($_POST['deconnexion'])){
 		<p>...qui ont décidé de mettre en commun leurs actions pour les jeunes<br>des Pyrénées-Atlantiques.</p>
 	</div>
 </body>
+<?php include_once "footer.html"; ?>
 </html> 

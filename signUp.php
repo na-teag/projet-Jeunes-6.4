@@ -109,11 +109,6 @@
 
 	<br><br><br><br>
 </body>
-
-<!-- 
-	function checkEmail(email){
-		var structure = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]+$/;
-	}
- -->
+<?php include_once "footer.html"; ?>
 
 </html>  

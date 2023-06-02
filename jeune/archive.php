@@ -97,7 +97,7 @@ if(isset($_POST['delete']) && isset($_POST['skills'])){
 	<?php // cette partie est tirée de skills.php
 		$username = $_SESSION["username"];
 		$nbrConfirmedSkill = 0;
-		echo '<br><table><tr>';
+		echo '<br><table><tr class="back">';
 		foreach($users[$username]["skills"] as $key => $skill){ # boucle pour les expériences confirmées
 			if($skill['status'] == "archived"){
 				$nbrConfirmedSkill++;
@@ -109,13 +109,13 @@ if(isset($_POST['delete']) && isset($_POST['skills'])){
 				echo $skill["referent"]["situation"] . "<br>";
 				echo "</td>";
 				if($nbrConfirmedSkill%1==0){ // nombre de cases max dans une seule ligne
-					echo "</tr><tr>";
+					echo "</tr><tr class='back'>";
 				}
 			}
 		}
 		echo "</tr></table>";
 		if($nbrConfirmedSkill == 0){
-			echo '<p><br><br>aucune expérience archivée</p>';
+			echo '<p><br><br>aucune expérience archivée<br><br><br><br><br><br><br><br><br></p>';
 		}else{
 			echo '<br><br>
 			<input type="submit" name="select" value="Désarchiver ces expériences">
@@ -127,4 +127,5 @@ if(isset($_POST['delete']) && isset($_POST['skills'])){
 	</form>
 	<script src="select.js"></script>
 </body>
+<?php include_once "../footer.html"; ?>
 </html>

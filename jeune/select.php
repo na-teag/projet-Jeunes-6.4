@@ -19,7 +19,7 @@ if(isset($_POST['deconnexion'])){// partie pour déconnecter l'utilisateur
 
 
 
-if(isset($_POST['select']) && isset($_POST['skills']) && isset($_POST['option'])){
+if(isset($_POST['select']) && isset($_POST['option'])){
 	echo "test:" . $_POST['option'];
 	$option = $_POST['option'];
 	$nbrskill = 0;
@@ -37,34 +37,70 @@ if(isset($_POST['select']) && isset($_POST['skills']) && isset($_POST['option'])
 			$other[$id] = array(
 				'user' => $username,
 				'status' => 'consultant',
+				'email' => $email,
 				'skills' => $skills,
 			);
 		}else{
 			$other[$id] = array(
 				'user' => $username,
 				'status' => 'consultant',
+				'email' => $email,
 				'skills' => 'all',
 			);
 		}
 
-		$file = fopen('../data.php', 'w');
-		fwrite($file, '<?php $users = ' . var_export($users, true) . '; $other = ' . var_export($other, true) . '; ?>');
-		fclose($file);
+		if($other[$id]['skills'] == NULL){
+			$message = "A moins de choisir de séléctionnez toutes les compétences, y compris celles validées ulterieurement, vous devez séléctionner au moins une compétence.";
+		}else{
+			$file = fopen('../data.php', 'w');
+			fwrite($file, '<?php $users = ' . var_export($users, true) . '; $other = ' . var_export($other, true) . '; ?>');
+			fclose($file);
 
-		$file = fopen('mail.html', 'w'); //on écrit le contenu du mail
-		$body = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Consultation d\'expérience</title></head><body><script>window.open("skills.php", "_blank");</script>
+			$file = fopen('mail.html', 'w'); //on écrit le contenu du mail
+			$body = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Consultation d\'expérience</title></head>
+		<style>
+		table[class="bandeau"]{
+			width: 100%;
+			background-color: lightgray;
+			color: white;
+		}
+		
+		.bloc{
+			width: 80%;
+			padding: 1% 1%;
+			margin-top: 8%;
+		}
+
+		.lien{
+			color: black;
+		}
+		</style>
+		<body><script>window.open("skills.php", "_blank");</script>
+		<table class="bandeau">
+			<tr>
+			<td><img src="../images/logo.svg"><img></a></td>
+			</tr>
+		</table>
+		<div class="bloc">
+		<div>
 		Bonjour,
-		<br>' . $users[$username]['firstname'] . " " . $users[$username]['name'] . " vous partage par l'intermédiaire du site <b>JEUNES 6.4</b> une liste de ses compétences, certifiées par des référents externes.
-		<br>Le service Jeune 6.4 est un projet destiné à aider les jeunes à valoriser leurs expériences, et de faciliter leur accès aux entreprises et autres structures où ils pourront trouver du travail. Merci de prendre quelques instant pour examiner les compétences de  " . $users[$username]['firstname'] . " " . $users[$username]['name'] . ".
-		<br><i><a href='http://localhost:8080/consultant/consultation.php?id=" . $id . "'>consulter les experiences</a></i>
+		<br><br>
+		<br>' . $users[$username]['firstname'] . " " . $users[$username]['name'] . " vous partage par l'intermédiaire du site <b><a class='lien' href='http://localhost:8080/home.php'>JEUNES 6.4</a></b> une liste de ses compétences, certifiées par des référents externes.
+		</div>
+		<div>
+		<br>Le service Jeune 6.4 est un projet destiné à aider les jeunes à valoriser leurs expériences, et de faciliter leur accès aux entreprises et autres structures où ils pourront trouver du travail.</div><div><br> Merci de prendre quelques instant pour examiner les compétences de  " . $users[$username]['firstname'] . " " . $users[$username]['name'] . ".
+		<br><i><a href='http://localhost:8080/consultant/consultation.php?id=" . $id . "'>consulter les experiences</a></i></div>
 		<br>
+		<div>
 		<br>N'hésitez pas à contacter " . $users[$username]['firstname'] . " " . $users[$username]['name'] . " si vous avez des propositions à lui faire.
 		<br><br>Bien cordialement,
-		<br><b>SERVICE JEUNE 6.4</b></body></html>";
-		fwrite($file, $body);// on écrit le mail dans la page avant d'aller dessus, de là bas on ouvrira un nouvel onglet pour faire revenir le jeune à skills.php
-		fclose($file);
-		header("Location: mail.html");
-		exit;
+		<br><b>SERVICE JEUNE 6.4</b>
+		</div></div></body></html>";
+			fwrite($file, $body);// on écrit le mail dans la page avant d'aller dessus, de là bas on ouvrira un nouvel onglet pour faire revenir le jeune à skills.php
+			fclose($file);
+			header("Location: mail.html");
+			exit;
+		}
 	}else if($option == "archive"){
 		foreach($_POST['skills'] as $checkbox){
             $id_skill = $_POST[$checkbox];
@@ -219,7 +255,7 @@ if(isset($_POST['select']) && isset($_POST['skills']) && isset($_POST['option'])
 		foreach($users[$username]["skills"] as $key => $skill){ # boucle pour les expériences confirmées
 			if($skill['status'] == "confirmed"){
 				$nbrConfirmedSkill++;
-				echo '<td class="marge"><input type="checkbox" name="skills[]" value="' . $key . '" required><input type="hidden" name="' . $key . '" value="' . $skill["id"] . '"></td><td class="marge"><h4>' . $skill["environement"] . "</h4>description: " . $skill["description"];
+				echo '<td class="marge"><input type="checkbox" name="skills[]" value="' . $key . '"><input type="hidden" name="' . $key . '" value="' . $skill["id"] . '"></td><td class="marge"><h4>' . $skill["environement"] . "</h4>description: " . $skill["description"];
 				echo '</td><td class="marge">';
 				echo "<h4>Référent</h4>";
 				echo $skill["referent"]["firstname"] . " " . $skill["referent"]["name"] . "<br>";
@@ -233,16 +269,21 @@ if(isset($_POST['select']) && isset($_POST['skills']) && isset($_POST['option'])
 		}
 		echo "</tr></table>";
 		if($nbrConfirmedSkill == 0){
-			echo '<p><br><br>aucune expérience confimée par un référent</p>';
+			echo '<p><br><br>aucune expérience confimée par un référent<br><br><br><br><br><br><br><br><br><br></p>';
 		}else{
 			echo '<br><br><input type="radio" id="cv" name="option" value="cv" onclick="hide()" required><label for="cv">Générer un CV</label><br>';
 			echo '<input type="radio" id="archive" name="option" value="archive" onclick="hide()" required><label for="archive">Archiver ces expériences</label><br>';
 			echo '<input type="radio" id="consultant" name="option" value="consultant" onclick="show()" required><label for="consultant">Envoyer à un consultant</label>';
 			echo '<div id="email"></div>';// plutôt que de cacher, on enlève completement ou on place l'input mail selon le choix de l'utilisateur, pour éviter des problème avec le "required"
-			echo '<br><input type="submit" name="select" value="Valider"><br><br><br><br><br><br><br>';
+			echo '<br><input type="submit" name="select" value="Valider"><br>';
+			if(isset($message)){
+				echo "<p class='red'>" . $message . "</p>";
+			}
+			echo '<br><br><br><br><br><br>';
 		}
 	?>
 	</form>
 	<script src="select.js"></script>
 </body>
+<?php include_once "../footer.html"; ?>
 </html>

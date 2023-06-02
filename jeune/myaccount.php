@@ -174,4 +174,5 @@ if(isset($_POST['deconnexion'])){// partie pour déconnecter l'utilisateur
 	<script src="myaccount.js"></script>
 
 </body>
+<?php include_once "../footer.html"; ?>
 </html>

@@ -72,14 +72,45 @@ if(isset($_POST['description']) && isset($_POST['name']) && isset($_POST['firstn
 		'status' => 'referent',
 	);
 	$file = fopen('email.html', 'w'); //on écrit le contenu du mail
-	$body = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Demande de validation d\'expérience</title></head><body><script>window.open("skills.php", "_blank");</script>
+	$body = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Demande de validation d\'expérience</title></head>
+	<style>
+		table[class="bandeau"]{
+			width: 100%;
+			background-color: lightgray;
+			color: white;
+		}
+		
+		.bloc{
+			width: 80%;
+			padding: 1% 1%;
+			margin-top: 8%;
+		}
+
+		.lien{
+			color: black;
+		}
+		</style>
+	<body><script>window.open("skills.php", "_blank");</script>
+	<table class="bandeau">
+		<tr>
+			<td><img src="../images/logo.svg"><img></a></td>
+		</tr>
+	</table>
+	<div class="bloc">
+	<div>
 	Bonjour ' . $firstname . " " . $name . ".
+	<br><br>
 	<br>" . $users[$username]['firstname'] . " " . $users[$username]['name'] . " requiert votre approbation après son travail auprès de vous.
-	<br>Le service Jeune 6.4 est un projet destiné à aider les jeunes à valoriser leurs expériences. Afin de permettre à " . $users[$username]['firstname'] . " " . $users[$username]['name'] . " de valider son expérience, merci de cliquer sur le lien ci-dessous et de valider ou infirmer les données entrées.
+	</div>
+	<div>
+	<br>Le service <a class='lien' href='http://localhost:8080/home.php'>Jeune 6.4</a> est un projet destiné à aider les jeunes à valoriser leurs expériences. <br> Afin de permettre à " . $users[$username]['firstname'] . " " . $users[$username]['name'] . " de valider son expérience, merci de cliquer sur le lien ci-dessous et de valider ou infirmer les données entrées.
 	<br><i><a href='http://localhost:8080/referent/confirm.php?id=" . $id . "'>confirmer une experience</a></i>
+	</div>
+	<div>
 	<br>
 	<br>Bien cordialement,
-	<br><b>SERVICE JEUNE 6.4</b></body></html>";
+	<br><b>SERVICE JEUNE 6.4</b>
+	<div/></div></body></html>";
 	fwrite($file, $body);// on écrit le mail dans la page avant d'aller dessus, de là bas on ouvrira un nouvel onglet pour faire revenir le jeune à skills.php
 	fclose($file);	
 
@@ -146,7 +177,7 @@ if(isset($_POST['description']) && isset($_POST['name']) && isset($_POST['firstn
 	<form method="POST">
 		<table class="description">
 			<tr><td>Description :</td><td><input type="text" name="description" class="long" maxlength="100" required> ex: agent d'accueil, aide à domicile</td></tr>
-			<tr><td>Structure :</td><td><input type="text" name="environement" class="long" maxlength="50" required> ex: nom de l'entreprise, de l'association</td></tr>
+			<tr><td>Nom de la structure : </td><td><input type="text" name="environement" class="long" maxlength="50" required> ex: nom de l'entreprise, de l'association</td></tr>
 			<tr><td>Début :</td><td><input type="date" name="beginning" required></td></tr>
 			<tr><td>Durée :</td><td><input type="number" name="duration" required> <select name="durationType"><?php if(isset($message)){echo $message;}?>
 				<option>jours</option>
@@ -156,16 +187,16 @@ if(isset($_POST['description']) && isset($_POST['name']) && isset($_POST['firstn
 			</select></td></tr>
 		</table>
 		<br>
-		<div id="global">
-			<div id="first"><p class="marge">Mes savoir-faire</p>
+		<div id="global">	
+			<div id="first"><p class="underline">Mes savoir-faire :</p>
 				<table id="myTable" class="faire">
-					<tr><td><input type='text' name='myTable[]' class='long'></td></tr>
-				</table>	
+				</table>
 				<input type="button" onclick="addRow()" value="Ajouter un savoir-faire"> 
 				<input type="button" onclick="deleteRow()" value="Effacer un savoir-faire">
+				<br><br>
 	
 				<table>	
-					<tr><td>Information sur le référent</tr></td>
+					<tr><td class="underline">Information sur le référent</tr></td>
 					<tr>
 						<td>Nom :</td>
 						<td><input type="text" name="name" maxlength="50" required></td>
@@ -185,56 +216,157 @@ if(isset($_POST['description']) && isset($_POST['name']) && isset($_POST['firstn
 				</table>
 			</div>
 			<div id="second">
-				<table class="savoir-etre" id="display">
-					<tr><td id="etre">Mes savoirs-être :</td></tr>
-					<tr><td id="je_suis">Je suis*</td></tr>
+			<table>
+				<tr><td id="etre">Mes savoirs-être :</td></tr>
+				<tr><td id="je_suis">Je suis*</td></tr>
+				<tbody id="savoir_etre">
+				
 					<tr>
-						<td><input type="checkbox" name="socialSkills[]" value="Fiable" onclick="checkLimite(this)">Fiable</td>
-						<td><input type="checkbox" name="socialSkills[]" value="Déterminé" onclick="checkLimite(this)">Déterminé</td>
+						<td>
+							<label class="container"> Fiable
+								<input type="checkbox" name="socialSkills[]" value="Fiable" onclick="checkLimite(this)">
+								<span class="checkmark"></span>
+							</label>
+						</td>
+						<td>
+							<label class="container"> Déterminé
+								<input type="checkbox" name="socialSkills[]" value="Déterminé" onclick="checkLimite(this)">
+								<span class="checkmark"></span>
+							</label>
+						</td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="socialSkills[]" value="Autonome" onclick="checkLimite(this)">Autonome</td>
-						<td><input type="checkbox" name="socialSkills[]" value="Ouvert d'esprit" onclick="checkLimite(this)">Ouvert d'esprit</td>
+						<td>
+							<label class="container"> Autonome
+								<input type="checkbox" name="socialSkills[]" value="Autonome" onclick="checkLimite(this)">
+								<span class="checkmark"></span>
+							</label>
+						</td>
+						<td>
+							<label class="container"> Ouvert d'esprit
+								<input type="checkbox" name="socialSkills[]" value="Ouvert d'esprit" onclick="checkLimite(this)">
+								<span class="checkmark"></span>
+							</label>
+						</td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="socialSkills[]" value="Réfléchi" onclick="checkLimite(this)">Réfléchi</td>
-						<td><input type="checkbox" name="socialSkills[]" value="Honnête" onclick="checkLimite(this)">Honnête</td>
+						<td>
+							<label class="container"> Réfléchie
+								<input type="checkbox" name="socialSkills[]" value="Réfléchie" onclick="checkLimite(this)">
+								<span class="checkmark"></span>
+							</label>
+						</td>
+						<td>
+							<label class="container"> Honnête
+								<input type="checkbox" name="socialSkills[]" value="Honnête" onclick="checkLimite(this)">
+								<span class="checkmark"></span>
+							</label>
+						</td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="socialSkills[]" value="Passionné" onclick="checkLimite(this)">Passionné</td>
-						<td><input type="checkbox" name="socialSkills[]" value="Ponctuel" onclick="checkLimite(this)">Ponctuel</td>
+						<td>
+							<label class="container"> Passionné
+								<input type="checkbox" name="socialSkills[]" value="Passionné" onclick="checkLimite(this)">
+								<span class="checkmark"></span>
+							</label>
+						</td>
+						<td>
+							<label class="container"> Ponctuel
+								<input type="checkbox" name="socialSkills[]" value="Ponctuel" onclick="checkLimite(this)">
+								<span class="checkmark"></span>
+							</label>
+						</td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="socialSkills[]" value="A l'écoute" onclick="checkLimite(this)">A l'écoute</td>
-						<td><input type="checkbox" name="socialSkills[]" value="Respectueux" onclick="checkLimite(this)">Respectueux</td>
+						<td>
+							<label class="container"> A l'écoute
+								<input type="checkbox" name="socialSkills[]" value="A l'écoute" onclick="checkLimite(this)">
+								<span class="checkmark"></span>
+							</label>
+						</td>
+						<td>
+							<label class="container"> Respectueux
+								<input type="checkbox" name="socialSkills[]" value="Respectueux" onclick="checkLimite(this)">
+								<span class="checkmark"></span>
+							</label>
+						</td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="socialSkills[]" value="Organisé" onclick="checkLimite(this)">Organisé</td>
-						<td><input type="checkbox" name="socialSkills[]" value="Collaboratif" onclick="checkLimite(this)">Collaboratif</td>
+						<td>
+							<label class="container"> Organisé
+								<input type="checkbox" name="socialSkills[]" value="Organisé" onclick="checkLimite(this)">
+								<span class="checkmark"></span>
+							</label>
+						</td>
+						<td>
+							<label class="container"> Collaboratif
+								<input type="checkbox" name="socialSkills[]" value="Collaboratif" onclick="checkLimite(this)">
+								<span class="checkmark"></span>
+							</label>
+						</td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="socialSkills[]" value="Patient" onclick="checkLimite(this)">Patient</td>
-						<td><input type="checkbox" name="socialSkills[]" value="Proactif" onclick="checkLimite(this)">Proactif</td>
+						<td>
+							<label class="container"> Patient
+								<input type="checkbox" name="socialSkills[]" value="Patient" onclick="checkLimite(this)">
+								<span class="checkmark"></span>
+							</label>
+						</td>
+						<td>
+							<label class="container"> Proactif
+								<input type="checkbox" name="socialSkills[]" value="Proactif" onclick="checkLimite(this)">
+								<span class="checkmark"></span>
+							</label>
+						</td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="socialSkills[]" value="Responsable" onclick="checkLimite(this)">Responsable</td>
-						<td><input type="checkbox" name="socialSkills[]" value="Diplomate" onclick="checkLimite(this)">Diplomate</td>
+						<td>
+							<label class="container"> Responsable
+								<input type="checkbox" name="socialSkills[]" value="Responsable" onclick="checkLimite(this)">
+								<span class="checkmark"></span>
+							</label>
+						</td>
+						<td>
+							<label class="container"> Diplomate
+								<input type="checkbox" name="socialSkills[]" value="Diplomate" onclick="checkLimite(this)">
+								<span class="checkmark"></span>
+							</label>
+						</td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="socialSkills[]" value="Optimiste" onclick="checkLimite(this)">Optimiste</td>
-						<td><input type="checkbox" name="socialSkills[]" value="Curieux" onclick="checkLimite(this)">Curieux</td>
+						<td>
+							<label class="container"> Optimiste
+								<input type="checkbox" name="socialSkills[]" value="Optimiste" onclick="checkLimite(this)">
+								<span class="checkmark"></span>
+							</label>
+						</td>
+						<td>
+							<label class="container"> Curieux
+								<input type="checkbox" name="socialSkills[]" value="Curieux" onclick="checkLimite(this)">
+								<span class="checkmark"></span>
+							</label>
+						</td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="socialSkills[]" value="Communicatif" onclick="checkLimite(this)">Communicatif</td>
-						<td><input type="checkbox" name="socialSkills[]" value="Empathique" onclick="checkLimite(this)">Empathique</td>
+						<td>
+							<label class="container"> Communicatif
+								<input type="checkbox" name="socialSkills[]" value="Communicatif" onclick="checkLimite(this)">
+								<span class="checkmark"></span>
+							</label>
+						</td>
+						<td>
+							<label class="container"> Empathique
+								<input type="checkbox" name="socialSkills[]" value="Empathique" onclick="checkLimite(this)">
+								<span class="checkmark"></span>
+							</label>
+						</td>
 					</tr>
+				</tbody>
 					<tr><td id="asterisque">Faire 4 choix maximum</td></tr>
 				</table>
 			</div>
 		</div>
-		<br>
-		<p class="note">note : lorsque vous arriverez sur la page d'accueil,<br>il vous faudra actualiser la page pour charger les données saisies.</p>
-		<button type="submit">Enregistrer</button>
+		<button type="submit" class="confirm">Enregistrer</button>
 	</form>
 	<br><br><br><br><br>	
 	
@@ -242,4 +374,5 @@ if(isset($_POST['description']) && isset($_POST['name']) && isset($_POST['firstn
 	<script src="newExperience.js"></script>
 	
 </body>
+<?php include_once "../footer.html"; ?>
 </html> 

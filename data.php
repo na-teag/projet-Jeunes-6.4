@@ -1,13 +1,13 @@
 <?php $users = array (
   'test_test' => 
   array (
-    'gender' => 'other',
     'name' => 'TEST',
     'firstname' => 'Test',
+    'gender' => 'other',
     'birth' => '2000-01-01',
     'email' => 'test@test.test',
     'username' => 'test_test',
-    'password' => '$2y$10$5WJOh70Vg.eIPpLOzyGVG.xvx9ii5WmZbGARQ/5fmh6.U89N8Lrvy',
+    'password' => '$2y$10$o40nm6gWHHUVYZole8u5YOzSDjrAT9xVT2iVFP6XC.lJXMDDjYaH6',
     'role' => 'jeune',
     'skills' => 
     array (
@@ -72,7 +72,44 @@
         'status' => 'toConfirm',
         'id' => 'er78cf4134692819130b6388a1212e7ede83a11370756b9d28e5228b57b6bnb7',
       ),
+      2 => 
+      array (
+        'referent' => 
+        array (
+          'name' => 'Letourneur',
+          'firstname' => 'Aymeric',
+          'email' => 'letourneur@cy-tech.fr',
+          'situation' => 'élève',
+        ),
+        'beginning' => '2000-01-01',
+        'duration' => '3',
+        'durationType' => 'semaines',
+        'environement' => 'cytech',
+        'description' => 'agent d&#039;accueil',
+        'socialSkills' => 
+        array (
+          0 => 'Empathique',
+        ),
+        'savoir-faire' => 
+        array (
+          0 => 'je veux un gateau',
+        ),
+        'status' => 'toConfirm',
+        'id' => '23b40547b9ad5e66a2cd9441b902dcead3cb039ae28be40e069032b4899c65bd',
+      ),
     ),
   ),
 ); $other = array (
+  '23b40547b9ad5e66a2cd9441b902dcead3cb039ae28be40e069032b4899c65bd' => 
+  array (
+    'user' => 'test_test',
+    'status' => 'referent',
+  ),
+  '0d576fbf738dfee6f71d1265b431bc84e7e129761b664ada3a8ace72a54c9f9e' => 
+  array (
+    'user' => 'test_test',
+    'status' => 'consultant',
+    'email' => 't@t.all',
+    'skills' => 'all',
+  ),
 ); ?>

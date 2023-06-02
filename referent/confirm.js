@@ -28,15 +28,7 @@ function checkLimite(checkbox){ // vérifier que seulement 4 cases max ont été
 	}
 }
 
-function checkArea(){ // limiter le texte à 500 caractères et le couper si il est plus long
-	var compteur = document.getElementById("compteur");
-	var textarea = document.getElementById("texte");
-	var text = textarea.value;
-	if(text.length > 500){
-		textarea.value = text.substring(0, 500);
-		compteur.textContent = 500;
-	}else{
-		compteur.textContent = text.length;
-	}
+function limitText(content){
+	var len = content.length;
+	document.querySelector("span.x").innerHTML = len + "/500";
 }
-  

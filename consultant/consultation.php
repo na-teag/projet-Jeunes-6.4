@@ -151,8 +151,6 @@
 
 						// si le jeune a choisi de montrer toutes les compétences y compris celle futures
 				foreach($users[$username]["skills"] as $skill){
-						//print_r($skill);
-						//echo "<br><br><br>";
 					if($skill['status'] == "confirmed"){
 						$nbrConfirmedSkill++;
 						echo '<td class="marge"><h2>' . $skill["environement"] . "</h2><ul><li>description: " . $skill["description"] . "</li><li>début: " . $skill["beginning"] . "</li><li> durée: " . $skill["duration"] . " " . $skill["durationType"] . "</li></ul>";
@@ -235,4 +233,5 @@
 	?>
 
 </body>
+<?php include_once "../footer.html"; ?>
 </html>

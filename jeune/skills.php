@@ -130,20 +130,26 @@ if(isset($_POST['consult'])){
 						echo '<td class="marge"><h2>' . $skill["environement"] . "</h2><ul><li>description: " . $skill["description"] . "</li><li>début: " . $skill["beginning"] . "</li><li> durée: " . $skill["duration"] . " " . $skill["durationType"] . "</li></ul>";
 						echo "<h3>Compétences selon moi</h3>";
 						if(!empty($skill['socialSkills'])){
-							echo "<h5>Savoir-être</h5><ol>";
+							echo "<h5>Savoir-être</h5>";
 							foreach($skill["socialSkills"] as $socialSkill){
-								echo "<li>" . $socialSkill . "</li>";
+								echo '
+								<label class="container">' . $socialSkill . '
+									<input type="checkbox" checked>
+									<span class="checkmark"></span>
+								</label>';
 							}
-							echo "</ol>";
 						}else{
 							echo "<h5>Compétences : savoir-être</h5><br>aucun savoir-être mentionné";
 						}
 						if(!empty($skill['savoir-faire'])){
-							echo "<h5>Savoir faire</h5><ol>";
+							echo "<h5>Savoir faire</h5>";
 							foreach($skill["savoir-faire"] as $savoir_faire){
-								echo "<li>" . $savoir_faire . "</li>";
+								echo '
+								<label class="container">' . $savoir_faire . '
+									<input type="checkbox" checked>
+									<span class="checkmark"></span>
+								</label>';
 							}
-							echo "</ol>";
 						}else{
 							echo "<h5>Compétences : savoir faire</h5><br>aucun savoir-faire mentionné";
 						}
@@ -154,20 +160,26 @@ if(isset($_POST['consult'])){
 						echo $skill["referent"]["situation"] . "<br>";
 						echo "<h3>Compétences selon le référent</h3>";
 						if(!empty($skill['socialSkills_ref'])){
-							echo "<h5>Savoir-être</h5><ol>";
+							echo "<h5>Savoir-être</h5>";
 							foreach($skill["socialSkills_ref"] as $socialSkill){
-								echo "<li>" . $socialSkill . "</li>";
+								echo '
+								<label class="container">' . $socialSkill . '
+									<input type="checkbox" checked>
+									<span class="checkmark"></span>
+								</label>';
 							}
-							echo "</ol>";
 						}else{
 							echo "<h5>Compétences : savoir-être</h5><br>aucun savoir-être mentionné";
 						}
 						if(!empty($skill['savoir-faire_ref'])){
-							echo "<h5>Savoir faire</h5><ol>";
-							foreach($skill["savoir-faire_ref"] as $savoir_faire){
-								echo "<li>" . $savoir_faire . "</li>";
+							echo "<h5>Savoir faire</h5>";
+							foreach($skill["savoir-faire"] as $savoir_faire){
+								echo '
+								<label class="container">' . $savoir_faire . '
+									<input type="checkbox" checked>
+									<span class="checkmark"></span>
+								</label>';
 							}
-							echo "</ol>";
 						}else{
 							echo "<h5>Compétences : savoir faire</h5><br>aucun savoir-faire mentionné";
 						}
@@ -195,20 +207,26 @@ if(isset($_POST['consult'])){
 						echo '<td class="marge"><h2>' . $skill["environement"] . "</h2><ul><li>description: " . $skill["description"] . "</li><li>début: " . $skill["beginning"] . "</li><li>durée: " . $skill["duration"] . " " . $skill["durationType"] . "</li></ul>";
 						echo "<h4>Compétences selon moi</h4>";
 						if(!empty($skill['socialSkills'])){
-							echo "<h5>Savoir-être</h5><ol>";
+							echo "<h5>Savoir-être</h5>";
 							foreach($skill["socialSkills"] as $socialSkill){
-								echo "<li>" . $socialSkill . "</li>";
+								echo '
+								<label class="container">' . $socialSkill . '
+									<input type="checkbox" checked>
+									<span class="checkmark"></span>
+								</label>';
 							}
-							echo "</ol>";
 						}else{
 							echo "<h5>Compétences : savoir-être</h5><br>aucun savoir-être mentionné";
 						}
 						if(!empty($skill['savoir-faire'])){
-							echo "<h5>Savoir faire</h5><ol>";
+							echo "<h5>Savoir faire</h5>";
 							foreach($skill["savoir-faire"] as $savoir_faire){
-								echo "<li>" . $savoir_faire . "</li>";
+								echo '
+								<label class="container">' . $savoir_faire . '
+									<input type="checkbox" checked>
+									<span class="checkmark"></span>
+								</label>';
 							}
-							echo "</ol>";
 						}else{
 							echo "<h5>Compétences : savoir faire</h5><br>aucun savoir-faire mentionné";
 						}
@@ -234,11 +252,11 @@ if(isset($_POST['consult'])){
 			$oldusers = $users;
 		?>
 	</div>
-	<br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<br><br>
+	<?php include_once "../footer.html"; ?>
     </main>
     <script src="skills.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
-
 </html>

@@ -1,109 +1,135 @@
 <?php
 
-    session_start();
+	session_start();
 	$_SESSION = array();
 	session_destroy();
 	session_start();
 
-    $id = $_GET['id'];
-    require_once '../data.php';
-    if(!array_key_exists($id, $other)){
-	    header("Location: ../referent_info.php");
-	    exit;
-    }
+	$id = $_GET['id'];
+	require_once '../data.php';
+	if(!array_key_exists($id, $other)){
+		header("Location: ../referent_info.php");
+		exit;
+	}
 
-    $_SESSION["role"] = "referent";
-    $_SESSION["username"] = $id;
-    $username = $other[$_SESSION["username"]]['user'];
-    
-    
-    if(isset($_POST['deconnexion'])){ // partie pour déconnecter l'utilisateur
-        $_SESSION = array();
-        session_destroy();
-        header("Location: ../home.php");
-        exit;
-    }
+	$_SESSION["role"] = "referent";
+	$_SESSION["username"] = $id;
+	$username = $other[$_SESSION["username"]]['user'];
+	
+	
+	if(isset($_POST['deconnexion'])){ // partie pour déconnecter l'utilisateur
+		$_SESSION = array();
+		session_destroy();
+		header("Location: ../home.php");
+		exit;
+	}
 
-    $num=0;
-    foreach($users[$username]['skills'] as $number => $skill){
-        if($skill['id'] == $id){
-            $num = $number;
-        }
-    }
-    $tab = $users[$username]['skills'][$num];
-    
+	$num=0;
+	foreach($users[$username]['skills'] as $number => $skill){
+		if($skill['id'] == $id){
+			$num = $number;
+		}
+	}
+	$tab = $users[$username]['skills'][$num];
+	
 
-    if(isset($_POST['description']) && isset($_POST['name']) && isset($_POST['firstname']) && isset($_POST['email']) && isset($_POST['situation']) && isset($_POST['beginning']) && isset($_POST['duration'])){
-        
-        if(!(is_numeric($_POST['duration']) && intval($_POST['duration']) > 0)){
-            $message = "veuillez entrez une valeur numérique positive";
-        }else{
-            
-            
-            $beginning = htmlspecialchars($_POST['beginning'], ENT_QUOTES, 'UTF-8');
-            $duration = htmlspecialchars($_POST['duration'], ENT_QUOTES, 'UTF-8');
-            $description = htmlspecialchars($_POST['description'], ENT_QUOTES, 'UTF-8');
-            $environement = htmlspecialchars($_POST['environement'], ENT_QUOTES, 'UTF-8');
-            $durationType = $_POST['durationType'];//pas besoin de vérifier les données natives
-            $socialSkills = $_POST['socialSkills'];
-        	$savoir_faire = array_filter($_POST['myTable']); // supprimer les cases vides
+	if(isset($_POST['description']) && isset($_POST['name']) && isset($_POST['firstname']) && isset($_POST['email']) && isset($_POST['situation']) && isset($_POST['beginning']) && isset($_POST['duration'])){
+		
+		if(!(is_numeric($_POST['duration']) && intval($_POST['duration']) > 0)){
+			$message = "veuillez entrez une valeur numérique positive";
+		}else{
+			
+			
+			$beginning = htmlspecialchars($_POST['beginning'], ENT_QUOTES, 'UTF-8');
+			$duration = htmlspecialchars($_POST['duration'], ENT_QUOTES, 'UTF-8');
+			$description = htmlspecialchars($_POST['description'], ENT_QUOTES, 'UTF-8');
+			$environement = htmlspecialchars($_POST['environement'], ENT_QUOTES, 'UTF-8');
+			$durationType = $_POST['durationType'];//pas besoin de vérifier les données natives
+			$socialSkills = $_POST['socialSkills'];
+			$savoir_faire = array_filter($_POST['myTable']); // supprimer les cases vides
 			foreach ($savoir_faire as $key => $value) {
 				$savoir_faire[$key] = htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
 			}
-            $name = htmlspecialchars($_POST['name'], ENT_QUOTES, 'UTF-8');
-            $firstname = htmlspecialchars($_POST['firstname'], ENT_QUOTES, 'UTF-8');
-            $email = htmlspecialchars($_POST['email'], ENT_QUOTES, 'UTF-8');
-            $situation = htmlspecialchars($_POST['situation'], ENT_QUOTES, 'UTF-8');
-            $comment = htmlspecialchars($_POST['comment'], ENT_QUOTES, 'UTF-8');
-            // ajouter les données au tableau
-            $tabl = array (
-                'referent' => 
-                array (
-                  'name' => $name,
-                  'firstname' => $firstname,
-                  'email' => $email,
-                  'situation' => $situation,
-                ),
-                'beginning' => $beginning,
-                'duration' => $duration,
-                'durationType' => $durationType,
-                'environement' => $environement,
-                'description' => $description,
-                'socialSkills' => $tab['socialSkills'],
-                'savoir-faire' => $tab['savoir-faire'],
-                'socialSkills_ref' => $socialSkills,
-                'savoir-faire_ref' => $savoir_faire,
-                'comment' => $comment,
-                'status' => 'confirmed',
-                'id' => $id,
-            );
-            $user = $users[$username];
-            foreach($user['skills'] as $num => $skill){
-                if($skill['id'] == $tab['id']){
-                    $user['skills'][$num] = $tabl;
-                    break;
-                }
-            }
-            $users[$username] = $user;
-            unset($other[$id]);
-            $file = fopen('../data.php', 'w'); // on met à jour le fichier data.php
-            fwrite($file, '<?php $users = ' . var_export($users, true) . '; $other = ' . var_export($other, true) . '; ?>');
-            fclose($file);
+			$name = htmlspecialchars($_POST['name'], ENT_QUOTES, 'UTF-8');
+			$firstname = htmlspecialchars($_POST['firstname'], ENT_QUOTES, 'UTF-8');
+			$email = htmlspecialchars($_POST['email'], ENT_QUOTES, 'UTF-8');
+			$situation = htmlspecialchars($_POST['situation'], ENT_QUOTES, 'UTF-8');
+			$comment = htmlspecialchars($_POST['comment'], ENT_QUOTES, 'UTF-8');
+			// ajouter les données au tableau
+			$tabl = array (
+				'referent' => 
+				array (
+				  'name' => $name,
+				  'firstname' => $firstname,
+				  'email' => $email,
+				  'situation' => $situation,
+				),
+				'beginning' => $beginning,
+				'duration' => $duration,
+				'durationType' => $durationType,
+				'environement' => $environement,
+				'description' => $description,
+				'socialSkills' => $tab['socialSkills'],
+				'savoir-faire' => $tab['savoir-faire'],
+				'socialSkills_ref' => $socialSkills,
+				'savoir-faire_ref' => $savoir_faire,
+				'comment' => $comment,
+				'status' => 'confirmed',
+				'id' => $id,
+			);
+			$user = $users[$username];
+			foreach($user['skills'] as $num => $skill){
+				if($skill['id'] == $tab['id']){
+					$user['skills'][$num] = $tabl;
+					break;
+				}
+			}
+			$users[$username] = $user;
+			unset($other[$id]);
+			$file = fopen('../data.php', 'w'); // on met à jour le fichier data.php
+			fwrite($file, '<?php $users = ' . var_export($users, true) . '; $other = ' . var_export($other, true) . '; ?>');
+			fclose($file);
 
-	        $_SESSION = array();
-	        session_destroy();
-	        session_start();
+			$_SESSION = array();
+			session_destroy();
+			session_start();
 
 
 			$file = fopen('email.html', 'w'); //on écrit le contenu du mail
-			$body = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Votre expérience à été validé !</title></head><body><script>window.open("thankYou.html", "_blank");</script>
-			Bonjour ' . $users[$username]['firstname'] . " " . $users[$username]['name'] . ".
+			$body = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Votre expérience à été validé !</title></head>
+			<style>
+				table[class="bandeau"]{
+					width: 100%;
+					background-color: lightgray;
+					color: white;
+				}
+		
+				.bloc{
+					width: 80%;
+					padding: 1% 1%;
+					margin-top: 8%;
+				}
+			</style>
+			<body><script>window.open("thankYou.html", "_blank");</script>
+			<table class="bandeau">
+				<tr>
+					<td><img src="../images/logo.svg"><img></a></td>
+				</tr>
+			</table>
+			<div class="bloc">
+			<div>
+			Bonjour, ' . $users[$username]['firstname'] . " " . $users[$username]['name'] . ".
 			<br>Votre référent, " . $firstname . " " . $name . ",vient de valider votre expérience.
+			</div>
+			<div>
 			<br>Aller donc voir si des éléments ont été modifiés ou ajoutés.
 			<br><i><a href='http://localhost:8080/login.php'>Me connecter</a></i>
+			</div>
+			<div>
 			<br>
 			<br>Bien cordialement,
-			<br><b>SERVICE JEUNE 6.4</b></body></html>";
+			<br><b>SERVICE JEUNE 6.4</b>
+			</div></div></body></html>";
 			fwrite($file, $body);// on écrit le mail dans la page avant d'aller dessus, de là bas on ouvrira un nouvel onglet pour diriger le referent sur thankYou.html
 			fclose($file);	
 
@@ -113,8 +139,8 @@
 			fclose($file);
 			header("Location: email.html");
 			exit();
-        }
-    }
+		}
+	}
 ?>
 
 
@@ -153,7 +179,7 @@
 	<br>
 	<br>
 	<br>
-    merci de valider les données, et de les corriger si nécéssaire. Vous pouvez également en ajouter.
+	merci de valider les données, et de les corriger si nécéssaire. Vous pouvez également en ajouter.
 	<br>
 	<br>
 	<br>
@@ -173,7 +199,7 @@
 		</table>
 		<table>
 			<tr>
-				<td>savoir-être :</td>
+				<td>Savoir-être :</td>
 				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)">Fiable</td>
 				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)">Déterminé</td>
 				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)">Autonome</td>
@@ -210,14 +236,14 @@
 		</table>
 
 
-		<br><p class="marge">Mes savoir-faire</p>
+		<br><p class="marge">Savoir-faire</p>
 		<table id="myTable">
-            <?php
-            if(isset($tab['savoir-faire'])){
-                foreach($tab['savoir-faire'] as $savoir_faire){
-                    echo '<tr><td><input type="text" name="myTable[]" class="long" maxlength="100"></td></tr>';
-                }
-            }?>
+			<?php
+			if(isset($tab['savoir-faire'])){
+				foreach($tab['savoir-faire'] as $savoir_faire){
+					echo '<tr><td><input type="text" name="myTable[]" class="long" maxlength="100"></td></tr>';
+				}
+			}?>
 		</table>
 		<input type="button" onclick="addRow()" value="Ajouter un savoir-faire"> 
 		<input type="button" onclick="deleteRow()" value="Effacer un savoir-faire">
@@ -242,8 +268,11 @@
 				<td><input type="text" name="situation" value="<?php echo $tab['referent']['situation'];?>" maxlength="50" required></td>
 			</tr>
 		</table>
-		<br><textarea id="texte" name="comment" cols="100" rows="6" placeholder="Vous pouvez également ajouter un commentaire ici" onchange="checkArea()"></textarea><span id="compteur">0</span>/500 caractères
-		<br>
+
+
+		<textarea cols='84' rows='6' name='comment' class='y' maxlength="500" onkeyup="limitText(this.value)"></textarea>
+		<span class="x">0/500</span>
+		<br><br>
 		<button type="submit">Enregistrer</button>
 	</form>
 	<br><br><br><br><br>	
@@ -252,4 +281,5 @@
 	<script src="confirm.js"></script>
 	
 </body>
+<?php include_once "../footer.html"; ?>
 </html> 

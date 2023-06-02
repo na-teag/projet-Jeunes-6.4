@@ -91,6 +91,12 @@
 	</div>
 	<br>
 	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 	
 </body>
+<?php include_once "footer.html"; ?>
 </html>  
