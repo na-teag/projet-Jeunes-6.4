@@ -97,6 +97,44 @@
         'status' => 'toConfirm',
         'id' => '23b40547b9ad5e66a2cd9441b902dcead3cb039ae28be40e069032b4899c65bd',
       ),
+      3 => 
+      array (
+        'referent' => 
+        array (
+          'name' => 'Letourneur',
+          'firstname' => 'Aymeric',
+          'email' => 'letourneur@cy-tech.fr',
+          'situation' => 'élève',
+        ),
+        'beginning' => '2000-01-01',
+        'duration' => '2',
+        'durationType' => 'semaines',
+        'environement' => 'cytech',
+        'description' => 'agent d&#039;accueil',
+        'socialSkills' => 
+        array (
+          0 => 'Fiable',
+          1 => 'Autonome',
+        ),
+        'savoir-faire' => 
+        array (
+          0 => 'savoir-faire 1',
+          1 => 'savoir-faire 2',
+        ),
+        'socialSkills_ref' => 
+        array (
+          0 => 'Ouvert d\'esprit',
+          1 => 'Ponctuel',
+        ),
+        'savoir-faire_ref' => 
+        array (
+          0 => 'savoir-faire 1bis',
+          1 => 'savoir-faire 2bis',
+        ),
+        'comment' => 'test',
+        'status' => 'confirmed',
+        'id' => '4b2dae36d2e51583b385af5e0533da5868fe4b03433b0d134b1f33257f709ff2',
+      ),
     ),
   ),
 ); $other = array (

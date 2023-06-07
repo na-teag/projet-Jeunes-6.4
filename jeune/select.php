@@ -212,11 +212,19 @@ if(isset($_POST['select']) && isset($_POST['option'])){
 			if($_POST['option_file'] == "html"){
 				echo '<script>window.open("cv.html", "_blank");	</script>';
 			}else if($_POST['option_file'] == "pdf"){
-				$res = shell_exec("bash script.sh");
-				if($res == ""){
-					echo '<script>window.open("cv.pdf", "_blank");	</script>';
+				$client = $_SERVER['HTTP_USER_AGENT'];
+				function isLinux($client){
+					return stripos($client, 'linux') !== false;
+				}
+				if(!isLinux($client)){
+					$message = "Cette option n'est disponible que sous Linux";
 				}else{
-					$message = $res;
+					$res = shell_exec("bash script.sh");
+					if($res == ""){
+						echo '<script>window.open("cv.pdf", "_blank");	</script>';
+					}else{
+						$message = $res;
+					}
 				}
 				
 			}

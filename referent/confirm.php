@@ -46,6 +46,7 @@
 			$environement = htmlspecialchars($_POST['environement'], ENT_QUOTES, 'UTF-8');
 			$durationType = $_POST['durationType'];//pas besoin de vérifier les données natives
 			$socialSkills = $_POST['socialSkills'];
+			print_r($socialSkills);
 			$savoir_faire = array_filter($_POST['myTable']); // supprimer les cases vides
 			foreach ($savoir_faire as $key => $value) {
 				$savoir_faire[$key] = htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
@@ -200,38 +201,38 @@
 		<table>
 			<tr>
 				<td>Savoir-être :</td>
-				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)">Fiable</td>
-				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)">Déterminé</td>
-				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)">Autonome</td>
-				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)">Ouvert d'esprit</td>
+				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)" value="Fiable">Fiable</td>
+				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)" value="Déterminé">Déterminé</td>
+				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)" value="Autonome">Autonome</td>
+				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)" value="Ouvert d'esprit">Ouvert d'esprit</td>
 			</tr>
 			<tr>
 				<td></td>
-				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)">Réfléchi</td>
-				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)">Honnête</td>
-				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)">Passionné</td>
-				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)">Ponctuel</td>
+				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)" value="Réfléchi">Réfléchi</td>
+				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)" value="Honnête">Honnête</td>
+				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)" value="Passionné">Passionné</td>
+				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)" value="Ponctuel">Ponctuel</td>
 			</tr>
 			<tr>
 				<td></td>
-				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)">A l'écoute</td>
-				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)">Respectueux</td>
-				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)">Organisé</td>
-				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)">Collaboratif</td>
+				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)" value="A l'écoute">A l'écoute</td>
+				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)" value="Respectueux">Respectueux</td>
+				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)" value="Organisé">Organisé</td>
+				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)" value="Collaboratif">Collaboratif</td>
 			</tr>
 			<tr>
 				<td></td>
-				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)">Patient</td>
-				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)">Proactif</td>
-				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)">Responsable</td>
-				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)">Diplomate</td>
+				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)" value="Patient">Patient</td>
+				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)" value="Proactif">Proactif</td>
+				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)" value="Responsable">Responsable</td>
+				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)" value="Diplomate">Diplomate</td>
 			</tr>
 			<tr>
 				<td></td>
-				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)">Optimiste</td>
-				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)">Curieux</td>
-				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)">Communicatif</td>
-				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)">Empathique</td>
+				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)" value="Optimiste">Optimiste</td>
+				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)" value="Curieux">Curieux</td>
+				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)" value="Communicatif">Communicatif</td>
+				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)" value="Empathique">Empathique</td>
 			</tr>
 		</table>
 

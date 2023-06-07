@@ -158,7 +158,7 @@ if(isset($_POST['consult'])){
 						echo $skill["referent"]["firstname"] . " " . $skill["referent"]["name"] . "<br><br>";
 						echo $skill["referent"]["email"] . "<br><br>";
 						echo $skill["referent"]["situation"] . "<br>";
-						echo "<h3>Compétences selon le référent</h3>";
+						echo "<h3>Compétences selon le référent</h3>"; // selon le referent
 						if(!empty($skill['socialSkills_ref'])){
 							echo "<h5>Savoir-être</h5>";
 							foreach($skill["socialSkills_ref"] as $socialSkill){
@@ -173,7 +173,7 @@ if(isset($_POST['consult'])){
 						}
 						if(!empty($skill['savoir-faire_ref'])){
 							echo "<h5>Savoir faire</h5>";
-							foreach($skill["savoir-faire"] as $savoir_faire){
+							foreach($skill["savoir-faire_ref"] as $savoir_faire){
 								echo '
 								<label class="container">' . $savoir_faire . '
 									<input type="checkbox" checked>
