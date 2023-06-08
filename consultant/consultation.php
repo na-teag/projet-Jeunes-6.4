@@ -112,19 +112,19 @@
 							echo $skill["referent"]["firstname"] . " " . $skill["referent"]["name"] . "<br><br>";
 							echo $skill["referent"]["email"] . "<br><br>";
 							echo $skill["referent"]["situation"] . "<br>";
-							echo "<h3>Compétences selon le référent</h3>";
-							if(!empty($skill['socialSkills'])){
+							echo "<h3>Compétences selon le référent</h3>"; // selon le referent
+							if(!empty($skill['socialSkills_ref'])){
 								echo "<h5>Savoir-être</h5><ol>";
-								foreach($skill["socialSkills"] as $socialSkill){
+								foreach($skill["socialSkills_ref"] as $socialSkill){
 									echo "<li>" . $socialSkill . "</li>";
 								}
 								echo "</ol>";
 							}else{
 								echo "<h5>Compétences : savoir-être</h5><br>aucun savoir-être mentionné";
 							}
-							if(!empty($skill['savoir-faire'])){
+							if(!empty($skill['savoir-faire_ref'])){
 								echo "<h5>Savoir faire</h5><ol>";
-								foreach($skill["savoir-faire"] as $savoir_faire){
+								foreach($skill["savoir-faire_ref"] as $savoir_faire){
 									echo "<li>" . $savoir_faire . "</li>";
 								}
 								echo "</ol>";

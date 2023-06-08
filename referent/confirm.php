@@ -180,101 +180,216 @@
 	<br>
 	<br>
 	<br>
-	merci de valider les données, et de les corriger si nécéssaire. Vous pouvez également en ajouter.
+	Merci de valider les données, et de les corriger si nécéssaire. Vous pouvez également en ajouter.
 	<br>
 	<br>
 	<br>
 	<br>
 	<br>
 	<form method="POST">
-		<table>
-			<tr><td>description :</td><td><input type="text" name="description" class="long" value="<?php echo $tab['description'];?>" maxlength="100" required> ex: agent d'accueil, assistant à domicile pour personne agée</td></tr>
-			<tr><td>structure :</td><td><input type="text" name="environement" class="long" value="<?php echo $tab['environement'];?>" maxlength="50" required> ex: nom de l'entrprise, - </td></tr>
-			<tr><td>début :</td><td><input type="date" name="beginning" value="<?php echo $tab['beginning'];?>" required></td></tr>
-			<tr><td>durée :</td><td><input type="number" name="duration" value="<?php echo $tab['duration'];?>" required> <select name="durationType"><?php if(isset($message)){echo $message;}?>
-				<option <?php if($tab['durationType'] == 'jours'){ echo 'selected'; } ?>>jours</option>
-				<option <?php if($tab['durationType'] == 'semaines'){ echo 'selected'; } ?>>semaines</option>
-				<option <?php if($tab['durationType'] == 'mois'){ echo 'selected'; } ?>>mois</option>
-				<option <?php if($tab['durationType'] == 'années'){ echo 'selected'; } ?>>années</option>
-			</td></tr>
-		</table>
-		<table>
-			<tr>
-				<td>Savoir-être :</td>
-				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)" value="Fiable">Fiable</td>
-				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)" value="Déterminé">Déterminé</td>
-				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)" value="Autonome">Autonome</td>
-				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)" value="Ouvert d'esprit">Ouvert d'esprit</td>
-			</tr>
-			<tr>
-				<td></td>
-				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)" value="Réfléchi">Réfléchi</td>
-				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)" value="Honnête">Honnête</td>
-				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)" value="Passionné">Passionné</td>
-				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)" value="Ponctuel">Ponctuel</td>
-			</tr>
-			<tr>
-				<td></td>
-				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)" value="A l'écoute">A l'écoute</td>
-				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)" value="Respectueux">Respectueux</td>
-				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)" value="Organisé">Organisé</td>
-				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)" value="Collaboratif">Collaboratif</td>
-			</tr>
-			<tr>
-				<td></td>
-				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)" value="Patient">Patient</td>
-				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)" value="Proactif">Proactif</td>
-				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)" value="Responsable">Responsable</td>
-				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)" value="Diplomate">Diplomate</td>
-			</tr>
-			<tr>
-				<td></td>
-				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)" value="Optimiste">Optimiste</td>
-				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)" value="Curieux">Curieux</td>
-				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)" value="Communicatif">Communicatif</td>
-				<td><input type="checkbox" name="socialSkills[]" onclick="checkLimite(this)" value="Empathique">Empathique</td>
-			</tr>
-		</table>
-
-
-		<br><p class="marge">Savoir-faire</p>
-		<table id="myTable">
-			<?php
-			if(isset($tab['savoir-faire'])){
-				foreach($tab['savoir-faire'] as $savoir_faire){
-					echo '<tr><td><input type="text" name="myTable[]" class="long" maxlength="100"></td></tr>';
-				}
-			}?>
-		</table>
-		<input type="button" onclick="addRow()" value="Ajouter un savoir-faire"> 
-		<input type="button" onclick="deleteRow()" value="Effacer un savoir-faire">
+			<table class='description'>
+					<tr><td>description :</td><td><input type="text" name="description" class="long" value="<?php echo $tab['description'];?>" maxlength="100" required> ex: agent d'accueil, assistant à domicile pour personne agée</td></tr>
+					<tr><td>structure :</td><td><input type="text" name="environement" class="long" value="<?php echo $tab['environement'];?>" maxlength="50" required> ex: nom de l'entrprise, - </td></tr>
+					<tr><td>début :</td><td><input type="date" name="beginning" value="<?php echo $tab['beginning'];?>" required></td></tr>
+					<tr><td>durée :</td><td><input type="number" name="duration" value="<?php echo $tab['duration'];?>" required> <select name="durationType"><?php if(isset($message)){echo $message;}?>
+						<option <?php if($tab['durationType'] == 'jours'){ echo 'selected'; } ?>>jours</option>
+						<option <?php if($tab['durationType'] == 'semaines'){ echo 'selected'; } ?>>semaines</option>
+						<option <?php if($tab['durationType'] == 'mois'){ echo 'selected'; } ?>>mois</option>
+						<option <?php if($tab['durationType'] == 'années'){ echo 'selected'; } ?>>années</option>
+					</td></tr>
+				</table>
+				<div id='global'>
+				<div id="first"><p class="underline">Ses savoir-faire :</p>
+				<p class="underline">Savoir-faire</p>
+				<table id="myTable">
+					<?php
+					if(isset($tab['savoir-faire'])){
+						foreach($tab['savoir-faire'] as $savoir_faire){
+							echo '<tr><td><input type="text" name="myTable[]" class="long" maxlength="100"></td></tr>';
+						}
+					}?>
+				</table>
+				<input type="button" onclick="addRow()" value="Ajouter un savoir-faire"> 
+				<input type="button" onclick="deleteRow()" value="Effacer un savoir-faire">
+			
+				<br><br><br><br>Information sur le référent
+				<table>
+					<tr>
+						<td>Nom :</td>
+						<td><input type="text" name="name" value="<?php echo $tab['referent']['name'];?>" maxlength="50" required></td>
+					</tr>
+					<tr>
+						<td>Prénom :</td>
+						<td><input type="text" name="firstname" value="<?php echo $tab['referent']['firstname'];?>" maxlength="50" required></td>
+					</tr>
+					<tr>
+						<td>Email :</td>
+						<td><input type="text" name="email" value="<?php echo $tab['referent']['email'];?>" maxlength="50" required></td>
+					</tr>
+					<tr>
+						<td>Poste/situation :</td>
+						<td><input type="text" name="situation" value="<?php echo $tab['referent']['situation'];?>" maxlength="50" required></td>
+					</tr>
+				</table>
+			</div>
+			<div id="second">
+				<table>
+				<tr><td id="etre">Ses savoir-être :</td></tr>
+				<tr><td colspan=2 id="je_confirme">Je confirme son(sa)*</td></tr>
+				<tbody id="savoir_etre">
+					<tr>
+						<td>
+							<label class="container"> Fiable
+								<input type="checkbox" name="socialSkills[]" value="Fiable" onclick="checkLimite(this)">
+								<span class="checkmark"></span>
+							</label>
+						</td>
+						<td>
+							<label class="container"> Déterminé
+								<input type="checkbox" name="socialSkills[]" value="Déterminé" onclick="checkLimite(this)">
+								<span class="checkmark"></span>
+							</label>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label class="container"> Autonome
+								<input type="checkbox" name="socialSkills[]" value="Autonome" onclick="checkLimite(this)">
+								<span class="checkmark"></span>
+							</label>
+						</td>
+						<td>
+							<label class="container"> Ouvert d'esprit
+								<input type="checkbox" name="socialSkills[]" value="Ouvert d'esprit" onclick="checkLimite(this)">
+								<span class="checkmark"></span>
+							</label>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label class="container"> Réfléchie
+								<input type="checkbox" name="socialSkills[]" value="Réfléchie" onclick="checkLimite(this)">
+								<span class="checkmark"></span>
+							</label>
+						</td>
+						<td>
+							<label class="container"> Honnête
+								<input type="checkbox" name="socialSkills[]" value="Honnête" onclick="checkLimite(this)">
+								<span class="checkmark"></span>
+							</label>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label class="container"> Passionné
+								<input type="checkbox" name="socialSkills[]" value="Passionné" onclick="checkLimite(this)">
+								<span class="checkmark"></span>
+							</label>
+						</td>
+						<td>
+							<label class="container"> Ponctuel
+								<input type="checkbox" name="socialSkills[]" value="Ponctuel" onclick="checkLimite(this)">
+								<span class="checkmark"></span>
+							</label>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label class="container"> A l'écoute
+								<input type="checkbox" name="socialSkills[]" value="A l'écoute" onclick="checkLimite(this)">
+								<span class="checkmark"></span>
+							</label>
+						</td>
+						<td>
+							<label class="container"> Respectueux
+								<input type="checkbox" name="socialSkills[]" value="Respectueux" onclick="checkLimite(this)">
+								<span class="checkmark"></span>
+							</label>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label class="container"> Organisé
+								<input type="checkbox" name="socialSkills[]" value="Organisé" onclick="checkLimite(this)">
+								<span class="checkmark"></span>
+							</label>
+						</td>
+						<td>
+							<label class="container"> Collaboratif
+								<input type="checkbox" name="socialSkills[]" value="Collaboratif" onclick="checkLimite(this)">
+								<span class="checkmark"></span>
+							</label>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label class="container"> Patient
+								<input type="checkbox" name="socialSkills[]" value="Patient" onclick="checkLimite(this)">
+								<span class="checkmark"></span>
+							</label>
+						</td>
+						<td>
+							<label class="container"> Proactif
+								<input type="checkbox" name="socialSkills[]" value="Proactif" onclick="checkLimite(this)">
+								<span class="checkmark"></span>
+							</label>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label class="container"> Responsable
+								<input type="checkbox" name="socialSkills[]" value="Responsable" onclick="checkLimite(this)">
+								<span class="checkmark"></span>
+							</label>
+						</td>
+						<td>
+							<label class="container"> Diplomate
+								<input type="checkbox" name="socialSkills[]" value="Diplomate" onclick="checkLimite(this)">
+								<span class="checkmark"></span>
+							</label>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label class="container"> Optimiste
+								<input type="checkbox" name="socialSkills[]" value="Optimiste" onclick="checkLimite(this)">
+								<span class="checkmark"></span>
+							</label>
+						</td>
+						<td>
+							<label class="container"> Curieux
+								<input type="checkbox" name="socialSkills[]" value="Curieux" onclick="checkLimite(this)">
+								<span class="checkmark"></span>
+							</label>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label class="container"> Communicatif
+								<input type="checkbox" name="socialSkills[]" value="Communicatif" onclick="checkLimite(this)">
+								<span class="checkmark"></span>
+							</label>
+						</td>
+						<td>
+							<label class="container"> Empathique
+								<input type="checkbox" name="socialSkills[]" value="Empathique" onclick="checkLimite(this)">
+								<span class="checkmark"></span>
+							</label>
+						</td>
+					</tr>
+				</tbody>
+					<tr><td id="asterisque">Faire 4 choix maximum</td></tr>
+				</table>
+			</div>
+		</div>
+				<div class='commentaire'>
+				<textarea cols='84' rows='6' name='comment' class='y' maxlength="500" placeholder='Vous pouvez laisser un commentaire ici' onkeyup="limitText(this.value)"></textarea>
+				<span class="x">0/500</span>
+				<br><br>
+				</div>
 		
-		
-		<br><br><br><br>Information sur le référent
-		<table>
-			<tr>
-				<td>Nom :</td>
-				<td><input type="text" name="name" value="<?php echo $tab['referent']['name'];?>" maxlength="50" required></td>
-			</tr>
-			<tr>
-				<td>Prénom :</td>
-				<td><input type="text" name="firstname" value="<?php echo $tab['referent']['firstname'];?>" maxlength="50" required></td>
-			</tr>
-			<tr>
-				<td>Email :</td>
-				<td><input type="text" name="email" value="<?php echo $tab['referent']['email'];?>" maxlength="50" required></td>
-			</tr>
-			<tr>
-				<td>Poste/situation :</td>
-				<td><input type="text" name="situation" value="<?php echo $tab['referent']['situation'];?>" maxlength="50" required></td>
-			</tr>
-		</table>
-
-
-		<textarea cols='84' rows='6' name='comment' class='y' maxlength="500" onkeyup="limitText(this.value)"></textarea>
-		<span class="x">0/500</span>
-		<br><br>
-		<button type="submit">Enregistrer</button>
+				<button type="submit" class='confirm'>Enregistrer</button>
+			
 	</form>
 	<br><br><br><br><br>	
 	

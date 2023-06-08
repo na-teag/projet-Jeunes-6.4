@@ -144,12 +144,13 @@ if(isset($_POST['select']) && isset($_POST['option'])){
 			<h2>CV - ' . $tab['firstname'] . ' '  . $tab['name'] . '</h2><br>
 			<br>
 			<h3>Mes compétences :</h3><table>';
-			foreach($tab['skills'] as $skill){
-				if($skill['status'] == 'confirmed'){
+			foreach($_POST['skills'] as $key){
+				$id_skill = $_POST[$key];
+				$skill = $tab["skills"][$key];
+				if($skill['id'] == $id_skill && $skill['status'] == 'confirmed'){
 					$ref = $skill['referent'];
 					$date_obj = DateTime::createFromFormat('Y-m-d', $skill['beginning']); // Formater la date au format dd/mm/yyyy
 					$date = $date_obj->format('d/m/Y');
-
 					$competence = '<tr><td><h4>' . $skill['environement'] . "</h4>
 					description de l'engagement : " . $skill["description"] . "<br>
 					début de l'engagement : " . $date . "<br>
@@ -200,10 +201,10 @@ if(isset($_POST['select']) && isset($_POST['option'])){
 					if($skill["comment"] != ""){
 						$competence .= "<td><br><h5>Commentaire du référent</h5><br><p class='comment'>" . $skill["comment"] . "</p><br></td>";
 					}
-
 					$competence .=  "</tr>";
 					$body .= $competence;
 				}
+				
 			}	
 			$body .= '</table><br><br><br>CV généré par via le site du <a href="http://localhost:8080/jeune6.4.html">projet Jeunes 6.4</a><br></body>';
 			$file = fopen('cv.html', 'w');

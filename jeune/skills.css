@@ -3,17 +3,6 @@ table[class="bandeau"]{
 	background-color: lightgray;
 	color: white;
 }
-td[class="marge"]{
-	padding: 50px;
-	border-top: solid rgb(240, 93, 106);
-	border-bottom: solid rgb(240, 93, 106);
-}
-td.marge:first-child{
-	border-left: solid rgb(240, 93, 106);
-}
-td.marge:nth-child(3n){
-	border-right: solid rgb(240, 93, 106);
-}
 
 .deconnexion{
 	position:relative;
@@ -194,6 +183,51 @@ main::-webkit-scrollbar-thumb{
     color: orange;
     background-color: #dedede;
 }
+.general{
+    border-spacing: 20px 150px;
+}
+
+#jeune{
+    padding: 100px;
+	border: solid rgb(240, 93, 106);
+}
+
+#referent{
+    padding: 100px;
+    margin-left: 50px;
+	border: solid yellowgreen;
+}
+
+#blob{
+	display: flex;
+	flex-direction: row;
+}
+#pablob{
+    margin-left: 100px;
+}
+#global{
+	display: flex;
+	flex-direction: row;
+}
+#second{
+    margin-left: 100px;
+    margin-right: 0px;
+    padding: 0px;
+}
+
+.do_ted{
+    border-bottom: 2px dotted rgb(240, 93, 106);
+}
+#savoir{
+    color: deeppink;
+}
+#je_suis{
+    background-color: deeppink;
+}
+#truc{
+    background-color: pink;
+}
+
 /*------------------------------------------*/
 
 /* The container */
