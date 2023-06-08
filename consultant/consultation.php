@@ -37,7 +37,7 @@
 	<table class="bandeau">
 		<tr>
 			<td rowspan="2"><a class="rien" href="../home.php"><img src="../images/logo.svg"><img></a></td>
-			<td><h1 id="taille1">JEUNE</h1></td>
+			<td><h1 id="taille1">CONSULTANT</h1></td>
 		</tr>
 		<tr>
 			<td><p id="taille2">Je donne de la valeur à ton engagement</p></td>

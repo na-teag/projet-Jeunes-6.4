@@ -71,6 +71,8 @@ li[class="jeune"]{
 	overflow-wrap: break-word;
 	overflow-inline: auto;
 	max-width: 425px;
+    border: 2px solid yellowgreen;
+    padding: 1%;
 }
 
 #button{
@@ -188,31 +190,58 @@ main::-webkit-scrollbar-thumb{
 }
 
 #jeune{
-    padding: 100px;
 	border: solid rgb(240, 93, 106);
+    min-width: 40%;
+    max-width: 50%;
+    min-height: 20%;
+    max-height: 30%;
+}
+#jeune_toConfirm{
+	border: solid rgb(240, 93, 106);
+    width: 90%;
 }
 
 #referent{
-    padding: 100px;
-    margin-left: 50px;
 	border: solid yellowgreen;
+    min-width: 40%;
+    max-width: 50%;
+    min-height: 20%;
+    max-height: 30%;
 }
 
 #blob{
+    margin-left: 5%;
 	display: flex;
 	flex-direction: row;
+    max-width: 90%;
+}
+#pablo{
+    min-width: 45%;
+    max-width: 55%;
 }
 #pablob{
-    margin-left: 100px;
+    margin-left: 20%;
 }
 #global{
 	display: flex;
 	flex-direction: row;
+    width: 100%;
+}
+
+#first{
+    min-width: 45%;
+    max-width: 55%;
 }
 #second{
-    margin-left: 100px;
-    margin-right: 0px;
-    padding: 0px;
+    margin-left: 10%;
+}
+.titre{
+    margin-left: 5%;
+    color: deeppink;
+}
+.titre_ref{
+    margin-left: 5%;
+    color: green;
 }
 
 .do_ted{
@@ -224,8 +253,17 @@ main::-webkit-scrollbar-thumb{
 #je_suis{
     background-color: deeppink;
 }
-#truc{
+#test{
     background-color: pink;
+}
+#b{
+    color: green;
+}
+#c{
+    background-color: green;
+}
+#d{
+    background-color: rgba(196, 228, 133, 0.842);
 }
 
 /*------------------------------------------*/

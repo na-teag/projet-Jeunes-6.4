@@ -60,7 +60,7 @@
 	<table class="bandeau">
 			<tr>
 				<td rowspan="2"><a href="home.php"><img src="../images/logo.svg"><img></a></td>
-				<td><h1 id="taille1">Jeune</h1></td>
+				<td><h1 id="taille1">JEUNE</h1></td>
 			</tr>
 			<tr>
 				<td><p id="taille2">Pour faire de l'engagement une valeur</p></td>
