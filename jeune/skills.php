@@ -205,11 +205,11 @@ if(isset($_POST['consult'])){
 
 
 				$nbrToConfirmSkill = 0;
-				echo '<h2>Mes expériences non confirmées</h2><table><tr class="back">';
+				echo '<h2>Mes expériences non confirmées</h2><table class="general"><tr class="back">';
 				foreach($users[$username]["skills"] as $skill){ # boucle pour les expériences non confirmées
 					if($skill['status'] == "toConfirm"){
 						$nbrToConfirmSkill++;
-						echo '<td id="jeune_toConfirm"><h1 class="titre">JEUNE</h1><div id="global"><div id="pablo"><h2>' . $skill["environement"] . "</h2><ul><li>description: " . $skill["description"] . "</li><li>début: " . $skill["beginning"] . "</li><li>durée: " . $skill["duration"] . " " . $skill["durationType"] . "</li></ul>";
+						echo '<td id="jeune_toConfirm"><h1 class="titre_toConfirm">JEUNE</h1><div id="global"><div id="pablo"><h2>' . $skill["environement"] . "</h2><ul><li>description: " . $skill["description"] . "</li><li>début: " . $skill["beginning"] . "</li><li>durée: " . $skill["duration"] . " " . $skill["durationType"] . "</li></ul>";
 						echo "<h4>Compétences selon moi</h4>";
 						if(!empty($skill['savoir-faire'])){
 							echo "<h5>Savoir faire</h5>";

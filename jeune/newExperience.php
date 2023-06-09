@@ -207,7 +207,7 @@ if(isset($_POST['description']) && isset($_POST['name']) && isset($_POST['firstn
 					</tr>
 					<tr>
 						<td>Email :</td>
-						<td><input type="text" name="email" maxlength="50" required></td>
+						<td><input type="email" name="email" maxlength="50" required></td>
 					</tr>
 					<tr>
 						<td>Poste/situation :</td>

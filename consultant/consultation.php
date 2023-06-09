@@ -7,6 +7,7 @@
 
     $id = $_GET['id'];
     require_once '../data.php';
+	//on regarde si le consultant a le droit d'accès à l'expérience
     if(!array_key_exists($id, $other)){
 	    $forbidden = 1;
     }else{
@@ -34,6 +35,7 @@
 	<meta charset="UTF-8">
 </head>
 <body>
+	<!-- bandeau contenant le logo et le status de l'utilisateur -->
 	<table class="bandeau">
 		<tr>
 			<td rowspan="2"><a class="rien" href="../home.php"><img src="../images/logo.svg"><img></a></td>
@@ -43,12 +45,13 @@
 			<td><p id="taille2">Je donne de la valeur à ton engagement</p></td>
 		</tr>
 	</table>
+	<!-- bouton qui permet la déconnexion à la session -->
 	<div id="bouton">
 			<form method="POST">
 				<button class="deconnexion" type="submit" name="deconnexion">Me Déconnecter</button>
 			</form>
 	</div>
-	
+	<!-- barre de naviqation permettant de naviguer entre les pages principales -->
 	<div class="navbar">
 		<ul>
 			<li id="bandeau"><a class="jeune" href="../home.php">JEUNE </a></li>
@@ -60,7 +63,7 @@
 	<br>
 	<br>
     <br>
-
+	<!--Information sur le jeune-->
 	<div id="info_jeune">
     	<h4>informations sur le jeune</h4>
     	nom : <?php echo $users[$username]['name']; ?><br>
@@ -74,7 +77,7 @@
     <h4>Expériences du jeune</h4>
     <br>
     <br>
-
+	<!-- bloc contenant les informations du jeune et du référent sur la ou les expériences du jeune -->
     <div id="liste">
 		<?php
 			$nbrConfirmedSkill = 0;
@@ -87,6 +90,7 @@
             	        $skill = $users[$username]["skills"][$number];
 						if($users[$username]["skills"][$number]['status'] == "confirmed"){
 							$nbrConfirmedSkill++;
+							//récupération des informations concernant l'expérience du jeune
 							echo '<td class="marge"><h2>' . $skill["environement"] . "</h2><ul><li>description: " . $skill["description"] . "</li><li>début: " . $skill["beginning"] . "</li><li> durée: " . $skill["duration"] . " " . $skill["durationType"] . "</li></ul>";
 							echo "<h3>Compétences selon moi</h3>";
 							if(!empty($skill['socialSkills'])){
@@ -107,6 +111,7 @@
 							}else{
 								echo "<h5>Compétences : savoir faire</h5><br>aucun savoir-faire mentionné";
 							}
+							//récupération des informations concernant l'avis du référent par rapport au jeune
 							echo '</td><td class="marge">';
 							echo "<h4>Référent</h4>";
 							echo $skill["referent"]["firstname"] . " " . $skill["referent"]["name"] . "<br><br>";
@@ -211,9 +216,9 @@
 
 
 
-
+			//le jeune a supprimer ou archiver la totalité des expériences que le consultant pouvait voir
 			if($nbrConfirmedSkill == 0){
-				if($nbrArchivedSkill == 0){
+				if($nbrArchivedSkill != 0){
                 	echo '<br><p>il semblerait que ces expériences ne soient plus consultables</p><br><br>';
 				}else{
 					echo '<br><br><br><br><br><br><br><br><p>il semblerait qu\'il n\'y ai aucune expérience consultable enregistrée sur ce profil</p>';
@@ -222,7 +227,9 @@
             echo "</tr></table>";
 		?>
 	</div>
+	
 	<?php 
+	//s'il n'a pas accès le consultant ne dois pas voir le contenu
 		if($forbidden == 1){
 			echo '<script>
 				document.getElementById("liste").innerHTML = "";
@@ -233,5 +240,6 @@
 	?>
 
 </body>
+<!--inlus le footer-->
 <?php include_once "../footer.html"; ?>
 </html>

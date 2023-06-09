@@ -11,7 +11,7 @@
 		header("Location: ../referent_info.php");
 		exit;
 	}
-
+	//Seul le référent peut accéder à cet page
 	$_SESSION["role"] = "referent";
 	$_SESSION["username"] = $id;
 	$username = $other[$_SESSION["username"]]['user'];
@@ -27,19 +27,18 @@
 	$num=0;
 	foreach($users[$username]['skills'] as $number => $skill){
 		if($skill['id'] == $id){
-			$num = $number;
+			$num = $number; // l'id du consultant est iddentique à l'id du skill du jeune qu'il doit confirmer -> on cherche en quel position dans le tableau est le skill à modifier et on le stocke dans $num
 		}
 	}
 	$tab = $users[$username]['skills'][$num];
 	
 
 	if(isset($_POST['description']) && isset($_POST['name']) && isset($_POST['firstname']) && isset($_POST['email']) && isset($_POST['situation']) && isset($_POST['beginning']) && isset($_POST['duration'])){
-		
+		//vérifie que la durée de l'expérience est numérique et positive
 		if(!(is_numeric($_POST['duration']) && intval($_POST['duration']) > 0)){
 			$message = "veuillez entrez une valeur numérique positive";
 		}else{
-			
-			
+			//on récupère les informations de l'expérience du jeune
 			$beginning = htmlspecialchars($_POST['beginning'], ENT_QUOTES, 'UTF-8');
 			$duration = htmlspecialchars($_POST['duration'], ENT_QUOTES, 'UTF-8');
 			$description = htmlspecialchars($_POST['description'], ENT_QUOTES, 'UTF-8');
@@ -78,6 +77,7 @@
 				'status' => 'confirmed',
 				'id' => $id,
 			);
+			//on accède au tableau principale des données, et on réécrit le tableau ci-dessus à la place du tableau du skill avant la confirmation, pour le mettre à jour
 			$user = $users[$username];
 			foreach($user['skills'] as $num => $skill){
 				if($skill['id'] == $tab['id']){
@@ -152,7 +152,8 @@
 	<link rel="stylesheet" href="confirm.css">
 	<meta charset="UTF-8">
 </head>
-<body> <!-- cette section est tiré de la page newExperience.php (en partie, le php diffère) -->
+<body> 
+<!-- bandeau contenant le logo et le status de l'utilisateur -->
 	<table class="bandeau">
 		<tr>
 			<td rowspan="2"><a href="../home.php"><img src="../images/logo.svg"><img></a></td>
@@ -162,12 +163,13 @@
 			<td><p id="taille2">Je confirme la valeur de ton engagement</p></td>
 		</tr>
 	</table>
+	<!-- bouton qui permet la déconnexion à la session -->
 	<div id="bouton">
 			<form method="POST">
 				<button class="deconnexion" type="submit" name="deconnexion">Me Déconnecter</button>
 			</form>
 	</div>
-	
+	<!-- barre de naviqation permettant de naviguer entre les pages principales -->
 	<div class="bandeau">
 		<ul id="bandeau">
 			<li id="bandeau"><a class="jeune" href="../home.php">JEUNE </a></li>
@@ -187,6 +189,7 @@
 	<br>
 	<br>
 	<form method="POST">
+		<!-- -->
 			<table class='description'>
 					<tr><td>description :</td><td><input type="text" name="description" class="long" value="<?php echo $tab['description'];?>" maxlength="100" required> ex: agent d'accueil, assistant à domicile pour personne agée</td></tr>
 					<tr><td>structure :</td><td><input type="text" name="environement" class="long" value="<?php echo $tab['environement'];?>" maxlength="50" required> ex: nom de l'entrprise, - </td></tr>
@@ -199,6 +202,7 @@
 					</td></tr>
 				</table>
 				<div id='global'>
+				<!-- le référent peut mettre des savoir-faire au jeune -->
 				<div id="first"><p class="underline">Ses savoir-faire :</p>
 				<p class="underline">Savoir-faire</p>
 				<table id="myTable">
@@ -211,7 +215,7 @@
 				</table>
 				<input type="button" onclick="addRow()" value="Ajouter un savoir-faire"> 
 				<input type="button" onclick="deleteRow()" value="Effacer un savoir-faire">
-			
+				<!-- reprend les infos sur le référent que le jeune avait mis et le référent peut les modifier s'il le souhaite-->
 				<br><br><br><br>Information sur le référent
 				<table>
 					<tr>
@@ -224,7 +228,7 @@
 					</tr>
 					<tr>
 						<td>Email :</td>
-						<td><input type="text" name="email" value="<?php echo $tab['referent']['email'];?>" maxlength="50" required></td>
+						<td><input type="email" name="email" value="<?php echo $tab['referent']['email'];?>" maxlength="50" required></td>
 					</tr>
 					<tr>
 						<td>Poste/situation :</td>
@@ -232,6 +236,7 @@
 					</tr>
 				</table>
 			</div>
+			<!-- le référent peut confirmer les savoir-être du jeune -->
 			<div id="second">
 				<table>
 				<tr><td id="etre">Ses savoir-être :</td></tr>
@@ -397,5 +402,6 @@
 	<script src="confirm.js"></script>
 	
 </body>
+<!-- inclus le footer -->
 <?php include_once "../footer.html"; ?>
 </html> 

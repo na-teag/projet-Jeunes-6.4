@@ -1,3 +1,4 @@
+
 function addRow(){ // ajouter une ligne au tableau
 	var table = document.getElementById("myTable");
 	var ligne = table.insertRow(-1);
@@ -5,7 +6,7 @@ function addRow(){ // ajouter une ligne au tableau
 	cell1.innerHTML = "<input type='text' name='myTable[]' class='long'>";
 }
   
-  
+
 function deleteRow(){// retirer une ligne du tableau
 	var table = document.getElementById("myTable");
 	var compteur = table.rows.length;
@@ -13,7 +14,7 @@ function deleteRow(){// retirer une ligne du tableau
 		table.deleteRow(compteur - 1);
 	}
 }
-  
+
 function checkLimite(checkbox){ // vérifier que seulement 4 cases max ont été cochées
 	var checkboxes = document.getElementsByName("socialSkills[]");
 	var nbrChecked = 0;
@@ -28,7 +29,8 @@ function checkLimite(checkbox){ // vérifier que seulement 4 cases max ont été
 	}
 }
 
-function limitText(content){
+//limite le texte du commentaire à 500 caractères
+function limitText(content){ 
 	var len = content.length;
 	document.querySelector("span.x").innerHTML = len + "/500";
 }
