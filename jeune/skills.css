@@ -7,7 +7,7 @@ table[class="bandeau"]{
 .deconnexion{
 	position:relative;
 	float: right;
-    margin-right: 2%;
+    margin-right: 0.2%;
     cursor: pointer;
 }
 
@@ -18,7 +18,7 @@ li[id="bandeau"]{
 }
 div[class="navbar"]{
 	text-align: center;
-    margin-left: 2%;
+    margin-left: 10%;
 }
 input[type="checkbox"]{
     pointer-events: none;
@@ -98,6 +98,20 @@ body{
     width: 100vw;
     overflow: hidden;
     position: relative;
+}
+button{
+	background-color: rgb(240, 93, 106);
+	border: none;
+	color: black;
+	padding: 8px 16px;
+	text-decoration: none;
+	cursor: pointer;
+	opacity: 0.8;
+	transition: 0.5s;
+	
+}
+button:hover{
+	opacity: 1;
 }
 
 nav{

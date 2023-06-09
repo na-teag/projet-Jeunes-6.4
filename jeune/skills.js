@@ -1,3 +1,5 @@
+// controle de la barre de navigation latérale
+
 let openBtn = document.getElementById("nav-open");
 let closeBtn = document.getElementById("nav-close");
 let navWrapper = document.getElementById("nav-wrapper");

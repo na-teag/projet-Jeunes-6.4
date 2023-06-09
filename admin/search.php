@@ -71,14 +71,21 @@
     <p>Suggestions: <div id="div1">
     <?php 
         if(!isset($_GET['q'])){
+			$nbr=0;
             foreach($tab as $user){ // avant que l'admin ne rentre qqch dans la barre de recherche, tous les utilisateurs sont affichés
 				echo '<a href="manage.php?username=' . urlencode($user) . '">' . $user . '</a><br>';
+				$nbr++;
             }
         }
     ?>
     </div></p>
 
     <script src="search.js"></script>
+	<?php
+		for($i=14; $i>$nbr; $i--){
+			echo "<br>";
+		}
+	?>
 </body>
 <?php include_once "../footer.html"; ?>
 </html>

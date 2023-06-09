@@ -19,7 +19,7 @@ if(isset($_POST['deconnexion'])){// partie pour déconnecter l'utilisateur
     exit;
 }
 
-if(isset($_POST['delete'])){
+if(isset($_POST['delete'])){ // supprimer l'accès de consultation des expériences  
 	foreach($_POST['skills'] as $id_skill){
 		foreach($other as $key => $value){
 			if($key == $id_skill){
@@ -27,7 +27,7 @@ if(isset($_POST['delete'])){
 			}
 		}
 	}
-	$file = fopen('../data.php', 'w');
+	$file = fopen('../data.php', 'w'); // mettre a jour le fichier data
 	fwrite($file, '<?php $users = ' . var_export($users, true) . '; $other = ' . var_export($other, true) . '; ?>');
 	fclose($file);
     header("Location: skills.php");
@@ -81,7 +81,7 @@ if(isset($_POST['delete'])){
 	<?php // cette partie est tirée de select.php
 		$nbrConsultation = 0;
 		echo '<br><table><tr class="back">';
-		foreach($other as $key => $tab){
+		foreach($other as $key => $tab){ // afficher tous les partage de compétences au nom du jeune
 			if($other[$key]['user'] == $username && $other[$key]['status'] == 'consultant'){
 				$nbrConsultation++;
 				$nbr = 0;
@@ -92,7 +92,7 @@ if(isset($_POST['delete'])){
 							if($skill["id"] == $key2){
 								if($skill["status"] == "confirmed"){
 									echo '</td><td class="marge">' . $skill["environement"];
-								}else if($skill["status"] == "archived"){ // la case apparaint grisée si la compétences est archivée
+								}else if($skill["status"] == "archived"){ // la case apparaissant grisée si la compétences est archivée
 									echo '</td><td class="marge"><p class="color">' . $skill["environement"] . '</p>';
 								}
 							}

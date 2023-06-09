@@ -27,7 +27,7 @@ if(isset($_POST['description']) && isset($_POST['name']) && isset($_POST['firstn
 	
 	
 	require_once '../data.php';
-	$beginning = htmlspecialchars($_POST['beginning'], ENT_QUOTES, 'UTF-8');// échapper les caractères spéciaux
+	$beginning = htmlspecialchars($_POST['beginning'], ENT_QUOTES, 'UTF-8');// échapper les caractères spéciaux pour éviter les injections de code
 	$duration = htmlspecialchars($_POST['duration'], ENT_QUOTES, 'UTF-8');
 	$description = htmlspecialchars($_POST['description'], ENT_QUOTES, 'UTF-8');
 	$environement = htmlspecialchars($_POST['environement'], ENT_QUOTES, 'UTF-8');
@@ -63,11 +63,10 @@ if(isset($_POST['description']) && isset($_POST['name']) && isset($_POST['firstn
 		'id' => $id,
     );
 	$user = $users[$username];
-	array_push($user['skills'], $tab);
-	$users[$username] = $user;
-	//echo '<script>alert("' . print_r($users) . '")</script>';
+	array_push($user['skills'], $tab);// ajouter le nouveau tableau dans le tableau de l'utilisateur
+	$users[$username] = $user;// remplacer le tableau de l'utilisateur par sa nouvelle version dans le tabeau général
 
-	$other[$id] = array(
+	$other[$id] = array( // créer une entrer dans le tableau other pour permettre au référent de confirmer la compétence par la suite
 		'user' => $username,
 		'status' => 'referent',
 	);
@@ -115,7 +114,7 @@ if(isset($_POST['description']) && isset($_POST['name']) && isset($_POST['firstn
 	fclose($file);	
 
 
-	$file = fopen('../data.php', 'w');
+	$file = fopen('../data.php', 'w');//on met à jour le fichier data
 	fwrite($file, '<?php $users = ' . var_export($users, true) . '; $other = ' . var_export($other, true) . '; ?>');
 	fclose($file);
 	header("Location: email.html");
@@ -133,21 +132,6 @@ if(isset($_POST['description']) && isset($_POST['name']) && isset($_POST['firstn
 	<meta charset="UTF-8">
 </head>
 <body>
-	<script>
-		function checkLimite(checkbox){ // vérifier que seulement 4 cases max ont été cochées
-		  var checkboxes = document.getElementsByName("socialSkills[]");
-		  var nbrChecked = 0;
-		  for(var i=0; i<checkboxes.length; i++){
-			if(checkboxes[i].checked){
-				nbrChecked++;
-			}
-		  }
-		  if(nbrChecked > 4){
-			checkbox.checked = false;
-			alert("Vous ne pouvez pas cocher plus de 4 cases.");
-		  }
-		}
-	</script>
 	<table class="bandeau">
 		<tr>
 			<td rowspan="2"><a href="../home.php"><img src="../images/logo.svg"><img></a></td>
@@ -174,7 +158,7 @@ if(isset($_POST['description']) && isset($_POST['name']) && isset($_POST['firstn
 	<br>
 	<br>
 	<br>
-	<form method="POST">
+	<form method="POST"> <!-- formulaire pour récupérer les données-->
 		<table class="description">
 			<tr><td>Description :</td><td><input type="text" name="description" class="long" maxlength="100" required> ex: agent d'accueil, aide à domicile</td></tr>
 			<tr><td>Nom de la structure : </td><td><input type="text" name="environement" class="long" maxlength="50" required> ex: nom de l'entreprise, de l'association</td></tr>
@@ -189,9 +173,10 @@ if(isset($_POST['description']) && isset($_POST['name']) && isset($_POST['firstn
 		<br>
 		<div id="global">	
 			<div id="first"><p class="underline">Mes savoir-faire :</p>
-				<table id="myTable" class="faire">
+				<table id="myTable" class="faire"><!-- tableau pour les savoir faire-->
+					<tr><td><input type="text" name="myTable[]" class="long" maxlength="100"></td></tr>
 				</table>
-				<input type="button" onclick="addRow()" value="Ajouter un savoir-faire"> 
+				<input type="button" onclick="addRow()" value="Ajouter un savoir-faire"> <!-- fonctions pour ajouter ou supprimer une ligne-->
 				<input type="button" onclick="deleteRow()" value="Effacer un savoir-faire">
 				<br><br>
 	
@@ -217,8 +202,8 @@ if(isset($_POST['description']) && isset($_POST['name']) && isset($_POST['firstn
 			</div>
 			<div id="second">
 			<table>
-				<tr><td id="etre">Mes savoirs-être :</td></tr>
-				<tr><td id="je_suis">Je suis*</td></tr>
+				<tr><td id="etre">Mes savoirs-être :</td></tr> <!-- tableau pour ranger les différents savoirs-être-->
+				<tr><td id="je_suis" colspan="2">Je suis*</td></tr>
 				<tbody id="savoir_etre">
 				
 					<tr>

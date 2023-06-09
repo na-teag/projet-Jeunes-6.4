@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+//seul les comptes admin et jeune peuvent accéder à cet page
 if(!isset($_SESSION["role"]) || ($_SESSION["role"] != "jeune" && $_SESSION["role"] != "admin")){
 	header("Location: ../login.php");
 	exit;
@@ -33,7 +33,7 @@ if(isset($_POST['name']) && isset($_POST['firstname']) && isset($_POST['email'])
 		'skills' => $skills,
 	);
 
-	$file = fopen('../data.php', 'w');
+	$file = fopen('../data.php', 'w'); // mettre a jour le fichier data
 	fwrite($file, '<?php $users = ' . var_export($users, true) . '; $other = ' . var_export($other, true) . '; ?>');
 	fclose($file);
 	header("Location: skills.php");
@@ -42,7 +42,7 @@ if(isset($_POST['name']) && isset($_POST['firstname']) && isset($_POST['email'])
 
 
 
-if(isset($_POST['oldPassword']) && isset($_POST['newPassword'])){// partie pour déconnecter l'utilisateur
+if(isset($_POST['oldPassword']) && isset($_POST['newPassword'])){// partie pour changer le mot de passe de l'utilisateur
 	$tab = $users[$username];
 	if(password_verify($_POST['oldPassword'], $tab["password"]) || $_SESSION["role"] == "admin"){
 		$name = $tab['name'];
@@ -75,16 +75,16 @@ if(isset($_POST['oldPassword']) && isset($_POST['newPassword'])){// partie pour 
 }
 
 
-if(isset($_POST['delete'])){// partie pour supprmier le compte de l'utilisateur
+if(isset($_POST['delete'])){// partie pour supprimer le compte de l'utilisateur
 	unset($users[$_SESSION["username"]]);
 
-	foreach($other as $key => $value){// partie pour supprimer les clé d'identifiant pour referent et consultant
+	foreach($other as $key => $value){// partie pour supprimer les clé d'identifiant pour referent et consultant associé au compte du jeune
 		if($value['user'] == $username){
 			unset($other[$key]);
 		}
 	}
 
-	$file = fopen('../data.php', 'w');
+	$file = fopen('../data.php', 'w'); // mettre a jour le fichier data
 	fwrite($file, '<?php $users = ' . var_export($users, true) . '; $other = ' . var_export($other, true) . '; ?>');
 	fclose($file);
 	$_SESSION = array();
@@ -112,6 +112,7 @@ if(isset($_POST['deconnexion'])){// partie pour déconnecter l'utilisateur
 	<meta charset="UTF-8">
 </head>
 <body>
+	<!-- tableau permettant de contenir le logo et le statut de l'utilisateur -->
 	<table class="bandeau">
 		<tr>
 			<td rowspan="2"><a href="../home.php"><img src="../images/logo.svg"><img></a></td>
@@ -121,12 +122,13 @@ if(isset($_POST['deconnexion'])){// partie pour déconnecter l'utilisateur
 			<td><p id="taille2">Je donne de la valeur à mon engagement</p></td>
 		</tr>
 	</table>
+	<!--bouton qui s'affiche seulement si le consultant est connecté à sa session -->
 		<div id="bouton">
 				<form method="POST">
 					<button class="deconnexion" type="submit" name="deconnexion">Me Déconnecter</button>
 				</form>
 		</div>
-
+	<!-- barre de navigation permettant de naviguer entre les pages -->
 		<div class="navbar">
 			<ul>
 				<li id="bandeau"><a class="jeune" href="skills.php">JEUNE </a></li>
@@ -137,16 +139,24 @@ if(isset($_POST['deconnexion'])){// partie pour déconnecter l'utilisateur
 		</div>
 		<br>
 		<br>
-		<div id="main">
 
+		<fieldset id="main">
+		<legend class='titre'>Mon Profil</legend>
 		<form method="POST">
 			<label>Genre:</label>
-			<input type="radio" id="homme" name="gender" value="man" maxlength="100" <?php if($tab['gender'] == 'man'){ echo 'checked';} ?> required>
-  			<label for="homme">Homme</label>
-  			<input type="radio" id="femme" name="gender" value="woman" maxlength="100" <?php if($tab['gender'] == 'woman'){ echo 'checked';} ?> required>
-  			<label for="femme">Femme</label>
-  			<input type="radio" id="autre" name="gender" value="other" maxlength="100" <?php if($tab['gender'] == 'other'){ echo 'checked';} ?> required>
-  			<label for="autre">Autre</label><br><br>
+			<label for="homme" class='container'>Homme
+				<input type="radio" id="homme" name="gender" value="man" maxlength="100" <?php if($tab['gender'] == 'man'){ echo 'checked';} ?> required>
+				<span class="checkmark"></span>
+  			</label>
+			<label for="femme" class='container'>Femme
+				<input type="radio" id="femme" name="gender" value="woman" maxlength="100" <?php if($tab['gender'] == 'woman'){ echo 'checked';} ?> required>
+				<span class="checkmark"></span>
+  			</label>
+			<label for="autre" class='container'>Autre
+  				<input type="radio" id="autre" name="gender" value="other" maxlength="100" <?php if($tab['gender'] == 'other'){ echo 'checked';} ?> required>
+				<span class="checkmark"></span>
+			</label>
+  			<br><br>
 			<label>Nom:</label><br>
 			<input type="text" name="name" maxlength="100" value="<?php echo $tab['name'];?>" required><br><br>
 			<label>Prénom:</label><br>
@@ -155,12 +165,14 @@ if(isset($_POST['deconnexion'])){// partie pour déconnecter l'utilisateur
 			<input type="date" name="birth" value="<?php echo $tab['birth'];?>" required><br><br>
 			<label>Email:</label><br>
 			<input type="email" name="email" maxlength="100" value="<?php echo $tab['email'];?>" required><br><br>
-			<input type="submit" value="Valider mes données">
+			<input class="confirm" type="submit" value="Valider mes données">
 		</form>
 
-		<input class="marge" type="button" name="delete" value="effacer mon compte" onclick="delete_account()">
+		<input class="delete" type="button" name="delete" value="effacer mon compte" onclick="delete_account()">
 		
 		<br><br>
+		<input class="change" type="button" name="change" value="changer de mot de passe" onclick="password()">
+		<br><br><br>
     	<div id="message"><b><i><marquee width="400" scrollamount="400" scrolldelay="600" loop="7">
 			<?php
 			if(isset($message)){
@@ -168,11 +180,11 @@ if(isset($_POST['deconnexion'])){// partie pour déconnecter l'utilisateur
 			}
 			?></marquee></i></b>
 		</div>
-		<input type="button" name="change" value="changer de mot de passe" onclick="password()">
 
-	</div><br><br><br>
+	</fieldset><br><br><br>
 	<script src="myaccount.js"></script>
 
 </body>
+<!--inclus le footer-->
 <?php include_once "../footer.html"; ?>
 </html>

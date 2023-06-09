@@ -47,7 +47,7 @@ if(isset($_POST['select']) && isset($_POST['option'])){
 			);
 		}
 
-		if($other[$id]['skills'] == NULL){
+		if($other[$id]['skills'] == NULL){ // si aucune compétence séléctionné
 			$message = "A moins de choisir de séléctionnez toutes les compétences, y compris celles validées ulterieurement, vous devez séléctionner au moins une compétence.";
 		}else{
 			$file = fopen('../data.php', 'w');
@@ -101,17 +101,17 @@ if(isset($_POST['select']) && isset($_POST['option'])){
 		}
 	}else if($option == "archive"){
 		$nbr = 0;
-		foreach($_POST['skills'] as $checkbox){
+		foreach($_POST['skills'] as $checkbox){// pour chaque compétence séléctionnée
 			$nbr++;
             $id_skill = $_POST[$checkbox];
-			foreach($users[$username]["skills"] as $num => $skill){
+			foreach($users[$username]["skills"] as $num => $skill){// on cherche la compétence correspondante dans le tableau et on change son statut
 				if($skill["id"] == $id_skill){
 					$users[$username]["skills"][$num]["status"] = "archived";
 				}
 			}
         }
 		if($nbr!=0){
-			$file = fopen('../data.php', 'w');
+			$file = fopen('../data.php', 'w'); // on actualise le fichier data
 			fwrite($file, '<?php $users = ' . var_export($users, true) . '; $other = ' . var_export($other, true) . '; ?>');
 			fclose($file);
 		}else{
@@ -120,13 +120,13 @@ if(isset($_POST['select']) && isset($_POST['option'])){
 		
 	}else{
 		$nbr = 0;
-		foreach($_POST['skills'] as $checkbox){
+		foreach($_POST['skills'] as $checkbox){// on compte le nombre de compétence séléctionnée
 			$nbr++;
         }
 		if($nbr==0){
 			$message = "Aucune compétence séléctionnée";
 		}else{
-			$tab = $users[$username];
+			$tab = $users[$username]; // on écrit le contenu du fichier cv.html
 			$body = '<style>
 			table[class="bandeau"]{
 				width: 100%;
@@ -373,7 +373,7 @@ if(isset($_POST['select']) && isset($_POST['option'])){
 			</style><body>
 			<h2>CV - ' . $tab['firstname'] . ' '  . $tab['name'] . '</h2><br>
 			<h3>Mes compétences :</h3><table class="general"><tr class="back">';
-			foreach($_POST['skills'] as $key){
+			foreach($_POST['skills'] as $key){ // pour chaques compétences, on ajoute une case avec toutes les données
 				$id_skill = $_POST[$key];
 				$skill = $tab["skills"][$key];
 				if($skill['id'] == $id_skill && $skill['status'] == 'confirmed'){
@@ -451,30 +451,32 @@ if(isset($_POST['select']) && isset($_POST['option'])){
 					if($nbrConfirmedSkill%1==0){ // nombre de cases max dans une seule ligne
 						$competence .= "</tr><tr class='back'>";
 					}
-					$body .= $competence;
+					$body .= $competence; // on fusionne le tout pour obtenir le corp entier de la page
 				}
 				
 			}	
 			$body .= "</tr></table>";
 			$body .= '</table><br><br><br>CV généré par via le site du <a href="http://localhost:8080/jeune6.4.html">projet Jeunes 6.4</a><br></body>';
-			$file = fopen('cv.html', 'w');
-			fwrite($file, $body);// on écrit le mail dans la page avant d'aller dessus, de là bas on ouvrira un nouvel onglet pour faire revenir le jeune à skills.php
+			$file = fopen('cv.html', 'w'); // on écrit le cv dans cv.html
+			fwrite($file, $body);
 			fclose($file);
-			if($_POST['option_file'] == "html"){
+
+
+			if($_POST['option_file'] == "html"){// si le format demandé est html
 				echo '<script>window.open("cv.html", "_blank");	</script>';
 			}else if($_POST['option_file'] == "pdf"){
-				$client = $_SERVER['HTTP_USER_AGENT'];
+				$client = $_SERVER['HTTP_USER_AGENT']; // si le format demandé est pdf, on vérifie que le client est sous linux
 				function isLinux($client){
 					return stripos($client, 'linux') !== false;
 				}
 				if(!isLinux($client)){
 					$message = "Cette option n'est disponible que sous Linux";
 				}else{
-					$res = shell_exec("bash script.sh");
+					$res = shell_exec("bash script.sh"); // si le client est sous linux, on execute le fichier shell
 					if($res == ""){
 						echo '<script>window.open("cv.pdf", "_blank");	</script>';
 					}else{
-						$message = $res;
+						$message = $res;// si le logiciel n'est pas installé, on retourne le ma=essage d'erreur
 					}
 				}
 				

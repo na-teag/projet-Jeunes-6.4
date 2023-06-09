@@ -4,6 +4,16 @@ table[class="bandeau"]{
 	color: white;
 }
 
+li[id="bandeau"]{
+	padding: 10px;
+	background-color: lightgray;
+	display: inline;
+}
+div[class="navbar"]{
+	text-align: center;
+	margin-right: 22%;
+}
+
 .deconnexion{
 	position:relative;
 	float: right;

@@ -1,18 +1,18 @@
-function check(){
+function check(){ // cocher toutes les checkbox
     var checkboxes = document.getElementsByName('skills[]');
     for(var i=0; i<checkboxes.length; i++){
         checkboxes[i].checked = true;
     }
 }
 
-function uncheck(){
+function uncheck(){ // décocher toutes les checkbox
     var checkboxes = document.getElementsByName('skills[]');
     for(var i=0; i<checkboxes.length; i++){
         checkboxes[i].checked = false;
     }
 }
 
-function show_email() {
+function show_email(){ // montrer la partie mail et cacher la partie du choix de format de fichier
     var file = document.getElementById('file');
     file.innerHTML = '';
     var mail = document.getElementById('email');
@@ -22,7 +22,7 @@ function show_email() {
     mail.innerHTML = texte1 + texte2 + texte3;
 }
 
-function show_file() {
+function show_file(){ // montrer la partie de choix de format de fichier et cacher la partie mail
     var mail = document.getElementById('email');
     mail.innerHTML = '';
     var file = document.getElementById('email');
@@ -31,7 +31,7 @@ function show_file() {
     file.innerHTML = texte1 + texte2;
 }
 
-function hide_both() {
+function hide_both(){ // cacher la partie mail et la partie fichier 
     var file = document.getElementById('file');
     file.innerHTML = '';
     var mail = document.getElementById('email');
@@ -39,10 +39,10 @@ function hide_both() {
 }
 
 
-function goToArchive() {
+function goToArchive(){ // redirection sur la page des archives
     window.location.href = "archive.php";
 }
 
-function goToSelect() {
+function goToSelect(){ // redirection sur la page select.php
     window.location.href = "select.php";
 }

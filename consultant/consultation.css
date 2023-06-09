@@ -3,33 +3,25 @@ table[class="bandeau"]{
 	background-color: lightgray;
 	color: white;
 }
-table{
-	border-collapse: collapse;
-}
-td[class="marge"]{
-	padding: 50px;
-	border-top-style: solid;
-	border-bottom-style: solid;
-}
-td.marge:first-child{
-	border-left-style: solid;
-}
-td.marge:nth-child(3n){
-	border-right-style: solid;
-}
 
 .deconnexion{
 	position:relative;
 	float: right;
+    cursor: pointer;
 }
 
 li[id="bandeau"]{
 	padding: 10px;
 	background-color: lightgray;
 	display: inline;
+	
 }
 div[class="navbar"]{
 	text-align: center;
+    margin-left: 3%;
+}
+input[type="checkbox"]{
+    pointer-events: none;
 }
 
 a{ 
@@ -50,7 +42,9 @@ li[class="jeune"]{
 }
 #taille2{
 	font-size: 250%;
+	float: right;
 	padding-bottom: 10px;
+	margin-right: 50px;
 }
 
 .jeune{
@@ -70,18 +64,205 @@ li[class="jeune"]{
 	text-align: center;
 }
 .back{
-	background-image:linear-gradient(90deg,rgb(71, 141, 255)2%,white);
+	background-color: white;
 }
 .liste{
 	margin-left: 50px;
 	text-align: center;
 	
 }
-.bouton{
-	padding: 5px;
+
+#info_jeune{
+	border: solid rgb(71, 141, 255);
+	font-size: 115%;
+	width: 17%;
+	padding-left: 1%;
+	padding-bottom: 1%;
+	margin-left: 42%;
 }
+
+button{
+	background-color: rgb(71, 141, 255);
+	border: none;
+	color: black;
+	padding: 8px 16px;
+	text-decoration: none;
+	margin: 4px 2px;
+	cursor: pointer;
+	opacity: 0.8;
+	transition: 0.5s;
+	
+}
+button:hover{
+	opacity: 1;
+}
+
 .comment{
 	overflow-wrap: break-word;
-	overflow-inline: auto;
-	max-width: 425px;
+	max-width: 325px;
+    border: 2px solid yellowgreen;
+    padding: 1%;
 }
+
+#button{
+	padding-top: 10px;
+}
+
+.marge_bottom{
+    margin-bottom: 70px;
+}
+
+.general{
+    border-spacing: 20px 100px;
+}
+
+#jeune{
+	border: solid rgb(240, 93, 106);
+    min-width: 40%;
+    max-width: 50%;
+    min-height: 20%;
+    max-height: 30%;
+}
+#jeune_toConfirm{
+	border: solid rgb(240, 93, 106);
+    width: 90%;
+    padding: 2%;
+    padding-left: 8%;
+    margin-bottom: 50%;
+}
+
+#referent{
+	border: solid yellowgreen;
+    padding: 1%;
+    min-width: 40%;
+    max-width: 50%;
+    min-height: 20%;
+    max-height: 30%;
+}
+
+#blob{
+    margin-left: 5%;
+	display: flex;
+	flex-direction: row;
+    max-width: 90%;
+}
+#pablo{
+    min-width: 45%;
+    max-width: 55%;
+}
+#pablob{
+    margin-left: 20%;
+}
+#global{
+	display: flex;
+	flex-direction: row;
+    width: 100%;
+}
+
+#first{
+    min-width: 45%;
+    max-width: 55%;
+}
+#second{
+    margin-left: 10%;
+}
+.titre{
+    margin-left: 5%;
+    color: deeppink;
+}
+.titre_ref{
+    margin-left: 5%;
+    color: green;
+}
+.titre_toConfirm{
+    color: deeppink;
+}
+
+.do_ted{
+    border-bottom: 2px dotted rgb(240, 93, 106);
+}
+#savoir{
+    color: deeppink;
+}
+#je_suis{
+    background-color: deeppink;
+    text-align: center;
+}
+#test{
+    background-color: pink;
+}
+#b{
+    color: green;
+}
+#c{
+    background-color: rgb(12, 170, 12);
+    text-align: center;
+}
+#d{
+    background-color: rgba(196, 228, 133, 0.842);
+}
+
+/*------------------------------------------*/
+
+/* The container */
+.container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 17px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    pointer-events: none;
+  }
+  
+  /* Hide the browser's default checkbox */
+  .container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  /* Create a custom checkbox */
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+  }
+  /* When the checkbox is checked, add a blue background */
+  .container input:checked ~ .checkmark {
+    background-color: deeppink;
+  }
+  
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the checkmark when checked */
+  .container input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  /* Style the checkmark/indicator */
+  .container .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }

@@ -7,6 +7,11 @@ table[class="bandeau"]{
 	color: white;
 }
 
+td[colspan="2"]{
+	text-align: center;
+}
+
+
 .deconnexion{
 	position:relative;
 	float: right;
@@ -19,6 +24,7 @@ li[id="bandeau"]{
 }
 ul[id="bandeau"]{
 	text-align: center;
+    margin-left: 3%;
 }
 input:not([type="button"]):focus{
 	border: none;

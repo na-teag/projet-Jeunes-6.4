@@ -65,23 +65,19 @@
     <br>
 	<!--Information sur le jeune-->
 	<div id="info_jeune">
-    	<h4>informations sur le jeune</h4>
-    	nom : <?php echo $users[$username]['name']; ?><br>
-    	prénom : <?php echo $users[$username]['firstname']; ?><br>
-    	date de naissance : <?php echo $users[$username]['birth']; ?><br>
-    	email : <?php echo $users[$username]['email']; ?>
+    	<h4 style="color:rgb(71, 141, 255)";>Informations sur le jeune</h4>
+    	NOM : <?php echo $users[$username]['name']; ?><br>
+    	Prénom : <?php echo $users[$username]['firstname']; ?><br>
+    	Date de naissance : <?php echo $users[$username]['birth']; ?><br>
+    	Email : <?php echo $users[$username]['email']; ?>
 	</div>
-    <br>
-    <br>
-    <br>
-    <h4>Expériences du jeune</h4>
-    <br>
-    <br>
 	<!-- bloc contenant les informations du jeune et du référent sur la ou les expériences du jeune -->
     <div id="liste">
 		<?php
+		//récupération des informations concernant l'avis du référent par rapport au jeune
+							// selon le jeune
 			$nbrConfirmedSkill = 0;
-			echo '<br><table><tr class="back">';
+			echo '<table class="general"><tr class="back">';
 
 			if($other[$id]["skills"] != "all"){
 						//si le jeune à choisi de ne montrer que certaines compétences
@@ -91,56 +87,73 @@
 						if($users[$username]["skills"][$number]['status'] == "confirmed"){
 							$nbrConfirmedSkill++;
 							//récupération des informations concernant l'expérience du jeune
-							echo '<td class="marge"><h2>' . $skill["environement"] . "</h2><ul><li>description: " . $skill["description"] . "</li><li>début: " . $skill["beginning"] . "</li><li> durée: " . $skill["duration"] . " " . $skill["durationType"] . "</li></ul>";
+							echo '<td id="jeune"><h1 class="titre">JEUNE</h1><div id="blob"><div id="pablo"><h2>' . $skill["environement"] . "</h2><ul><li>description: " . $skill["description"] . "</li><li>début: " . $skill["beginning"] . "</li><li> durée: " . $skill["duration"] . " " . $skill["durationType"] . "</li></ul>";
+
 							echo "<h3>Compétences selon moi</h3>";
-							if(!empty($skill['socialSkills'])){
-								echo "<h5>Savoir-être</h5><ol>";
-								foreach($skill["socialSkills"] as $socialSkill){
-									echo "<li>" . $socialSkill . "</li>";
-								}
-								echo "</ol>";
-							}else{
-								echo "<h5>Compétences : savoir-être</h5><br>aucun savoir-être mentionné";
+						if(!empty($skill['savoir-faire'])){
+							echo "<h4>Savoir faire</h4>";
+							foreach($skill["savoir-faire"] as $savoir_faire){
+								echo '
+								<p class="do_ted">' . $savoir_faire . '</p>';
 							}
-							if(!empty($skill['savoir-faire'])){
-								echo "<h5>Savoir faire</h5><ol>";
-								foreach($skill["savoir-faire"] as $savoir_faire){
-									echo "<li>" . $savoir_faire . "</li>";
-								}
-								echo "</ol>";
-							}else{
-								echo "<h5>Compétences : savoir faire</h5><br>aucun savoir-faire mentionné";
+						}else{
+							echo "<h4>Compétences : savoir faire</h4><br>aucun savoir-faire mentionné";
+						}
+						echo "</div>";
+						if(!empty($skill['socialSkills'])){
+							echo "<div id='pablob'><table id='truc'><tr><td id='savoir'>Mes savoir-être</td></tr>
+							<tr><td id='je_suis'>Je suis</td></tr>
+							<tbody id='test'>";
+							foreach($skill["socialSkills"] as $socialSkill){
+								echo '<tr><td>
+								<label class="container">' . $socialSkill . '
+									<input type="checkbox" checked>
+									<span class="checkmark"></span>
+								</label></td></tr>';
 							}
-							//récupération des informations concernant l'avis du référent par rapport au jeune
-							echo '</td><td class="marge">';
-							echo "<h4>Référent</h4>";
-							echo $skill["referent"]["firstname"] . " " . $skill["referent"]["name"] . "<br><br>";
-							echo $skill["referent"]["email"] . "<br><br>";
-							echo $skill["referent"]["situation"] . "<br>";
-							echo "<h3>Compétences selon le référent</h3>"; // selon le referent
-							if(!empty($skill['socialSkills_ref'])){
-								echo "<h5>Savoir-être</h5><ol>";
-								foreach($skill["socialSkills_ref"] as $socialSkill){
-									echo "<li>" . $socialSkill . "</li>";
-								}
-								echo "</ol>";
-							}else{
-								echo "<h5>Compétences : savoir-être</h5><br>aucun savoir-être mentionné";
+							echo "</tbody></table>";
+						}else{
+							echo "<div id='pablob'><h4>Compétences : savoir-être</h4><br>aucun savoir-être mentionné";
+						}
+						echo "</div></div>";
+						echo '</td>';
+						echo '<td id="referent"><h1 class="titre_ref">REFERENT</h1><div id="blob"><div id="first"><u>';
+						echo $skill["referent"]["firstname"] . " " . $skill["referent"]["name"] . "<br><br>";
+						echo $skill["referent"]["email"] . "</u><br><br>";
+						echo $skill["referent"]["situation"] . "<br>";
+						echo "<h3>Compétences selon le référent</h3>"; // selon le referent
+
+						if(!empty($skill['savoir-faire_ref'])){
+							echo "<h4>Savoir faire</h4>";
+							foreach($skill["savoir-faire_ref"] as $savoir_faire){
+								echo '
+								<p class="do_ted">' . $savoir_faire . '</p>';
 							}
-							if(!empty($skill['savoir-faire_ref'])){
-								echo "<h5>Savoir faire</h5><ol>";
-								foreach($skill["savoir-faire_ref"] as $savoir_faire){
-									echo "<li>" . $savoir_faire . "</li>";
-								}
-								echo "</ol>";
-							}else{
-								echo "<h5>Compétences : savoir faire</h5><br>aucun savoir-faire mentionné";
+						}else{
+							echo "<h4>Compétences : savoir faire</h4><br>aucun savoir-faire mentionné";
+						}
+						echo "</div>";
+						echo "<div id='second'>";
+						if($skill["comment"] != ""){
+							echo "<br><h4>Commentaire du référent</h4><p class='comment'>" . $skill["comment"] . "</p><br>";
+						}
+						if(!empty($skill['socialSkills_ref'])){
+							echo "<table id='a'><tr><td id='b'>Mes savoir-être</td></tr>
+							<tr><td id='c'>Il est</td></tr>
+							<tbody id='d'>";
+							foreach($skill["socialSkills_ref"] as $socialSkill){
+								echo '<tr><td>
+								<label class="container">' . $socialSkill . '
+									<input type="checkbox" checked>
+									<span class="checkmark"></span>
+								</label></td></tr>';
 							}
-							echo '</td><td class="marge">';
-							if($skill["comment"] != ""){
-								echo "<br><h5>Commentaire du référent</h5><br><p class='comment'>" . $skill["comment"] . "</p><br>";
-							}
-							echo "</td>";
+							echo "</tbody></table>";
+						}else{
+							echo "<div id='second'><h5>Compétences : savoir-être</h5><br>aucun savoir-être mentionné";
+						}
+						echo "</div></div>";
+						echo "</td>";
 							if($nbrConfirmedSkill%1==0){ // nombre de cases max dans une seule ligne
 								echo "</tr><tr class='back'>";
 							}
@@ -158,54 +171,71 @@
 				foreach($users[$username]["skills"] as $skill){
 					if($skill['status'] == "confirmed"){
 						$nbrConfirmedSkill++;
-						echo '<td class="marge"><h2>' . $skill["environement"] . "</h2><ul><li>description: " . $skill["description"] . "</li><li>début: " . $skill["beginning"] . "</li><li> durée: " . $skill["duration"] . " " . $skill["durationType"] . "</li></ul>";
-						echo "<h3>Compétences selon moi</h3>";
-						if(!empty($skill['socialSkills'])){
-							echo "<h5>Savoir-être</h5><ol>";
-							foreach($skill["socialSkills"] as $socialSkill){
-								echo "<li>" . $socialSkill . "</li>";
-							}
-							echo "</ol>";
-						}else{
-							echo "<h5>Compétences : savoir-être</h5><br>aucun savoir-être mentionné";
-						}
+						echo '<td id="jeune"><h1 class="titre">JEUNE</h1><div id="blob"><div id="pablo"><h2>' . $skill["environement"] . "</h2><ul><li>description: " . $skill["description"] . "</li><li>début: " . $skill["beginning"] . "</li><li> durée: " . $skill["duration"] . " " . $skill["durationType"] . "</li></ul>";
+						echo "<h3>Compétences selon moi</h3>"; // selon le jeune
 						if(!empty($skill['savoir-faire'])){
-							echo "<h5>Savoir faire</h5><ol>";
+							echo "<h4>Savoir faire</h4>";
 							foreach($skill["savoir-faire"] as $savoir_faire){
-								echo "<li>" . $savoir_faire . "</li>";
+								echo '
+								<p class="do_ted">' . $savoir_faire . '</p>';
 							}
-							echo "</ol>";
 						}else{
-							echo "<h5>Compétences : savoir faire</h5><br>aucun savoir-faire mentionné";
+							echo "<h4>Compétences : savoir faire</h4><br>aucun savoir-faire mentionné";
 						}
-						echo '</td><td class="marge">';
-						echo "<h4>Référent</h4>";
+						echo "</div>";
+						if(!empty($skill['socialSkills'])){
+							echo "<div id='pablob'><table id='truc'><tr><td id='savoir'>Mes savoir-être</td></tr>
+							<tr><td id='je_suis'>Je suis</td></tr>
+							<tbody id='test'>";
+							foreach($skill["socialSkills"] as $socialSkill){
+								echo '<tr><td>
+								<label class="container">' . $socialSkill . '
+									<input type="checkbox" checked>
+									<span class="checkmark"></span>
+								</label></td></tr>';
+							}
+							echo "</tbody></table>";
+						}else{
+							echo "<div id='pablob'><h4>Compétences : savoir-être</h4><br>aucun savoir-être mentionné";
+						}
+						echo "</div></div>";
+						echo '</td>';
+						echo '<td id="referent"><h1 class="titre_ref">REFERENT</h1><div id="blob"><div id="first"><u>';
 						echo $skill["referent"]["firstname"] . " " . $skill["referent"]["name"] . "<br><br>";
-						echo $skill["referent"]["email"] . "<br><br>";
+						echo $skill["referent"]["email"] . "</u><br><br>";
 						echo $skill["referent"]["situation"] . "<br>";
-						echo "<h3>Compétences selon le référent</h3>";
-						if(!empty($skill['socialSkills'])){
-							echo "<h5>Savoir-être</h5><ol>";
-							foreach($skill["socialSkills"] as $socialSkill){
-								echo "<li>" . $socialSkill . "</li>";
+						echo "<h3>Compétences selon le référent</h3>"; // selon le referent
+
+						if(!empty($skill['savoir-faire_ref'])){
+							echo "<h4>Savoir faire</h4>";
+							foreach($skill["savoir-faire_ref"] as $savoir_faire){
+								echo '
+								<p class="do_ted">' . $savoir_faire . '</p>';
 							}
-							echo "</ol>";
 						}else{
-							echo "<h5>Compétences : savoir-être</h5><br>aucun savoir-être mentionné";
+							echo "<h4>Compétences : savoir faire</h4><br>aucun savoir-faire mentionné";
 						}
-						if(!empty($skill['savoir-faire'])){
-							echo "<h5>Savoir faire</h5><ol>";
-							foreach($skill["savoir-faire"] as $savoir_faire){
-								echo "<li>" . $savoir_faire . "</li>";
-							}
-							echo "</ol>";
-						}else{
-							echo "<h5>Compétences : savoir faire</h5><br>aucun savoir-faire mentionné";
-						}
-						echo '</td><td class="marge">';
+						echo "</div>";
+						echo "<div id='second'>";
 						if($skill["comment"] != ""){
-							echo "<br><h5>Commentaire du référent</h5><br><p class='comment'>" . $skill["comment"] . "</p><br>";
+							echo "<br><h4>Commentaire du référent</h4><p class='comment'>" . $skill["comment"] . "</p><br>";
 						}
+						if(!empty($skill['socialSkills_ref'])){
+							echo "<table id='a'><tr><td id='b'>Mes savoir-être</td></tr>
+							<tr><td id='c'>Il est</td></tr>
+							<tbody id='d'>";
+							foreach($skill["socialSkills_ref"] as $socialSkill){
+								echo '<tr><td>
+								<label class="container">' . $socialSkill . '
+									<input type="checkbox" checked>
+									<span class="checkmark"></span>
+								</label></td></tr>';
+							}
+							echo "</tbody></table>";
+						}else{
+							echo "<div id='second'><h5>Compétences : savoir-être</h5><br>aucun savoir-être mentionné";
+						}
+						echo "</div></div>";
 						echo "</td>";
 						if($nbrConfirmedSkill%1==0){ // nombre de cases max dans une seule ligne
 							echo "</tr><tr class='back'>";

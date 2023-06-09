@@ -20,7 +20,7 @@ if(isset($_POST['deconnexion'])){// partie pour déconnecter l'utilisateur
 
 
 
-if(isset($_POST['select']) && isset($_POST['skills'])){
+if(isset($_POST['select']) && isset($_POST['skills'])){ // changer le statuts de la compétence de "archived" à "confirmed"
 	foreach($_POST['skills'] as $checkbox){
 		$id_skill = $_POST[$checkbox];
 		foreach($users[$username]["skills"] as $num => $skill){
@@ -29,12 +29,12 @@ if(isset($_POST['select']) && isset($_POST['skills'])){
 			}
 		}
 	}
-	$file = fopen('../data.php', 'w');
+	$file = fopen('../data.php', 'w');// mettre à jour le fichier data
 	fwrite($file, '<?php $users = ' . var_export($users, true) . '; $other = ' . var_export($other, true) . '; ?>');
 	fclose($file);
 }
 
-if(isset($_POST['delete']) && isset($_POST['skills'])){
+if(isset($_POST['delete']) && isset($_POST['skills'])){ // supprimer définitivement la compétence
 	foreach($_POST['skills'] as $checkbox){
 		$id_skill = $_POST[$checkbox];
 		foreach($users[$username]["skills"] as $num => $skill){
@@ -43,7 +43,7 @@ if(isset($_POST['delete']) && isset($_POST['skills'])){
 			}
 		}
 	}
-	$file = fopen('../data.php', 'w');
+	$file = fopen('../data.php', 'w');// mettre à jour le fichier data
 	fwrite($file, '<?php $users = ' . var_export($users, true) . '; $other = ' . var_export($other, true) . '; ?>');
 	fclose($file);
 }

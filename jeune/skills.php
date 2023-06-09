@@ -21,7 +21,7 @@ if(isset($_POST['deconnexion'])){// partie pour déconnecter l'utilisateur
 	header("Location: ../home.php");
 	exit;
 }
-if(isset($_POST['newExperience'])){
+if(isset($_POST['newExperience'])){ // les différentes redirections selon les boutons cliqués
 	header("Location: newExperience.php");
 	exit;
 }
@@ -82,11 +82,11 @@ if(isset($_POST['consult'])){
 	</div>
 
     <div id="nav-open" class="nav-button">
-        <ion-icon name="menu-outline"></ion-icon>
+        <ion-icon name="menu-outline"></ion-icon> <!-- icone pour ouvrir la barre de menu latérale-->
     </div>
 
     <div id="nav-latteral">
-		<a href="../home.php"><img class="marge_bottom" src="../images/logo.svg"><img></a>
+		<a href="../home.php"><img class="marge_bottom" src="../images/logo.svg"><img></a> <!-- contenu de la barre latérale-->
         <div id="nav-close" class="nav-button">
             <ion-icon name="close"></ion-icon>
         </div>
@@ -124,11 +124,11 @@ if(isset($_POST['consult'])){
 			if(!empty($users[$username]['skills'])){
 				$nbrConfirmedSkill = 0;
 				echo '<br><h2>Mes expériences confirmées</h2><table class="general"><tr class="back">';
-				foreach($users[$username]["skills"] as $skill){ # boucle pour les expériences confirmées
+				foreach($users[$username]["skills"] as $skill){ # boucle pour afficher les expériences confirmées
 					if($skill['status'] == "confirmed"){
 						$nbrConfirmedSkill++;
 						echo '<td id="jeune"><h1 class="titre">JEUNE</h1><div id="blob"><div id="pablo"><h2>' . $skill["environement"] . "</h2><ul><li>description: " . $skill["description"] . "</li><li>début: " . $skill["beginning"] . "</li><li> durée: " . $skill["duration"] . " " . $skill["durationType"] . "</li></ul>";
-						echo "<h3>Compétences selon moi</h3>";
+						echo "<h3>Compétences selon moi</h3>"; // compétences selon le jeune
 						if(!empty($skill['savoir-faire'])){
 							echo "<h4>Savoir faire</h4>";
 							foreach($skill["savoir-faire"] as $savoir_faire){
@@ -156,7 +156,7 @@ if(isset($_POST['consult'])){
 						}
 						echo "</div></div>";
 						echo '</td>';
-						echo '<td id="referent"><h1 class="titre_ref">REFERENT</h1><div id="blob"><div id="first"><u>';
+						echo '<td id="referent"><h1 class="titre_ref">REFERENT</h1><div id="blob"><div id="first"><u>';// compétences selon le référent
 						echo $skill["referent"]["firstname"] . " " . $skill["referent"]["name"] . "<br><br>";
 						echo $skill["referent"]["email"] . "</u><br><br>";
 						echo $skill["referent"]["situation"] . "<br>";
@@ -208,7 +208,7 @@ if(isset($_POST['consult'])){
 				echo '<h2>Mes expériences non confirmées</h2><table class="general"><tr class="back">';
 				foreach($users[$username]["skills"] as $skill){ # boucle pour les expériences non confirmées
 					if($skill['status'] == "toConfirm"){
-						$nbrToConfirmSkill++;
+						$nbrToConfirmSkill++;  // compétences selon le jeune uniquement (car pas encore confirmé)
 						echo '<td id="jeune_toConfirm"><h1 class="titre_toConfirm">JEUNE</h1><div id="global"><div id="pablo"><h2>' . $skill["environement"] . "</h2><ul><li>description: " . $skill["description"] . "</li><li>début: " . $skill["beginning"] . "</li><li>durée: " . $skill["duration"] . " " . $skill["durationType"] . "</li></ul>";
 						echo "<h4>Compétences selon moi</h4>";
 						if(!empty($skill['savoir-faire'])){

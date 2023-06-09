@@ -206,12 +206,7 @@
 				<div id="first"><p class="underline">Ses savoir-faire :</p>
 				<p class="underline">Savoir-faire</p>
 				<table id="myTable">
-					<?php
-					if(isset($tab['savoir-faire'])){
-						foreach($tab['savoir-faire'] as $savoir_faire){
-							echo '<tr><td><input type="text" name="myTable[]" class="long" maxlength="100"></td></tr>';
-						}
-					}?>
+					<tr><td><input type="text" name="myTable[]" class="long" maxlength="100"></td></tr>
 				</table>
 				<input type="button" onclick="addRow()" value="Ajouter un savoir-faire"> 
 				<input type="button" onclick="deleteRow()" value="Effacer un savoir-faire">
@@ -244,13 +239,13 @@
 				<tbody id="savoir_etre">
 					<tr>
 						<td>
-							<label class="container"> Fiable
+							<label class="container"> Fiabilité
 								<input type="checkbox" name="socialSkills[]" value="Fiable" onclick="checkLimite(this)">
 								<span class="checkmark"></span>
 							</label>
 						</td>
 						<td>
-							<label class="container"> Déterminé
+							<label class="container"> Détermination
 								<input type="checkbox" name="socialSkills[]" value="Déterminé" onclick="checkLimite(this)">
 								<span class="checkmark"></span>
 							</label>
@@ -258,13 +253,13 @@
 					</tr>
 					<tr>
 						<td>
-							<label class="container"> Autonome
+							<label class="container"> Autonomie
 								<input type="checkbox" name="socialSkills[]" value="Autonome" onclick="checkLimite(this)">
 								<span class="checkmark"></span>
 							</label>
 						</td>
 						<td>
-							<label class="container"> Ouvert d'esprit
+							<label class="container"> Ouverture d'esprit
 								<input type="checkbox" name="socialSkills[]" value="Ouvert d'esprit" onclick="checkLimite(this)">
 								<span class="checkmark"></span>
 							</label>
@@ -272,13 +267,13 @@
 					</tr>
 					<tr>
 						<td>
-							<label class="container"> Réfléchie
+							<label class="container"> Réfléxion
 								<input type="checkbox" name="socialSkills[]" value="Réfléchie" onclick="checkLimite(this)">
 								<span class="checkmark"></span>
 							</label>
 						</td>
 						<td>
-							<label class="container"> Honnête
+							<label class="container"> Honnêteté
 								<input type="checkbox" name="socialSkills[]" value="Honnête" onclick="checkLimite(this)">
 								<span class="checkmark"></span>
 							</label>
@@ -286,13 +281,13 @@
 					</tr>
 					<tr>
 						<td>
-							<label class="container"> Passionné
+							<label class="container"> Passion
 								<input type="checkbox" name="socialSkills[]" value="Passionné" onclick="checkLimite(this)">
 								<span class="checkmark"></span>
 							</label>
 						</td>
 						<td>
-							<label class="container"> Ponctuel
+							<label class="container"> Ponctualité
 								<input type="checkbox" name="socialSkills[]" value="Ponctuel" onclick="checkLimite(this)">
 								<span class="checkmark"></span>
 							</label>
@@ -300,13 +295,13 @@
 					</tr>
 					<tr>
 						<td>
-							<label class="container"> A l'écoute
+							<label class="container"> Ecoute
 								<input type="checkbox" name="socialSkills[]" value="A l'écoute" onclick="checkLimite(this)">
 								<span class="checkmark"></span>
 							</label>
 						</td>
 						<td>
-							<label class="container"> Respectueux
+							<label class="container"> Respect
 								<input type="checkbox" name="socialSkills[]" value="Respectueux" onclick="checkLimite(this)">
 								<span class="checkmark"></span>
 							</label>
@@ -314,13 +309,13 @@
 					</tr>
 					<tr>
 						<td>
-							<label class="container"> Organisé
+							<label class="container"> Organisation
 								<input type="checkbox" name="socialSkills[]" value="Organisé" onclick="checkLimite(this)">
 								<span class="checkmark"></span>
 							</label>
 						</td>
 						<td>
-							<label class="container"> Collaboratif
+							<label class="container"> Collaboration
 								<input type="checkbox" name="socialSkills[]" value="Collaboratif" onclick="checkLimite(this)">
 								<span class="checkmark"></span>
 							</label>
@@ -328,13 +323,13 @@
 					</tr>
 					<tr>
 						<td>
-							<label class="container"> Patient
+							<label class="container"> Patience
 								<input type="checkbox" name="socialSkills[]" value="Patient" onclick="checkLimite(this)">
 								<span class="checkmark"></span>
 							</label>
 						</td>
 						<td>
-							<label class="container"> Proactif
+							<label class="container"> proactivité
 								<input type="checkbox" name="socialSkills[]" value="Proactif" onclick="checkLimite(this)">
 								<span class="checkmark"></span>
 							</label>
@@ -342,13 +337,13 @@
 					</tr>
 					<tr>
 						<td>
-							<label class="container"> Responsable
+							<label class="container"> Responsabilité
 								<input type="checkbox" name="socialSkills[]" value="Responsable" onclick="checkLimite(this)">
 								<span class="checkmark"></span>
 							</label>
 						</td>
 						<td>
-							<label class="container"> Diplomate
+							<label class="container"> Diplomatie
 								<input type="checkbox" name="socialSkills[]" value="Diplomate" onclick="checkLimite(this)">
 								<span class="checkmark"></span>
 							</label>
@@ -362,7 +357,7 @@
 							</label>
 						</td>
 						<td>
-							<label class="container"> Curieux
+							<label class="container"> Curiosité
 								<input type="checkbox" name="socialSkills[]" value="Curieux" onclick="checkLimite(this)">
 								<span class="checkmark"></span>
 							</label>
@@ -370,13 +365,13 @@
 					</tr>
 					<tr>
 						<td>
-							<label class="container"> Communicatif
+							<label class="container"> Communication
 								<input type="checkbox" name="socialSkills[]" value="Communicatif" onclick="checkLimite(this)">
 								<span class="checkmark"></span>
 							</label>
 						</td>
 						<td>
-							<label class="container"> Empathique
+							<label class="container"> Empathie
 								<input type="checkbox" name="socialSkills[]" value="Empathique" onclick="checkLimite(this)">
 								<span class="checkmark"></span>
 							</label>

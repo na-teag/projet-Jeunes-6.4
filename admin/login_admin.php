@@ -39,19 +39,19 @@
 				<td><p id="taille2">Pour faire de l'engagement une valeur</p></td>
 			</tr>
 	</table>
-	<div class="bandeau">
+	<div class="navbar">
 		<ul>
-			<li><a class="jeune" href="../jeune/skills.php">JEUNE </a></li>
-			<li><a class="referent" href="../referent_info.php" >RÉFÉRENT </a></li>
-			<li><a class="consultant" href="../consultant_info.php">CONSULTANT </a></li>
-			<li><a class="partenaires" href="../partenaires.php" >PARTENAIRES</a></li>
+			<li id="bandeau"><a class="jeune" href="../jeune/skills.php">JEUNE </a></li>
+			<li id="bandeau"><a class="referent" href="../referent_info.php" >RÉFÉRENT </a></li>
+			<li id="bandeau"><a class="consultant" href="../consultant_info.php">CONSULTANT </a></li>
+			<li id="bandeau"><a class="partenaires" href="../partenaires.php" >PARTENAIRES</a></li>
 		</ul>
 	</div>
 	<br>
 	<table>
 		<form method="POST">
-			<tr><td>identifiant :</td><td><input type="text" name="username2" required></td></tr>
-			<tr><td>mot de passe :</td><td><input type="password" name="password2" required></td></tr>
+			<tr><td>Identifiant :</td><td><input type="text" name="username2" required></td></tr>
+			<tr><td>Mot de passe :</td><td><input type="password" name="password2" required></td></tr>
 			<tr><td colspan="2"><button type="submit">Se Connecter</button><td></tr>
 	</form>
 	<table>
@@ -63,6 +63,7 @@
 			echo $message;
 		}
 	?></div>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </body>
 <?php include_once "../footer.html"; ?>
 </html>  
