@@ -1,11 +1,11 @@
 <?php
 session_start();
-
+//si l'utilisateur est connecté en tant que consultant alors le site l'amène sur la page des informations du jeune et du référent
 if($_SESSION['role'] == 'consultant'){
     header("Location: consultant/consultation.php?id=" . $_SESSION['username']);
     exit;
 }
-
+//si l'utilisateur clique sur le bouton déconnexion alors la session est détruite et on le ramène sur la page d'accueil
 if(isset($_POST['deconnexion'])){
     $_SESSION = array();
     session_destroy();
@@ -25,6 +25,7 @@ if(isset($_POST['deconnexion'])){
 
 
 <body>
+	<!-- tableau permettant de contenir le logo et le statut de l'utilisateur -->
 	<table class="bandeau">
 		<tr>
 			<td rowspan="2"><a href="../home.php"><img src="../images/logo.svg"><img></a></td>
@@ -34,6 +35,7 @@ if(isset($_POST['deconnexion'])){
 			<td><p id="taille2">Je donne de la valeur à ton engagement</p></td>
 		</tr>
 	</table>
+	<!--bouton qui s'affiche seulement si le consultant est connecté à sa session -->
 	<div id="bouton">
 		<?php
 			if(isset($_SESSION["role"])){
@@ -41,7 +43,7 @@ if(isset($_POST['deconnexion'])){
 			}
 		?>
 	</div>
-	
+	<!-- barre de navigation permettant de naviguer entre les pages -->
 	<div class="navbar">
 		<ul>
 			<li><a class="jeune" href="jeune/skills.php">JEUNE </a></li>
@@ -50,6 +52,7 @@ if(isset($_POST['deconnexion'])){
 			<li><a class="partenaires" href="partenaires.php" >PARTENAIRES</a></li>
 		</ul>
 	</div>
+	<!-- bloc contenant des cases expliquant les étapes aux visiteurs sur le fonctionnement du consultant -->
 	<div class="bloc">
 		<div class="case1"><p>Etape 1:</p>
 			<p>Le Jeune dans sa demande de validation d'expérience met l'adresse mail d'un consultant, qui est un recruteur.</p>
@@ -59,5 +62,6 @@ if(isset($_POST['deconnexion'])){
 		</div>
 	</div>
 </body>
+<!-- inclus le footer -->
 <?php include_once "footer.html"; ?>
 </html>  

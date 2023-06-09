@@ -9,23 +9,6 @@ div[class="navbar"]{
 table{
 	border-collapse: collapse;
 }
-td[class="marge"]{
-	padding: 50px;
-	border-top-style: solid;
-	border-bottom-style: solid;
-}
-td.marge:nth-child(3n){
-	border-left-style: solid;
-}
-td.marge:first-child{
-	border-left-style: solid;
-}
-td.marge:nth-child(4n){
-	border-right-style: solid;
-}
-td.marge:nth-child(2n){
-	border-right-style: solid;
-}
 
 .bloc{
 	display: flex;
@@ -68,10 +51,6 @@ a{
  text-decoration:none; 
 }
 
-li[class="consultant"]{
-	background-color: rgb(71, 141, 255);
-}
-
 #taille1{
 	color: rgb(71, 141, 255);
 	font-size: 500%;
@@ -99,13 +78,7 @@ li[class="consultant"]{
 .partenaires{
 	color: rgb(90, 93, 95);
 }
-.center{
-	text-align: center;
-}
-.liste{
-	margin-left: 50px;
-	text-align: center;
-}
+
 .bouton{
 	padding: 5px;
 }

@@ -6,10 +6,6 @@ table[class="bandeau"]{
 div[class="navbar"]{
 	text-align: center;
 }
-/*body{
-	background-image: url("images/referent.png");
-	background-size: 1700px 1080px;
-}*/
 
 .bloc{
 	display: flex;
@@ -51,23 +47,6 @@ div[class="navbar"]{
 table{
 	border-collapse: collapse;
 }
-td[class="marge"]{
-	padding: 50px;
-	border-top-style: solid;
-	border-bottom-style: solid;
-}
-td.marge:nth-child(3n){
-	border-left-style: solid;
-}
-td.marge:first-child{
-	border-left-style: solid;
-}
-td.marge:nth-child(4n){
-	border-right-style: solid;
-}
-td.marge:nth-child(2n){
-	border-right-style: solid;
-}
 
 .deconnexion{
 	position:relative;
@@ -81,10 +60,6 @@ li{
 }
 a{
  text-decoration:none; 
-}
-
-li[class="referent"]{
-	background-color: green;
 }
 
 #taille1{
@@ -114,13 +89,7 @@ li[class="referent"]{
 .partenaires{
 	color: rgb(90, 93, 95);
 }
-.center{
-	text-align: center;
-}
-.liste{
-	margin-left: 50px;
-	text-align: center;
-}
+
 .bouton{
 	padding: 5px;
 }

@@ -45,6 +45,7 @@
 	<meta charset="UTF-8">
 </head>
 <body>
+	<!-- tableau permettant de contenir le logo et le statut de l'utilisateur -->
 	<table class="bandeau">
 			<tr>
 				<td rowspan="2"><a href="home.php"><img src="images/logo.svg"><img></a></td>
@@ -54,6 +55,7 @@
 				<td><p id="taille2">Pour faire de l'engagement une valeur</p></td>
 			</tr>
 	</table>
+	<!-- tableau permettant de contenir le logo et le statut de l'utilisateur -->
 	<div class="navbar">
 		<ul>
 			<li><a class="jeune" href="jeune/skills.php">JEUNE </a></li>
@@ -75,9 +77,9 @@
 	</div>
 	<table class="tableau">
 		<form method="POST">
-			<tr><td>identifiant :</td><td><input type="text" name="username" required></td>
+			<tr><td>Identifiant :</td><td><input type="text" name="username" required></td>
 			<td width="50%"></td></tr>
-			<tr><td>mot de passe :</td><td><input type="password" name="password" required></td></tr>
+			<tr><td>Mot de passe :</td><td><input type="password" name="password" required></td></tr>
 			<tr><td colspan="2"><button type="submit">Se Connecter</button><td></tr>
 		</form>		
 	</table>

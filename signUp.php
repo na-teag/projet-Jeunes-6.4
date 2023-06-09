@@ -2,7 +2,7 @@
 	session_start();
 	require_once 'data.php';
 	
-	
+
 	if(isset($_POST['name']) && isset($_POST['firstname']) && isset($_POST['email']) && isset($_POST['username']) && isset($_POST['password']) && isset($_POST['birth']) && isset($_POST['gender'])){
 		$name = htmlspecialchars($_POST['name'], ENT_QUOTES, 'UTF-8');// échapper les caractères spéciaux
 		$firstname = htmlspecialchars($_POST['firstname'], ENT_QUOTES, 'UTF-8');
@@ -12,7 +12,7 @@
 		$username = htmlspecialchars($_POST['username'], ENT_QUOTES, 'UTF-8');
 		$password = $_POST['password'];
 	
-		$birthDate = new DateTime($birth); // on vérifi que l'utilisateur à mois de 30 ans
+		$birthDate = new DateTime($birth); // on vérifie que l'utilisateur à mois de 30 ans
 		$currentDate = new DateTime();
 		$age = $currentDate->diff($birthDate)->y;
 		
@@ -57,6 +57,7 @@
 	<link rel="stylesheet" href="login.css">
 </head>
 <body>
+	<!--tableau permettant de contenir le logo et le statut utilisateur-->
 	<table class="bandeau">
 			<tr>
 				<td rowspan="2"><a href="home.php"><img src="../images/logo.svg"><img></a></td>
@@ -66,6 +67,7 @@
 				<td><p id="taille2">Pour faire de l'engagement une valeur</p></td>
 			</tr>
 	</table>
+	<!--barre de navigation pour naviguer entre les pages-->
 	<div class="navbar">
 		<ul>
 			<li><a class="jeune" href="jeune/skills.php">JEUNE </a></li>
@@ -75,21 +77,34 @@
 		</ul>
 	</div>
 	<br>
+	<!--affiche un message d'erreur s'il y en a un-->
 	<div id="message"><?php
 		if(isset($message)){
 			echo $message;
 		}
 	?></div>
 	<br><br><br>
-	<h1>Inscription</h1>
+	
+	<!--cadre contenant les informations que le jeune doit remplir lors de son inscription-->
+	<fieldset>
+	<legend class='titre'>Inscription</legend>
+	
 	<form method="POST">
 		<label>Genre:</label>
-		<input type="radio" id="homme" name="gender" value="man" maxlength="100" required>
-  		<label for="homme">Homme</label>
-  		<input type="radio" id="femme" name="gender" value="woman" maxlength="100" required>
-  		<label for="femme">Femme</label>
-  		<input type="radio" id="autre" name="gender" value="other" maxlength="100" required>
-  		<label for="autre">Autre</label><br><br>
+		
+  		<label for="homme" class="container">Homme
+  			<input type="radio" id="homme" name="gender" value="man" maxlength="100" required>
+			<span class="checkmark"></span>
+		</label>
+  		<label for="femme" class="container">Femme
+			<input type="radio" id="femme" name="gender" value="woman" maxlength="100" required>
+			<span class="checkmark"></span>
+		</label>
+		<label for="autre" class="container">Autre
+  			<input type="radio" id="autre" name="gender" value="other" maxlength="100" required>
+			<span class="checkmark"></span>
+		</label>
+  		<br><br>
 		<label>Nom:</label><br>
 		<input type="text" name="name" maxlength="100" required><br><br>
 		<label>Prénom:</label><br>
@@ -98,17 +113,19 @@
 		<input type="date" name="birth" required><br><br>
 		<label>Email:</label><br>
 		<input type="email" name="email" maxlength="100" required><br><br>
-		<label>identifiant:</label><br>
+		<label>Identifiant:</label><br>
 		<input type="text" name="username" maxlength="100" required><br><br>
 		<label>Mot de passe:</label><br>
 		<input type="password" name="password" maxlength="100" required><br><br>
-		<input type="submit" value="S'inscrire">
+		<input type="submit" value="S'inscrire" class='confirm'>
 	</form>
+	</fieldset>
 </body>
 </html>
 
 	<br><br><br><br>
 </body>
+<!--inclue le footer-->
 <?php include_once "footer.html"; ?>
 
 </html>  

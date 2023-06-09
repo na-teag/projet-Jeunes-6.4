@@ -128,22 +128,251 @@ if(isset($_POST['select']) && isset($_POST['option'])){
 		}else{
 			$tab = $users[$username];
 			$body = '<style>
-			table{
-				table-layout: fixed;
+			table[class="bandeau"]{
 				width: 100%;
-				border-collapse: collapse;
+				background-color: lightgray;
+				color: white;
 			}
-			th, td{
-				width: 25%;
-				padding-top: 150px;
+			
+			.deconnexion{
+				position:relative;
+				float: right;
+				margin-right: 2%;
+				cursor: pointer;
 			}
-			tr{
-				/*border-style: solid;*/
+			
+			li[id="bandeau"]{
+				padding: 10px;
+				background-color: lightgray;
+				display: inline;
 			}
+			div[class="navbar"]{
+				text-align: center;
+				margin-left: 2%;
+			}
+			input[type="checkbox"]{
+				pointer-events: none;
+			}
+			
+			a{ 
+			 text-decoration:none; 
+			}
+			
+			li[class="jeune"]{
+				background-color: rgb(240, 93, 106);
+			}
+			
+			
+			#taille1{
+				color: rgb(240, 93, 106);
+				font-size: 500%;
+				position:relative;
+				float: right;
+				padding-right: 50px;
+			}
+			#taille2{
+				font-size: 250%;
+				float: right;
+				padding-bottom: 10px;
+				margin-right: 50px;
+			}
+			
+			.jeune{
+				background-color: rgb(240, 93, 106);
+				color: white;
+			}
+			.referent{
+				color: green;
+			}
+			.consultant{
+				color: rgb(71, 141, 255);
+			}
+			.partenaires{
+				color: rgb(90, 93, 95);
+			}
+			.center{
+				text-align: center;
+			}
+			.back{
+				background-color: white;
+			}
+			.liste{
+				margin-left: 50px;
+				text-align: center;
+				
+			}
+			.comment{
+				overflow-wrap: break-word;
+				max-width: 325px;
+				border: 2px solid yellowgreen;
+				padding: 1%;
+			}
+			
+			#button{
+				padding-top: 10px;
+			}
+			
+			.marge_bottom{
+				margin-bottom: 70px;
+			}
+			
+			/* -------------------------------------------------------------------------------------------*/
+			.general{
+				border-spacing: 20px 150px;
+			}
+			
+			#jeune{
+				border: solid rgb(240, 93, 106);
+				min-width: 40%;
+				max-width: 50%;
+				min-height: 20%;
+				max-height: 30%;
+			}
+			#jeune_toConfirm{
+				border: solid rgb(240, 93, 106);
+				width: 90%;
+				padding: 2%;
+				padding-left: 8%;
+				margin-bottom: 50%;
+			}
+			
+			#referent{
+				border: solid yellowgreen;
+				padding: 1%;
+				min-width: 40%;
+				max-width: 50%;
+				min-height: 20%;
+				max-height: 30%;
+			}
+			
+			#global_1{
+				margin-left: 5%;
+				display: flex;
+				flex-direction: row;
+				max-width: 90%;
+			}
+			#section_1{
+				min-width: 45%;
+				max-width: 55%;
+			}
+			#section_2{
+				margin-left: 20%;
+			}
+			#global{
+				display: flex;
+				flex-direction: row;
+				width: 100%;
+			}
+			
+			#first{
+				min-width: 45%;
+				max-width: 55%;
+			}
+			#second{
+				margin-left: 10%;
+			}
+			.titre{
+				margin-left: 5%;
+				color: deeppink;
+			}
+			.titre_ref{
+				margin-left: 5%;
+				color: green;
+			}
+			.titre_toConfirm{
+				color: deeppink;
+			}
+			
+			.do_ted{
+				border-bottom: 2px dotted rgb(240, 93, 106);
+			}
+			#savoir{
+				color: deeppink;
+			}
+			#je_suis{
+				background-color: deeppink;
+			}
+			#colored{
+				background-color: pink;
+			}
+			#green{
+				color: green;
+			}
+			#back_green{
+				background-color: green;
+			}
+			#back_table{
+				background-color: rgba(196, 228, 133, 0.842);
+			}
+			
+			/*------------------------------------------*/
+			
+			/* The container */
+			.container {
+				display: block;
+				position: relative;
+				padding-left: 35px;
+				margin-bottom: 12px;
+				cursor: pointer;
+				font-size: 17px;
+				-webkit-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+				user-select: none;
+				pointer-events: none;
+			  }
+			  
+			  /* Hide the browser"s default checkbox */
+			  .container input {
+				position: absolute;
+				opacity: 0;
+				cursor: pointer;
+				height: 0;
+				width: 0;
+			  }
+			  
+			  /* Create a custom checkbox */
+			  .checkmark {
+				position: absolute;
+				top: 0;
+				left: 0;
+				height: 25px;
+				width: 25px;
+				background-color: #eee;
+			  }
+			  /* When the checkbox is checked, add a blue background */
+			  .container input:checked ~ .checkmark {
+				background-color: deeppink;
+			  }
+			  
+			  /* Create the checkmark/indicator (hidden when not checked) */
+			  .checkmark:after {
+				content: "";
+				position: absolute;
+				display: none;
+			  }
+			  
+			  /* Show the checkmark when checked */
+			  .container input:checked ~ .checkmark:after {
+				display: block;
+			  }
+			  
+			  /* Style the checkmark/indicator */
+			  .container .checkmark:after {
+				left: 9px;
+				top: 5px;
+				width: 5px;
+				height: 10px;
+				border: solid white;
+				border-width: 0 3px 3px 0;
+				-webkit-transform: rotate(45deg);
+				-ms-transform: rotate(45deg);
+				transform: rotate(45deg);
+			  }
+			
 			</style><body>
 			<h2>CV - ' . $tab['firstname'] . ' '  . $tab['name'] . '</h2><br>
-			<br>
-			<h3>Mes compétences :</h3><table>';
+			<h3>Mes compétences :</h3><table class="general"><tr class="back">';
 			foreach($_POST['skills'] as $key){
 				$id_skill = $_POST[$key];
 				$skill = $tab["skills"][$key];
@@ -151,61 +380,82 @@ if(isset($_POST['select']) && isset($_POST['option'])){
 					$ref = $skill['referent'];
 					$date_obj = DateTime::createFromFormat('Y-m-d', $skill['beginning']); // Formater la date au format dd/mm/yyyy
 					$date = $date_obj->format('d/m/Y');
-					$competence = '<tr><td><h4>' . $skill['environement'] . "</h4>
+					$competence = "<td id='jeune'><h1 class='titre'>JEUNE</h1><div id='global_1'><div id='section_1'><h4>" . $skill['environement'] . "</h4>
 					description de l'engagement : " . $skill["description"] . "<br>
 					début de l'engagement : " . $date . "<br>
 					durée de l'engagement : " . $skill["duration"] . " " . $skill["durationType"] . "<br>";
 					$competence .= "<h5>Compétences selon moi</h5>";
-					if(!empty($skill['socialSkills'])){
-						$competence .= "<h5>Savoir-être</h5><ol>";
-						foreach($skill["socialSkills"] as $socialSkill){
-							$competence .= "<li>" . $socialSkill . "</li>";
-						}
-						$competence .= "</ol>";
-					}else{
-						$competence .= "<h5>Compétences : savoir-être</h5><br>aucun savoir-être mentionné";
-					}
 					if(!empty($skill['savoir-faire'])){
-						$competence .= "<h5>Savoir faire</h5><ol>";
+						$competence .= "<h5>Savoir faire</h5>";
 						foreach($skill["savoir-faire"] as $savoir_faire){
-							$competence .= "<li>" . $savoir_faire . "</li>";
+							$competence .= "<p class='do_ted'>" . $savoir_faire . "</p>";
 						}
-						$competence .= "</ol>";
 					}else{
 						$competence .= "<h5>Compétences : savoir faire</h5><br>aucun savoir-faire mentionné";
 					}
-					$competence .= "</td><td><h5>Référent</h5>";
+					$competence .= "</div>";
+					/*************************************************************** */
+					if(!empty($skill['socialSkills'])){
+						$competence .= "<div id='section_2'><table id='truc'><tr><td id='savoir'>Mes savoir-être</td></tr>
+						<tr><td id='je_suis'>Je suis</td></tr>
+						<tbody id='colored'>";
+						foreach($skill["socialSkills"] as $socialSkill){
+							$competence .= '<tr><td>
+							<label class="container">' . $socialSkill . '
+								<input type="checkbox" checked>
+								<span class="checkmark"></span>
+							</label></td></tr>';
+						}
+						$competence .="</tbody></table>";
+					}else{
+						$competence .="<div id='section_2'><h4>Compétences : savoir-être</h4><br>aucun savoir-être mentionné";
+					}
+					$competence .="</div></div>";
+					$competence .='</td>';
+					/************************************************************ */
+					$competence .= "<td id='referent'><h1 class='titre_ref'>REFERENT</h1><div id='global_1'><div id='first'><u>";
 					$competence .= $ref["firstname"] . " " . $ref["name"] . "<br><br>";
-					$competence .= $ref["email"] . "<br><br>";
+					$competence .= $ref["email"] . "</u><br><br>";
 					$competence .= $ref["situation"] . "<br>";
 					$competence .= "<h5>Compétences selon le référent</h5>";
-					if(!empty($skill['socialSkills'])){
-						$competence .= "<h5>Savoir-être</h5><ol>";
-						foreach($skill["socialSkills"] as $socialSkill){
-							$competence .= "<li>" . $socialSkill . "</li>";
-						}
-						$competence .= "</ol>";
-					}else{
-						$competence .= "<h5>Compétences : savoir-être</h5><br>aucun savoir-être mentionné";
-					}
-					if(!empty($skill['savoir-faire'])){
-						$competence .= "<h5>Savoir faire</h5><ol>";
+					
+					if(!empty($skill['savoir-faire_ref'])){
+						$competence .= "<h5>Savoir faire</h5>";
 						foreach($skill["savoir-faire"] as $savoir_faire){
-							$competence .= "<li>" . $savoir_faire . "</li>";
+							$competence .= "<p class='do_ted'>" . $savoir_faire . "</p>";
 						}
-						$competence .= "</ol>";
 					}else{
 						$competence .= "<h5>Compétences : savoir faire</h5><br>aucun savoir-faire mentionné";
 					}
-					$competence .= '</td>';
+					$competence .= "</div><div id='second'>";
 					if($skill["comment"] != ""){
-						$competence .= "<td><br><h5>Commentaire du référent</h5><br><p class='comment'>" . $skill["comment"] . "</p><br></td>";
+						$competence .="<br><h4>Commentaire du référent</h4><p class='comment'>" . $skill["comment"] . "</p><br>";
 					}
-					$competence .=  "</tr>";
+					if(!empty($skill['socialSkills_ref'])){
+						$competence .= "<table id='a'><tr><td id='green'>Mes savoir-être</td></tr>
+						<tr><td id='back_green'>Je suis</td></tr>
+						<tbody id='back_table'>";
+						foreach($skill["socialSkills"] as $socialSkill){
+							$competence .= '<tr><td>
+							<label class="container">' . $socialSkill . '
+								<input type="checkbox" checked>
+								<span class="checkmark"></span>
+							</label></td></tr>';
+						}
+						$competence .= "</tbody></table>";
+					}else{
+						$competence .= "<div id='second'><h5>Compétences : savoir-être</h5><br>aucun savoir-être mentionné";
+					}
+					
+					$competence .= '</div></div></td>';
+					if($nbrConfirmedSkill%1==0){ // nombre de cases max dans une seule ligne
+						$competence .= "</tr><tr class='back'>";
+					}
 					$body .= $competence;
 				}
 				
 			}	
+			$body .= "</tr></table>";
 			$body .= '</table><br><br><br>CV généré par via le site du <a href="http://localhost:8080/jeune6.4.html">projet Jeunes 6.4</a><br></body>';
 			$file = fopen('cv.html', 'w');
 			fwrite($file, $body);// on écrit le mail dans la page avant d'aller dessus, de là bas on ouvrira un nouvel onglet pour faire revenir le jeune à skills.php

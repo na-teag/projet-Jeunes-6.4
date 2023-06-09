@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+//si l'utilisateur clique sur le bouton déconnexion alors la session est détruite et on le ramène sur la page d'accueil
 if(isset($_POST['deconnexion'])){
     $_SESSION = array();
     session_destroy();
@@ -18,15 +18,14 @@ if(isset($_POST['deconnexion'])){
 
 
 <body>
+	<!-- tableau permettant de contenir le logo et le statut de l'utilisateur -->
 	<table class="bandeau">
 		<tr>
 			<td rowspan="2"><a href="home.php"><img src="images/logo.svg"><img></a></td>
 			<td><h1 id="taille1">PARTENAIRES</h1></td>
 		</tr>
-		<tr>
-			<td><p id="taille2">Je donne de l'argent pour ton engagement</p></td>
-		</tr>
 	</table>
+	<!--bouton qui s'affiche seulement si le consultant est connecté à sa session -->
 	<div id="bouton">
 		<?php
 			if(isset($_SESSION["role"])){
@@ -34,7 +33,7 @@ if(isset($_POST['deconnexion'])){
 			}
 		?>
 	</div>
-	
+	<!-- barre de navigation permettant de naviguer entre les pages -->
 	<div class="navbar">
 		<ul>
 			<li class="navbar"><a class="jeune" href="jeune/skills.php">JEUNE </a></li>
@@ -43,6 +42,7 @@ if(isset($_POST['deconnexion'])){
 			<li class="navbar"><a class="partenaires" href="partenaires.php" >PARTENAIRES </a></li>
 		</ul>
 	</div>
+	<!-- bloc contenant les images de tous les partenaires du projet -->
 	<div class="image">
 		<p>JEUNES 6.4 est un dispositif issu de la <a href="http://test.le64.fr/uploads/tx_arccg64/charte2013.pdf"> charte de l’engagement</a> pour la<br>jeunesse signée en 2013 par des partenaires institutionnels...</p>
 		<ul>
@@ -63,5 +63,6 @@ if(isset($_POST['deconnexion'])){
 		<p>...qui ont décidé de mettre en commun leurs actions pour les jeunes<br>des Pyrénées-Atlantiques.</p>
 	</div>
 </body>
+<!-- inclus le footer -->
 <?php include_once "footer.html"; ?>
 </html> 
