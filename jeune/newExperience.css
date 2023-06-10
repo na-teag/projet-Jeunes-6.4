@@ -53,6 +53,23 @@ button{
 button:hover{
 	opacity: 1;
 }
+
+input[type="button"]{
+	background-color: rgb(240, 93, 106);
+	border: none;
+	color: black;
+	padding: 8px 16px;
+	text-decoration: none;
+	margin: 4px 2px;
+	cursor: pointer;
+	opacity: 0.8;
+	transition: 0.5s;
+	
+}
+input[type="button"]:hover{
+	opacity: 1;
+}
+
 .confirm{
 	position: absolute;
 	padding: 16px 32px;

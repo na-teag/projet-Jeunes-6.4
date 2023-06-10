@@ -257,6 +257,7 @@ if(isset($_POST['select']) && isset($_POST['option'])){
 			}
 			#section_2{
 				margin-left: 20%;
+				max-width: 80%;             /*commande max-width*/
 			}
 			#global{
 				display: flex;
@@ -285,6 +286,9 @@ if(isset($_POST['select']) && isset($_POST['option'])){
 			
 			.do_ted{
 				border-bottom: 2px dotted rgb(240, 93, 106);
+			}
+			.do_ted_green{
+				border-bottom: 2px dotted yellowgreen;
 			}
 			#savoir{
 				color: deeppink;
@@ -340,7 +344,19 @@ if(isset($_POST['select']) && isset($_POST['option'])){
 				width: 25px;
 				background-color: #eee;
 			  }
+				/* Create a custom checkbox for referent */
+				.checkmark_2 {
+					position: absolute;
+					top: 0;
+					left: 0;
+					height: 25px;
+					width: 25px;
+					background-color: #eee;
+				  }
 			  /* When the checkbox is checked, add a blue background */
+			  .container input:checked ~ .checkmark_2 {
+				background-color: rgb(12, 170, 12);
+			  }
 			  .container input:checked ~ .checkmark {
 				background-color: deeppink;
 			  }
@@ -351,14 +367,33 @@ if(isset($_POST['select']) && isset($_POST['option'])){
 				position: absolute;
 				display: none;
 			  }
+			  .checkmark_2:after {
+				content: "";
+				position: absolute;
+				display: none;
+			  }
 			  
 			  /* Show the checkmark when checked */
 			  .container input:checked ~ .checkmark:after {
 				display: block;
 			  }
+			  .container input:checked ~ .checkmark_2:after {
+				display: block;
+			  }
 			  
 			  /* Style the checkmark/indicator */
 			  .container .checkmark:after {
+				left: 9px;
+				top: 5px;
+				width: 5px;
+				height: 10px;
+				border: solid white;
+				border-width: 0 3px 3px 0;
+				-webkit-transform: rotate(45deg);
+				-ms-transform: rotate(45deg);
+				transform: rotate(45deg);
+			  }
+			  .container .checkmark_2:after {
 				left: 9px;
 				top: 5px;
 				width: 5px;
@@ -381,9 +416,9 @@ if(isset($_POST['select']) && isset($_POST['option'])){
 					$date_obj = DateTime::createFromFormat('Y-m-d', $skill['beginning']); // Formater la date au format dd/mm/yyyy
 					$date = $date_obj->format('d/m/Y');
 					$competence = "<td id='jeune'><h1 class='titre'>JEUNE</h1><div id='global_1'><div id='section_1'><h4>" . $skill['environement'] . "</h4>
-					description de l'engagement : " . $skill["description"] . "<br>
-					début de l'engagement : " . $date . "<br>
-					durée de l'engagement : " . $skill["duration"] . " " . $skill["durationType"] . "<br>";
+					description de l'engagement :<br>" . $skill["description"] . "<br><br>
+					début de l'engagement :<br>" . $date . "<br><br>
+					durée de l'engagement :<br>" . $skill["duration"] . " " . $skill["durationType"] . "<br><br>";
 					$competence .= "<h5>Compétences selon moi</h5>";
 					if(!empty($skill['savoir-faire'])){
 						$competence .= "<h5>Savoir faire</h5>";
@@ -391,10 +426,9 @@ if(isset($_POST['select']) && isset($_POST['option'])){
 							$competence .= "<p class='do_ted'>" . $savoir_faire . "</p>";
 						}
 					}else{
-						$competence .= "<h5>Compétences : savoir faire</h5><br>aucun savoir-faire mentionné";
+						$competence .= "<h5>Compétences : savoir faire</h5><br>aucun savoir-faire mentionné<br>";
 					}
 					$competence .= "</div>";
-					/*************************************************************** */
 					if(!empty($skill['socialSkills'])){
 						$competence .= "<div id='section_2'><table id='truc'><tr><td id='savoir'>Mes savoir-être</td></tr>
 						<tr><td id='je_suis'>Je suis</td></tr>
@@ -412,7 +446,7 @@ if(isset($_POST['select']) && isset($_POST['option'])){
 					}
 					$competence .="</div></div>";
 					$competence .='</td>';
-					/************************************************************ */
+					/******************************************* PARTIE DU REFERENT ************************************************************/
 					$competence .= "<td id='referent'><h1 class='titre_ref'>REFERENT</h1><div id='global_1'><div id='first'><u>";
 					$competence .= $ref["firstname"] . " " . $ref["name"] . "<br><br>";
 					$competence .= $ref["email"] . "</u><br><br>";
@@ -422,7 +456,7 @@ if(isset($_POST['select']) && isset($_POST['option'])){
 					if(!empty($skill['savoir-faire_ref'])){
 						$competence .= "<h5>Savoir faire</h5>";
 						foreach($skill["savoir-faire"] as $savoir_faire){
-							$competence .= "<p class='do_ted'>" . $savoir_faire . "</p>";
+							$competence .= "<p class='do_ted_green'>" . $savoir_faire . "</p>";
 						}
 					}else{
 						$competence .= "<h5>Compétences : savoir faire</h5><br>aucun savoir-faire mentionné";
@@ -432,14 +466,14 @@ if(isset($_POST['select']) && isset($_POST['option'])){
 						$competence .="<br><h4>Commentaire du référent</h4><p class='comment'>" . $skill["comment"] . "</p><br>";
 					}
 					if(!empty($skill['socialSkills_ref'])){
-						$competence .= "<table id='a'><tr><td id='green'>Mes savoir-être</td></tr>
-						<tr><td id='back_green'>Je suis</td></tr>
+						$competence .= "<table id='a'><tr><td id='green'>Ses savoir-être</td></tr>
+						<tr><td id='back_green'>Il est</td></tr>
 						<tbody id='back_table'>";
 						foreach($skill["socialSkills"] as $socialSkill){
 							$competence .= '<tr><td>
 							<label class="container">' . $socialSkill . '
 								<input type="checkbox" checked>
-								<span class="checkmark"></span>
+								<span class="checkmark_2"></span>
 							</label></td></tr>';
 						}
 						$competence .= "</tbody></table>";
@@ -534,7 +568,7 @@ if(isset($_POST['select']) && isset($_POST['option'])){
 	<?php // cette partie est tirée de skills.php
 		$username = $_SESSION["username"];
 		$nbrConfirmedSkill = 0;
-		echo '<br><table><tr class="back">';
+		echo '<table class="general"><tr class="back">';
 		foreach($users[$username]["skills"] as $key => $skill){ # boucle pour les expériences confirmées
 			if($skill['status'] == "confirmed"){
 				$nbrConfirmedSkill++;
@@ -554,11 +588,11 @@ if(isset($_POST['select']) && isset($_POST['option'])){
 		if($nbrConfirmedSkill == 0){
 			echo '<p><br><br>aucune expérience confimée par un référent<br><br><br><br><br><br><br><br><br><br></p>';
 		}else{
-			echo '<br><br><input type="radio" id="cv" name="option" value="cv" onclick="show_file()" required><label for="cv">Générer un CV</label><br>';
+			echo '<input type="radio" id="cv" name="option" value="cv" onclick="show_file()" required><label for="cv">Générer un CV</label><br>';
 			echo '<div id="file"></div>';
 			echo '<input type="radio" id="archive" name="option" value="archive" onclick="hide_both()" required><label for="archive">Archiver ces expériences</label><br>';
 			echo '<input type="radio" id="consultant" name="option" value="consultant" onclick="show_email()" required><label for="consultant">Envoyer à un consultant</label>';
-			echo '<div id="email"></div>';// plutôt que de cacher, on enlève completement ou on place l'input mail selon le choix de l'utilisateur, pour éviter des problème avec le "required"
+			echo '<div id="email"></div>';// plutôt que de cacher, on enlève completement ou on place l'input mail selon le choix de l'utilisateur, pour éviter des problèmes avec le "required"
 			echo '<br><button type="submit" name="select">Valider</button><br>';
 			if(isset($message)){
 				echo "<p class='red'>" . $message . "</p>";

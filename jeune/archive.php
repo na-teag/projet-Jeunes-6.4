@@ -97,7 +97,7 @@ if(isset($_POST['delete']) && isset($_POST['skills'])){ // supprimer définitive
 	<?php // cette partie est tirée de skills.php
 		$username = $_SESSION["username"];
 		$nbrConfirmedSkill = 0;
-		echo '<br><table><tr class="back">';
+		echo '<br><table class="general"><tr class="back">';
 		foreach($users[$username]["skills"] as $key => $skill){ # boucle pour les expériences confirmées
 			if($skill['status'] == "archived"){
 				$nbrConfirmedSkill++;
@@ -118,9 +118,9 @@ if(isset($_POST['delete']) && isset($_POST['skills'])){ // supprimer définitive
 			echo '<p><br><br>aucune expérience archivée<br><br><br><br><br><br><br><br><br></p>';
 		}else{
 			echo '<br><br>
-			<input type="submit" name="select" value="Désarchiver ces expériences">
+			<input id="custom" type="submit" name="select" value="Désarchiver ces expériences">
 			<br><br><br><br>
-			<input type="submit" name="delete" value="effacer définitivement ces expériences">
+			<input id="custom2" type="submit" name="delete" value="effacer définitivement ces expériences">
 			<br><br><br><br>';
 		}
 	?>

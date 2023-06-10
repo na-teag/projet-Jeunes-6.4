@@ -6,8 +6,21 @@ table[class="bandeau"]{
 table{
 	border-collapse: collapse;
 }
-button{
+
+button:not(.red){
 	background-color: rgb(240, 93, 106);
+	border: none;
+	color: black;
+	padding: 8px 16px;
+	text-decoration: none;
+	margin: 4px 2px;
+	cursor: pointer;
+	opacity: 0.8;
+	transition: 0.5s;
+	
+}
+button.red{
+	background-color: red;
 	border: none;
 	color: black;
 	padding: 8px 16px;
@@ -101,6 +114,11 @@ li[class="jeune"]{
 }
 .bouton{
 	padding: 5px;
+}
+
+#message{
+	color: red;
+	padding-left: 5px
 }
 
 

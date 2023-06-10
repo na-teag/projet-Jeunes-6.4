@@ -5,14 +5,6 @@
 	<link rel="stylesheet" href="thankYou.css">
 	<meta charset="UTF-8">
 </head>
-<style>
-	iframe{
-		margin-top: 17%;
-		width: 100%;
-		height: 30%;
-		border-style: none;
-	}
-</style>
 
 <body>
 	<table class="bandeau">
@@ -32,9 +24,21 @@
 			<li><a class="partenaires" href="../partenaires.php" >PARTENAIRES</a></li>
 		</ul>
 	</div>
-    <br><br><br>
-    MERCI !
-    <!-- faire une redirection sur jeune6.4.html au bout de qq secondes ?-->
+    <br><br><br><br><br><br><br><br>
+    <div class="merci">MERCI !</div>
+	<br><br><br><br><br><br><br>
 </body>
-<iframe src="../footer.html"></iframe>
-</html>  
+<?php include_once "../footer.html"; ?>
+</html> 
+
+<script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script> <!-- importer le script gérant les confettis-->
+<script>const jsConfetti = new JSConfetti();
+	document.addEventListener('DOMContentLoaded', () => {
+		setTimeout(() => {
+			jsConfetti.addConfetti();// lancer les confettis 1s après le chargement
+		}, 1000);
+		setTimeout(() => {
+        window.location.href = '../jeune6.4.html';// ensuite, rediriger sur la page d'entrée du projet
+    }, 9000);
+	});
+</script>

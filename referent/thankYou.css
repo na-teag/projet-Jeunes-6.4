@@ -27,6 +27,8 @@ a{
 #taille2{
 	font-size: 250%;
 	padding-bottom: 10px;
+	padding-right: 42px;
+	float: right;
 }
 
 .jeune{
@@ -40,4 +42,10 @@ a{
 }
 .partenaires{
 	color: rgb(90, 93, 95);
-} 
+}
+
+.merci{
+	font-size: 40px;
+	text-align: center;
+	opacity: 0.85;
+}

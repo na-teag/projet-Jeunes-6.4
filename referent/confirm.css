@@ -236,3 +236,21 @@ input:not([type="button"]){
 .commentaire{
 	margin-left: 20%;
 }
+
+
+
+input[type="button"]{
+	background-color: rgb(84, 238, 84);
+	border: none;
+	color: black;
+	padding: 8px 16px;
+	text-decoration: none;
+	margin: 4px 2px;
+	cursor: pointer;
+	opacity: 0.8;
+	transition: 0.5s;
+	
+}
+input[type="button"]:hover{
+	opacity: 1;
+}

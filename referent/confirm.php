@@ -111,7 +111,7 @@
 					margin-top: 8%;
 				}
 			</style>
-			<body><script>window.open("thankYou.html", "_blank");</script>
+			<body><script>window.open("thankYou.php", "_blank");</script>
 			<table class="bandeau">
 				<tr>
 					<td><img src="../images/logo.svg"><img></a></td>

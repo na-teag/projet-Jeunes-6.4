@@ -60,10 +60,10 @@ if(isset($_POST['deconnexion'])){
 		</div>
 		<div class="case2"><p>Etape 2:</p>
 			<p>Le Référent reçoit un mail avec un lien sur lequel il peut cliquer et qui l'emmènera sur une page pour confirmer les champs du Jeune qu'il considère justes et il pourra,
-			s'il le souhaite, ajouter des savoir-être et/ou des savoir-faire, ainsi qu'un champ des aspects à valoriser si besoin.</p>
+			s'il le souhaite, ajouter des savoir-être et/ou des savoir-faire, ainsi qu'un commentaire.</p>
 		</div>
 		<div class="case3"><p>Etape 3:</p>
-			<p>Ensuite il recevra une page de confirmation et de remerciements.</p>
+			<p>Ensuite il sera redirigé vers une page de confirmation et de remerciements.</p>
 		</div>
 	</div>
 </body>

@@ -75,10 +75,10 @@ li[class="jeune"]{
 #info_jeune{
 	border: solid rgb(71, 141, 255);
 	font-size: 115%;
-	width: 17%;
+	width: 30%;
 	padding-left: 1%;
-	padding-bottom: 1%;
-	margin-left: 42%;
+	padding-bottom: 2%;
+	margin-left: 34%;
 }
 
 button{
@@ -140,18 +140,19 @@ button:hover{
     max-height: 30%;
 }
 
-#blob{
+#global_1{
     margin-left: 5%;
 	display: flex;
 	flex-direction: row;
     max-width: 90%;
 }
-#pablo{
+#section_1{
     min-width: 45%;
     max-width: 55%;
 }
-#pablob{
+#section_2{
     margin-left: 20%;
+    max-width: 80%;             /*commande max-width*/
 }
 #global{
 	display: flex;
@@ -181,6 +182,9 @@ button:hover{
 .do_ted{
     border-bottom: 2px dotted rgb(240, 93, 106);
 }
+.do_ted_green{
+    border-bottom: 2px dotted yellowgreen;
+}
 #savoir{
     color: deeppink;
 }
@@ -188,17 +192,17 @@ button:hover{
     background-color: deeppink;
     text-align: center;
 }
-#test{
+#colored{
     background-color: pink;
 }
-#b{
+#green{
     color: green;
 }
-#c{
+#back_green{
     background-color: rgb(12, 170, 12);
     text-align: center;
 }
-#d{
+#back_table{
     background-color: rgba(196, 228, 133, 0.842);
 }
 
@@ -237,7 +241,20 @@ button:hover{
     width: 25px;
     background-color: #eee;
   }
+    /* Create a custom checkbox for referent */
+    .checkmark_2 {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 25px;
+        width: 25px;
+        background-color: #eee;
+      }
   /* When the checkbox is checked, add a blue background */
+                                                                /*Pour mettre en vert, c'est ici : background-color: green; par exemple*/
+  .container input:checked ~ .checkmark_2 {
+    background-color: rgb(12, 170, 12);
+  }
   .container input:checked ~ .checkmark {
     background-color: deeppink;
   }
@@ -248,14 +265,33 @@ button:hover{
     position: absolute;
     display: none;
   }
+  .checkmark_2:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
   
   /* Show the checkmark when checked */
   .container input:checked ~ .checkmark:after {
     display: block;
   }
+  .container input:checked ~ .checkmark_2:after {
+    display: block;
+  }
   
   /* Style the checkmark/indicator */
   .container .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+  .container .checkmark_2:after {
     left: 9px;
     top: 5px;
     width: 5px;

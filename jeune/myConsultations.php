@@ -19,19 +19,25 @@ if(isset($_POST['deconnexion'])){// partie pour déconnecter l'utilisateur
     exit;
 }
 
-if(isset($_POST['delete'])){ // supprimer l'accès de consultation des expériences  
+if(isset($_POST['delete'])){ // supprimer l'accès de consultation des expériences
+	$nbr=0;
 	foreach($_POST['skills'] as $id_skill){
+		$nbr++;
 		foreach($other as $key => $value){
 			if($key == $id_skill){
 				unset($other[$key]);
 			}
 		}
 	}
-	$file = fopen('../data.php', 'w'); // mettre a jour le fichier data
-	fwrite($file, '<?php $users = ' . var_export($users, true) . '; $other = ' . var_export($other, true) . '; ?>');
-	fclose($file);
-    header("Location: skills.php");
-    exit;
+	if($nbr != 0){
+		$file = fopen('../data.php', 'w'); // mettre a jour le fichier data
+		fwrite($file, '<?php $users = ' . var_export($users, true) . '; $other = ' . var_export($other, true) . '; ?>');
+		fclose($file);
+    	header("Location: skills.php");
+    	exit;
+	}else{
+		$message = "aucune compétence séléctionnée";
+	}
 }
 ?>
 
@@ -120,12 +126,16 @@ if(isset($_POST['delete'])){ // supprimer l'accès de consultation des expérien
 		}
 		
 		if($nbrConsultation != 0){
-			echo "</tr></table><br>Pour chaque partage d'expérience différent, seul les quatre premières expériences sont visible.<br>Si des expériences apparaissent grisés, c'est qu'elle sont archivées, les consultants ne les voient donc pas.";
+			echo "</tr></table><br>Pour chaque partage d'expérience différent, seul les quatre premières expériences sont visibles.<br>Si des expériences apparaissent grisées, c'est qu'elles sont archivées, les consultants ne les voient donc pas.";
 		}
 		if($nbrConsultation == 0){
 			echo '<p><br><br><br><br><br>aucune expérience confirmée n\'a encore été partagée avec un consultant<br><br><br><br><br><br></p>';
 		}else{
-			echo '<br><br><button type="submit" name="delete" ">Effacer définitivement ces consultations</button><br><br><br><br><br><br>';
+			echo '<br><br><button class="red" type="submit" name="delete" ">Interdire l\'accès à ces expériences<br>à leur consultant</button><span id="message">';
+			if(isset($message)){
+				echo $message;
+			}
+			echo '</span><br><br><br><br><br><br>';
 		}
 	?>
 	</form>
