@@ -205,6 +205,45 @@
         'status' => 'confirmed',
         'id' => '9c2f3c9b7b97404d95023d9024add195313faadae2bd274a72d4a560a640f27a',
       ),
+      6 => 
+      array (
+        'referent' => 
+        array (
+          'name' => 'Letourneur',
+          'firstname' => 'Aymeric',
+          'email' => 'letourneur@cy-tech.fr',
+          'situation' => 'élève',
+        ),
+        'beginning' => '2000-01-01',
+        'duration' => '1',
+        'durationType' => 'jours',
+        'environement' => 'cytech 1',
+        'description' => 'agent d&#039;accueil 1',
+        'socialSkills' => 
+        array (
+          0 => 'Fiable',
+          1 => 'Déterminé',
+          2 => 'Autonome',
+          3 => 'Ouvert d\'esprit',
+        ),
+        'savoir-faire' => 
+        array (
+        ),
+        'socialSkills_ref' => 
+        array (
+          0 => 'Diplomate',
+          1 => 'Optimiste',
+          2 => 'Curieux',
+          3 => 'Communicatif',
+        ),
+        'savoir-faire_ref' => 
+        array (
+          0 => 'test 1',
+        ),
+        'comment' => 'test1',
+        'status' => 'confirmed',
+        'id' => '4bf33414e8cdba07dd693f507b52d03b900520122256a3fba2e68d2685e03d01',
+      ),
     ),
   ),
 ); $other = array (
@@ -219,5 +258,15 @@
     'status' => 'consultant',
     'email' => 't@t.all',
     'skills' => 'all',
+  ),
+  '573362022877d8c64e41e5a41b241cc96c13c225c27c931a701c7b95fcdd6888' => 
+  array (
+    'user' => 'test_test',
+    'status' => 'consultant',
+    'email' => 'test@test.test',
+    'skills' => 
+    array (
+      6 => '4bf33414e8cdba07dd693f507b52d03b900520122256a3fba2e68d2685e03d01',
+    ),
   ),
 ); ?>

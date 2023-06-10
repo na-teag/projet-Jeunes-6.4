@@ -13,14 +13,14 @@
 	sort($tab);
 
 
-	if(isset($_POST['deconnexion'])){
+	if(isset($_POST['deconnexion'])){		//partie pour déconnecter l'utilisateur
 		$_SESSION = array();
 		session_destroy();
 		header("Location: ../home.php");
 		exit;
 	}
 
-	if(isset($_GET['q'])){
+	if(isset($_GET['q'])){		// récupérer les données envoyées par le javascript
 		$q = strtolower($_GET['q']);
 		$len = strlen($q);
 		$res = array();
@@ -73,7 +73,7 @@
         if(!isset($_GET['q'])){
 			$nbr=0;
             foreach($tab as $user){ // avant que l'admin ne rentre qqch dans la barre de recherche, tous les utilisateurs sont affichés
-				echo '<a href="manage.php?username=' . urlencode($user) . '">' . $user . '</a><br>';
+				echo '<a class="' . $user . '" href="manage.php?username=' . urlencode($user) . '">' . $user . '</a><br>';
 				$nbr++;
             }
         }
@@ -82,7 +82,7 @@
 
     <script src="search.js"></script>
 	<?php
-		for($i=14; $i>$nbr; $i--){
+		for($i=14; $i>$nbr; $i--){ // afficher le footer en bas de la page
 			echo "<br>";
 		}
 	?>

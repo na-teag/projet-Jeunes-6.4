@@ -170,8 +170,8 @@
 			</form>
 	</div>
 	<!-- barre de naviqation permettant de naviguer entre les pages principales -->
-	<div class="bandeau">
-		<ul id="bandeau">
+	<div class="navbar">
+		<ul>
 			<li id="bandeau"><a class="jeune" href="../home.php">JEUNE </a></li>
 			<li id="bandeau"><a class="referent" href="../referent_info.php" >RÉFÉRENT </a></li>
 			<li id="bandeau"><a class="consultant" href="../consultant_info.php">CONSULTANT </a></li>

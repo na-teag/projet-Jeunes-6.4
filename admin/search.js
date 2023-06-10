@@ -1,4 +1,4 @@
-function getSuggestions(str){
+function getSuggestions(str){ 				//afficher tous les noms d'utilisateurs commençant par les lettres entrées par l'admin
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function(){
 		if(this.readyState == 4 && this.status == 200){

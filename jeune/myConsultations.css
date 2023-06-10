@@ -6,6 +6,21 @@ table[class="bandeau"]{
 table{
 	border-collapse: collapse;
 }
+button{
+	background-color: rgb(240, 93, 106);
+	border: none;
+	color: black;
+	padding: 8px 16px;
+	text-decoration: none;
+	margin: 4px 2px;
+	cursor: pointer;
+	opacity: 0.8;
+	transition: 0.5s;
+	
+}
+button:hover{
+	opacity: 1;
+}
 td[class="marge"]{
 	padding-top: 25px;
 	padding-bottom: 25px;
@@ -37,6 +52,7 @@ li[id="bandeau"]{
 }
 div[class="navbar"]{
 	text-align: center;
+	margin-left: 10%;
 }
 
 a{ 

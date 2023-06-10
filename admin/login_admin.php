@@ -11,8 +11,8 @@
 		$username = $_POST["username2"];
 		$password = $_POST["password2"];
 	
-		if($username == "cytech" && $password == "shellshocker.io"){
-			$_SESSION["role"] = "admin";
+		if($username == "cytech" && $password == "shellshocker.io"){		//indentifiant et mot de passe néccessaire pour se connecter en tant qu'admin
+			$_SESSION["role"] = "admin";									//A ne surtout pas dévoiler !!
 			header("Location: search.php");
 			exit;
 		}else{

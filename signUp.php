@@ -117,7 +117,7 @@
 		<input type="text" name="username" maxlength="100" required><br><br>
 		<label>Mot de passe:</label><br>
 		<input type="password" name="password" maxlength="100" required><br><br>
-		<input type="submit" value="S'inscrire" class='confirm'>
+		<button type="submit" value="S'inscrire" class='confirm'>S'inscrire</button>
 	</form>
 	</fieldset>
 </body>

@@ -7,7 +7,14 @@ table[class="bandeau"]{
 	color: white;
 }
 
-ul[class="bandeau"]{
+li[class="bandeau"]{
+	padding: 10px;
+	background-color: lightgray;
+	display: inline;
+}
+div[class="navbar"]{
+	text-align: center;
+    margin-left: 10%;
 }
 
 .description{
@@ -150,6 +157,15 @@ li[class="jeune"]{
 	float: right;
 	padding-right: 50px;
 }
+/*Les css comme newExperience.css et select.css ont le même css pour taille 2 qu'ici.
+Néammoins celui de skills.css est comme ça :
+	#taille2{
+	font-size: 250%;
+	float: right;
+	padding-bottom: 10px;
+	margin-right: 50px;
+}
+Voilà ._.*/
 #taille2{
 	font-size: 250%;
 	padding-bottom: 10px;

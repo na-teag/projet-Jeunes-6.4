@@ -125,7 +125,7 @@ if(isset($_POST['delete'])){ // supprimer l'accès de consultation des expérien
 		if($nbrConsultation == 0){
 			echo '<p><br><br><br><br><br>aucune expérience confirmée n\'a encore été partagée avec un consultant<br><br><br><br><br><br></p>';
 		}else{
-			echo '<br><br><input type="submit" name="delete" value="Effacer définitivement ces consultations"><br><br><br><br><br><br>';
+			echo '<br><br><button type="submit" name="delete" ">Effacer définitivement ces consultations</button><br><br><br><br><br><br>';
 		}
 	?>
 	</form>

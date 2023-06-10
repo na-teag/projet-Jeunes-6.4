@@ -559,7 +559,7 @@ if(isset($_POST['select']) && isset($_POST['option'])){
 			echo '<input type="radio" id="archive" name="option" value="archive" onclick="hide_both()" required><label for="archive">Archiver ces expériences</label><br>';
 			echo '<input type="radio" id="consultant" name="option" value="consultant" onclick="show_email()" required><label for="consultant">Envoyer à un consultant</label>';
 			echo '<div id="email"></div>';// plutôt que de cacher, on enlève completement ou on place l'input mail selon le choix de l'utilisateur, pour éviter des problème avec le "required"
-			echo '<br><input type="submit" name="select" value="Valider"><br>';
+			echo '<br><button type="submit" name="select">Valider</button><br>';
 			if(isset($message)){
 				echo "<p class='red'>" . $message . "</p>";
 			}

@@ -178,7 +178,7 @@ if(isset($_POST['consult'])){
 						}
 						if(!empty($skill['socialSkills_ref'])){
 							echo "<table id='a'><tr><td id='b'>Mes savoir-être</td></tr>
-							<tr><td id='c'>Je suis</td></tr>
+							<tr><td id='c'>Il est</td></tr>
 							<tbody id='d'>";
 							foreach($skill["socialSkills_ref"] as $socialSkill){
 								echo '<tr><td>
