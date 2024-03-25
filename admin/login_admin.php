@@ -11,9 +11,9 @@
 		$username = $_POST["username2"];
 		$password = $_POST["password2"];
 	
-		if($username == "cytech" && $password == "shellshocker.io"){		//indentifiant et mot de passe néccessaire pour se connecter en tant qu'admin
+		if($username == "cytech" && $password == "cytech"){					//indentifiant et mot de passe néccessaire pour se connecter en tant qu'admin
 			$_SESSION["role"] = "admin";									//A ne surtout pas dévoiler !!
-			header("Location: search.php");
+			header("Location: search.php");									// en clair uniquement car non donné ailleurs
 			exit;
 		}else{
 			$message = "Identifiant ou mot de passe incorrect.";
